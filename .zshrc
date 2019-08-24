@@ -105,6 +105,8 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias vi='vim'
 alias nvi='nvim'
+alias emacs='emacs -nw'
+alias ra='ranger'
 PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
 PATH=$PATH:$HOME/.local/bin
 export PATH="$PATH:$HOME/npm/bin"
@@ -116,6 +118,8 @@ source /etc/profile.d/autojump.zsh
 eval "$(pyenv init -)"
 eval $(thefuck --alias)
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+
+export EDITOR=nvim
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
