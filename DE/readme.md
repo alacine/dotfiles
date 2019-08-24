@@ -6,4 +6,6 @@
 
 * 输入法配置 -> [fcitx.md](./fcitx.md)
 
-* 桌面主题, 面板, 小部件 -> [plasma.md](./plasma.md)
+* 桌面主题, 面板, 小部件
+    - [plasma.md](./plasma.md)
+    - i3 (暂时没有清单, 只有配置文件)
