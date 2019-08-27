@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 set $up k
 set $down j
 set $left h
@@ -47,19 +47,20 @@ bindsym $mod+Shift+q kill
 #|_|  |_|\__, |  \____\___/|_| |_|_| |_|\__, |
 #        |___/                          |___/ 
 # ============================================ 
-#bindsym alt+space exec albert
+#bindsym alt+space exec dmenu_run -fn monaco-12
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 # 亮度
-bindsym $mod+alt+u exec "xbacklight +10"
-bindsym $mod+alt+d exec "xbacklight -10"
+#bindsym $mod+alt+u exec "xbacklight +10"
+#bindsym $mod+alt+d exec "xbacklight -10"
 bindsym ctrl+$mod+l exec i3lock
 bindsym $mod+Shift+r exec i3-msg restart
+bindsym $mod+d exec krunner
 # ============================================ 
 
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -fn monaco-12
+#bindsym $mod+d exec dmenu_run -fn monaco-12
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -209,21 +210,17 @@ new_window pixel 0
 smart_borders on
 # gaps
 gaps inner 10
-gaps outer 6
+gaps outer 10
 set $default_gaps_inner 10
 set $default_gaps_outer 10
 #focus_follows_mouse no
 # background
 exec_always --no-startup-id feh --bg-scale "/home/ryan/Pictures/Kiana_Mei.png"
-
-# polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-# network
-exec-always --no-startup-id nm-applet
-# compton
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec-always --no-startup-id nm-applet
 exec --no-startup-id compton -CGb
-exec_always fcitx
-exec_always --no-startup-id dunst
-exec_always --no-startup-id kdeconnect-indicator
-exec_always --no-startup-id ~/.config/i3/enable_tap_to_click.sh
+#exec_always fcitx
+#exec_always --no-startup-id dunst
+#exec_always --no-startup-id kdeconnect-indicator
+#exec_always --no-startup-id ~/.config/i3/enable_tap_to_click.sh
 # ============================================ 

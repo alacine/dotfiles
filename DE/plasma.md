@@ -39,6 +39,14 @@
 
 使用该主题时, 会导致 Configuration 按钮消失, 使用快捷键`Ctrl+Shift+,`即可, 或参考评论区回答`sed -i '/Skin=.*/d' ~/.config/yakuakerc && killall yakuake && yakuake &`
 
+### plasma 中使用 i3wm
+
+创建 `~/.config/plasma-workspace/env/set_window_manager.sh`, 并添加可执行权限
+
+```
+exporrt KDEWM=/usr/bin/i3
+```
+
 ### 屏幕录制闪屏问题
 
 [[已解决]屏幕录制闪屏问题请教](https://bbs.archlinuxcn.org/viewtopic.php?id=5713)
