@@ -16,3 +16,5 @@
 * 桌面主题, 部分软件主题
     - i3
     - plasma
+
+![screenshot](./DE/screenshot.png)
