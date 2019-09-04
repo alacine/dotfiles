@@ -1,3 +1,14 @@
+## IBus
+
+在 `~/.xprofile` 中添加
+```
+export GTK_IM_MODULE="fcitx"
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE="fcitx"
+```
+
+rime 配置路径`~/.config/ibus/rime/`
+
 ## fcitx 输入法的配置
 
 在 `/etc/profile` 中添加
@@ -19,6 +30,6 @@ export XMODIFIERS="@im=fcitx"
 export SAL_USE_VCLPLUGIN=gtk fcitx
 ```
 
-## 搜狗输入法占用过高
+### 搜狗输入法占用过高
 
 Fcitx Configuration > Addon Config > Show Advance option > module > uncheck 'Sogou Cloud Pinyin'

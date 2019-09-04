@@ -1,0 +1,8 @@
+patch:
+  "menu/page_size": 7
+  schema_list:
+    - schema: double_pinyin  # 自然碼
+    - schema: double_pinyin_flypy  # 小鶴雙拼追
+  "key_binder/bindings":
+    - { when: paging, accept: bracketleft, send: Page_Up }
+    - { when: has_menu, accept: bracketright, send: Page_Down }
