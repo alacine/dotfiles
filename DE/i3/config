@@ -53,14 +53,15 @@ bindsym $mod+Shift+Tab workspace prev
 # 亮度
 #bindsym $mod+alt+u exec "xbacklight +10"
 #bindsym $mod+alt+d exec "xbacklight -10"
-bindsym ctrl+$mod+l exec i3lock
+#bindsym ctrl+$mod+l exec i3lock
 bindsym $mod+Shift+r exec i3-msg restart
-bindsym $mod+d exec krunner
+#bindsym $mod+d exec krunner
+bindsym $mod+d exec --no-startup-id ~/.config/i3/dmenu.sh
 # ============================================ 
 
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run -fn monaco-12
+#bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -219,6 +220,7 @@ exec_always --no-startup-id feh --bg-scale "/home/ryan/Pictures/Kiana_Mei.png"
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec-always --no-startup-id nm-applet
 exec --no-startup-id compton -CGb
+exec --no-startup-id ibus-daemon --xim -d -r
 #exec_always fcitx
 #exec_always --no-startup-id dunst
 #exec_always --no-startup-id kdeconnect-indicator
