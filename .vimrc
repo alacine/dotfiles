@@ -3,6 +3,7 @@ syntax enable
 syntax on
 " set termguicolors
 let mapleader=","
+set path+=**
 set wildmenu
 set number
 set ts=4
@@ -15,12 +16,11 @@ set expandtab
 set cursorline
 " 当前列高亮
 " set cursorcolumn
-" vim 自身命令行模式智能补全
-" set wildmenu
 set laststatus=2
 set t_Co=256
 set ignorecase
 set clipboard=unnamed
+set scrolloff=5
 "set foldmethod=indent
 "set undofile=~/.vim/undodir
 
@@ -51,136 +51,72 @@ noremap <leader>d :bd<cr>
 nnoremap <leader>f :TableFormat<CR>
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> [n :bnext<CR>
+
 " sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Indent Python in the Google way.
+" use template python code
+autocmd BufNewFile *_leetcode.py 0r ~/.vim/template/leetcode.py
 
-setlocal indentexpr=GetGooglePythonIndent(v:lnum)
-
-let s:maxoff = 50 " maximum number of lines to look backwards.
-
-function GetGooglePythonIndent(lnum)
-
-  " Indent inside parens.
-  " Align with the open paren unless it is at the end of the line.
-  " E.g.
-  "   open_paren_not_at_EOL(100,
-  "                         (200,
-  "                          300),
-  "                         400)
-  "   open_paren_at_EOL(
-  "       100, 200, 300, 400)
-  call cursor(a:lnum, 1)
-  let [par_line, par_col] = searchpairpos('(\|{\|\[', '', ')\|}\|\]', 'bW',
-        \ "line('.') < " . (a:lnum - s:maxoff) . " ? dummy :"
-        \ . " synIDattr(synID(line('.'), col('.'), 1), 'name')"
-        \ . " =~ '\\(Comment\\|String\\)$'")
-  if par_line > 0
-    call cursor(par_line, 1)
-    if par_col != col("$") - 1
-      return par_col
-    endif
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py
   endif
-
-  " Delegate the rest to the original function.
-  return GetPythonIndent(a:lnum)
-
 endfunction
-
-let pyindent_nested_paren="&sw*2"
-let pyindent_open_paren="&sw*2"
 
 " --------------------------------------------------------------------------------
 set nocompatible              " be iMproved, required
-filetype off                  " required
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" add Plugin here
-Plugin 'rakr/vim-one'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'iamcco/mathjax-support-for-mkdp'
-Plugin 'iamcco/markdown-preview.vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'mhinz/vim-startify'
-Plugin 'tpope/vim-surround'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Shougo/denite.nvim'
-"Plugin 'w0ng/vim-hybrid'
-Plugin 'kristijanhusak/vim-hybrid-material'
-Plugin 'majutsushi/tagbar'
-Plugin 'lfv89/vim-interestingwords'
-Plugin 'rking/ag.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'godlygeek/tabular'
-Plugin 'python-mode/python-mode'
-Plugin 'w0rp/ale'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'mileszs/ack.vim'
-Plugin 'brooth/far.vim'
-Plugin 'jpalardy/vim-slime'
-Plugin 'fatih/vim-go'
-Plugin 'mattn/emmet-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mbbill/undotree'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'itchyny/vim-cursorword'
-Plugin 'chrisbra/csv.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'git://git.wincent.com/command-t.git'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'rakr/vim-one'
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'flazz/vim-colorschemes'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
+Plug 'Yggdroot/indentLine'
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-surround'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'majutsushi/tagbar'
+Plug 'lfv89/vim-interestingwords'
+Plug 'rking/ag.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'nanotech/jellybeans.vim'
+Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'godlygeek/tabular'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'w0rp/ale'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'Chiel92/vim-autoformat'
+Plug 'mileszs/ack.vim'
+Plug 'brooth/far.vim'
+Plug 'jpalardy/vim-slime'
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mbbill/undotree'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'itchyny/vim-cursorword'
+Plug 'chrisbra/csv.vim'
+Plug 'junegunn/gv.vim'
 " maybe will use one day
 "Plugin 'idanarye/vim-vebugger'
-
-" end of my Plugins
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
 "--------------------------------------------------------------------------------
 
 " ----------vim-one-----------
@@ -303,13 +239,18 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 "let g:airline_theme = 'hybridline'
 
-" -------pymode---------
+" -------python-mode---------
 "let g:pymode_python = 'python3'
 let g:pymode_motion = 1
 let pymode_lint_cwindow = 0
 let g:pymode_breakpoint_bind = '<leader>b'
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 "let g:pymode_lint = 0
+
+" ---------slime----------
+let g:slime_target = 'tmux'
+let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{right-of}'}
+let g:slime_python_ipython = 1
 
 " ---------ale------------
 let g:ale_python_pylint_options = '--load-plugins pylint_django'
