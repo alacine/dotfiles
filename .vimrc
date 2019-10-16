@@ -1,11 +1,13 @@
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 syntax enable
 syntax on
+"command! MakeTags !ctags -R .
 " set termguicolors
 let mapleader=","
 set path+=**
 set wildmenu
 set number
+set relativenumber
 set ts=4
 set softtabstop=4
 set shiftwidth=4
@@ -15,7 +17,7 @@ set expandtab
 " 当前行高亮
 set cursorline
 " 当前列高亮
-" set cursorcolumn
+set cursorcolumn
 set laststatus=2
 set t_Co=256
 set ignorecase
@@ -82,13 +84,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
-Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine', { 'for': ['python', 'c', 'cpp', 'go'] }
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 Plug 'lfv89/vim-interestingwords'
 Plug 'rking/ag.vim'
 Plug 'terryma/vim-multiple-cursors'
