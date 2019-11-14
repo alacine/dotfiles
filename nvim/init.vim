@@ -1,3 +1,9 @@
+set clipboard=unnamed
+set clipboard+=unnamedplus
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:python3_host_prog = '/usr/bin/python'
+let g:python_host_prog = '/usr/bin/python2'
+
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 syntax enable
 syntax on
@@ -21,7 +27,6 @@ set cursorcolumn
 set laststatus=2
 set t_Co=256
 set ignorecase
-set clipboard=unnamed
 set scrolloff=5
 "set foldmethod=indent
 "set undofile=~/.vim/undodir
@@ -60,26 +65,14 @@ cnoremap w!! w !sudo tee % >/dev/null
 " use template python code
 autocmd BufNewFile *_leetcode.py 0r ~/.vim/template/leetcode.py
 
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.py
-  endif
-endfunction
-
 " --------------------------------------------------------------------------------
 set nocompatible              " be iMproved, required
-call plug#begin('~/.vim/plugged')
-
+call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-fugitive'
-Plug 'git://git.wincent.com/command-t.git'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'rakr/vim-one'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'zgpio/tree.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
 Plug 'iamcco/mathjax-support-for-mkdp'
@@ -87,16 +80,12 @@ Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'c', 'cpp', 'go'] }
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'kristijanhusak/vim-hybrid-material'
-"Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 Plug 'lfv89/vim-interestingwords'
 Plug 'rking/ag.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'nanotech/jellybeans.vim'
-Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
@@ -116,8 +105,9 @@ Plug 'xolox/vim-session'
 Plug 'itchyny/vim-cursorword'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/gv.vim'
-" maybe will use one day
-"Plugin 'idanarye/vim-vebugger'
+Plug 'easymotion/vim-easymotion'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'liuchengxu/vista.vim'
 call plug#end()
 "--------------------------------------------------------------------------------
 
@@ -189,48 +179,12 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 set updatetime=100
 
+" ----------gitgutter-----------
+let g:gitgutter_highlight_lines = 1
+
 " ----------tagbar-----------
 map ,t :TagbarToggle<CR>
 
-" ----------Ycm----------
-let g:ycm_use_clangd = "Never"
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-"
-" YouCompleteMe options
-"
-let g:ycm_register_as_syntastic_checker = 1 "default 1
-let g:Show_diagnostics_ui = 1 "default 1
-"will put icons in Vim's gutter on lines that have a diagnostic set.
-"Turning this off will also turn off the YcmErrorLine and YcmWarningLine
-"highlighting
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_always_populate_location_list = 1 "default 0
-let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-
-let g:ycm_complete_in_strings = 1 "default 1
-let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
-let g:ycm_path_to_python_interpreter = '' "default ''
-
-let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
-let g:ycm_server_log_level = 'info' "default info
-
-let g:ycm_confirm_extra_conf = 1
-
-let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
-let g:ycm_filetype_whitelist = { '*': 1 }
-let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
-
-nnoremap <Leader>gd :YcmCompleter GoTo<CR>
 " ---------airline----------
 let g:airline#extensions#tabline#enabled = 1
 
@@ -257,7 +211,10 @@ let g:slime_python_ipython = 1
 " ---------ale------------
 let g:ale_python_pylint_options = '--load-plugins pylint_django'
 let g:ale_python_pylint_options = '--extension-pkg-whitelist=cv2'
-let g:ale_linters = {'python': ['pyflakes', 'pep8', 'mccabe']}
+let g:ale_linters = {
+    \ 'python': ['pyflakes', 'pep8', 'mccabe'],
+    \ 'go': ['gopls']
+\ }
 let g:ale_set_highlights = 0
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
@@ -277,3 +234,49 @@ nnoremap <Leader>u :UndotreeToggle<CR>
 
 " ----------vim-session----------------
 let g:session_autosave = 'no'
+let g:session_autoload = 'no'
+
+" ----------vim-session----------------
+map ss <Plug>(easymotion-s2)
+
+" ----------coc----------------
+source ~/.config/nvim/coc_example.vim
+
+" ---------tree.nvim------
+"nnoremap <silent> <Space>z :<C-u>Tree -columns=mark:git:indent:icon:filename:size \ -split=vertical
+      "\ -direction=topleft
+      "\ -winwidth=40
+      "\ -listed
+      "\ `expand('%:p:h')`<CR>
+
+"call tree#custom#option('_', {
+      "\ 'root_marker': '',
+      "\ })
+
+"autocmd FileType tree call s:set_tree()
+"func! s:set_tree() abort
+    "nnoremap <silent><buffer><expr> > tree#action('toggle_ignored_files')
+    "nnoremap <silent><buffer><expr> * tree#action('toggle_select_all')
+    "nnoremap <silent><buffer><expr> s tree#action('drop', 'split')
+    "nnoremap <silent><buffer><expr> <CR> tree#action('drop')
+    "nnoremap <silent><buffer><expr> <Tab> tree#action('toggle_select') . 'j'
+    "nnoremap <silent><buffer><expr> <C-l> tree#action('redraw')
+    "nnoremap <silent><buffer><expr> <C-g> tree#action('print')
+    "nnoremap <silent><buffer><expr> E tree#action('open', 'vsplit')
+    "nnoremap <silent><buffer><expr> o tree#action('open_or_close_tree')
+    "nnoremap <silent><buffer><expr> R tree#action('open_tree_recursive')
+    "nnoremap <silent><buffer><expr> r tree#action('rename')
+    "nnoremap <silent><buffer><expr> x tree#action('execute_system')
+    "nnoremap <silent><buffer><expr> N tree#action('new_file')
+    "nnoremap <silent><buffer><expr> h tree#action('cd', ['..'])
+    "nnoremap <silent><buffer><expr> cd tree#action('cd', '.')
+    "nnoremap <silent><buffer><expr> \ tree#action('cd', getcwd())
+    "nnoremap <silent><buffer><expr> ~ tree#action('cd')
+    "nnoremap <silent><buffer><expr> l tree#action('open')
+    "nnoremap <silent><buffer><expr> yy tree#action('yank_path')
+"endf
+
+" ----------vim-go--------
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_def_mapping_enable = 0

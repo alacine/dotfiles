@@ -1,0 +1,30 @@
+{
+    "python.jediEnabled": false,
+    "yank.enableCompletion" : false,
+    "diagnostic.virtualText": true,
+    "codeLens.enable": true,
+    "suggest.detailMaxLength": 60,
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": []
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+            "rootPatterns": [".ccls-root", "compile_commands.json"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": ".ccls-cache"
+                }
+            }
+        }
+    }
+}
