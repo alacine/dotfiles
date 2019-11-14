@@ -107,6 +107,7 @@ alias vi='vim'
 alias nvi='nvim'
 alias emacs='emacs -nw'
 alias ra='ranger'
+alias lg='lazygit'
 PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
 PATH=$PATH:$HOME/.local/bin
 export PATH="$PATH:$HOME/npm/bin"
@@ -137,7 +138,9 @@ unset __conda_setup
 # <<< conda initialize <<<
 conda deactivate
 
-fpath=($fpath "/home/ryan/.zfunctions")
+#fpath=($fpath "/home/ryan/.zfunctions")
 # Set Spaceship ZSH as a prompt
+fpath+=('/home/ryan/npm/lib/node_modules/pure-prompt/functions')
 autoload -U promptinit; promptinit
-prompt spaceship
+#prompt spaceship
+prompt pure
