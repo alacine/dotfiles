@@ -67,7 +67,7 @@ autocmd BufNewFile *_leetcode.py 0r ~/.vim/template/leetcode.py
 
 " --------------------------------------------------------------------------------
 set nocompatible              " be iMproved, required
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'rakr/vim-one'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
