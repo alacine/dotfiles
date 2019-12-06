@@ -89,8 +89,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'w0rp/ale'
+"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+"Plug 'w0rp/ale'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'mileszs/ack.vim'
@@ -180,7 +180,7 @@ let g:NERDTreeIndicatorMapCustom = {
 set updatetime=100
 
 " ----------gitgutter-----------
-let g:gitgutter_highlight_lines = 1
+"let g:gitgutter_highlight_lines = 1
 
 " ----------tagbar-----------
 map ,t :TagbarToggle<CR>
@@ -197,10 +197,10 @@ let g:airline_right_alt_sep = ''
 
 " -------python-mode---------
 "let g:pymode_python = 'python3'
-let g:pymode_motion = 1
-let pymode_lint_cwindow = 0
-let g:pymode_breakpoint_bind = '<leader>b'
-let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+"let g:pymode_motion = 1
+"let pymode_lint_cwindow = 0
+"let g:pymode_breakpoint_bind = '<leader>b'
+"let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 "let g:pymode_lint = 0
 
 " ---------slime----------
@@ -209,16 +209,16 @@ let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{right-o
 let g:slime_python_ipython = 1
 
 " ---------ale------------
-let g:ale_python_pylint_options = '--load-plugins pylint_django'
-let g:ale_python_pylint_options = '--extension-pkg-whitelist=cv2'
-let g:ale_linters = {
-    \ 'python': ['pyflakes', 'pep8', 'mccabe'],
-    \ 'go': ['gopls']
-\ }
-let g:ale_set_highlights = 0
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-let g:ale_open_list = 0
+"let g:ale_python_pylint_options = '--load-plugins pylint_django'
+"let g:ale_python_pylint_options = '--extension-pkg-whitelist=cv2'
+"let g:ale_linters = {
+    "\ 'python': ['pyflakes', 'pep8', 'mccabe'],
+    "\ 'go': ['gopls']
+"\ }
+"let g:ale_set_highlights = 0
+"let g:ale_sign_error = '✗'
+"let g:ale_sign_warning = '⚡'
+"let g:ale_open_list = 0
 
 " --------vim-javascript--------
 let g:javascript_plugin_jsdoc = 1

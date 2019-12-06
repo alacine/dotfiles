@@ -44,7 +44,6 @@ pianobar
 musicbox
 netease-musicbox
 proxychains-ng
-unzip
 xclip xsel
 neovim
 vim
@@ -70,8 +69,6 @@ flask
 youtube-dl
 httpbin
 docker
-jupyter
-tensorflow
 opencv
 virtualenv
 ack
@@ -89,6 +86,17 @@ tig
 htop
 tree
 shadowsocks
+paclist
+python2-pip
+lazygit
+dos2unix
+expac
+lolcat
+sc-im
+
+bash-language-server
+python-language-server
+ccls
 
 libva-intel-driver
 libva-vdpau-driver
