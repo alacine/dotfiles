@@ -106,8 +106,15 @@ Plug 'itchyny/vim-cursorword'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/gv.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/vista.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 "--------------------------------------------------------------------------------
 
