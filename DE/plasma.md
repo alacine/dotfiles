@@ -15,7 +15,8 @@
     - ttf-monaco
 
 * Widgets
-    - Active Window Control
+    - ~~Active Window Control~~
+    - Application title
     - Global Menu
     - Pager Swith between virtual desktop
     - Color Picker
