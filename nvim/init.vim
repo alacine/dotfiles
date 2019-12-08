@@ -134,6 +134,7 @@ let g:one_allow_italics = 1
 au ColorScheme one hi Normal ctermbg=None
 colorscheme one
 let g:airline_theme='one'
+hi Normal guibg=NONE ctermbg=NONE
 
 " ----------hybrid-----------
 "set background=dark
