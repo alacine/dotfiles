@@ -30,7 +30,7 @@ set ignorecase
 set scrolloff=5
 "set foldmethod=indent
 "set undofile=~/.vim/undodir
-
+set encoding=UTF-8
 " 色彩问题 (注意: 这里的^[是按下C-v再按Esc得到的)
 if has("termguicolors")
     " fix bug for vim
@@ -55,9 +55,7 @@ noremap <leader>n :bn<cr>
 noremap <leader>p :bp<cr>
 noremap <leader>d :bd<cr>
 
-nnoremap <leader>f :TableFormat<CR>
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> [n :bnext<CR>
+noremap <space>f :FZF<cr>
 
 " sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
@@ -72,7 +70,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'rakr/vim-one'
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'zgpio/tree.nvim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
 Plug 'iamcco/mathjax-support-for-mkdp'
@@ -82,7 +81,6 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'majutsushi/tagbar'
 Plug 'lfv89/vim-interestingwords'
 Plug 'rking/ag.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -187,11 +185,31 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 set updatetime=100
 
+" ----nerdtree-devicons-syntax--
+let s:colors = {
+  \ 'brown'       : "905532",
+  \ 'aqua'        : "3AFFDB",
+  \ 'blue'        : "689FB6",
+  \ 'darkBlue'    : "44788E",
+  \ 'purple'      : "834F79",
+  \ 'lightPurple' : "834F79",
+  \ 'red'         : "AE403F",
+  \ 'beige'       : "F5C06F",
+  \ 'yellow'      : "F09F17",
+  \ 'orange'      : "D4843E",
+  \ 'darkOrange'  : "F16529",
+  \ 'pink'        : "CB6F6F",
+  \ 'salmon'      : "EE6E73",
+  \ 'green'       : "8FAA54",
+  \ 'lightGreen'  : "31B53E",
+  \ 'white'       : "FFFFFF"
+\ }
+
 " ----------gitgutter-----------
 "let g:gitgutter_highlight_lines = 1
 
-" ----------tagbar-----------
-map ,t :TagbarToggle<CR>
+" ----------vim-markdown--------
+nnoremap <leader>f :TableFormat<CR>
 
 " ---------airline----------
 let g:airline#extensions#tabline#enabled = 1
@@ -250,41 +268,23 @@ map ss <Plug>(easymotion-s2)
 " ----------coc----------------
 source ~/.config/nvim/coc_example.vim
 
-" ---------tree.nvim------
-"nnoremap <silent> <Space>z :<C-u>Tree -columns=mark:git:indent:icon:filename:size \ -split=vertical
-      "\ -direction=topleft
-      "\ -winwidth=40
-      "\ -listed
-      "\ `expand('%:p:h')`<CR>
-
-"call tree#custom#option('_', {
-      "\ 'root_marker': '',
-      "\ })
-
-"autocmd FileType tree call s:set_tree()
-"func! s:set_tree() abort
-    "nnoremap <silent><buffer><expr> > tree#action('toggle_ignored_files')
-    "nnoremap <silent><buffer><expr> * tree#action('toggle_select_all')
-    "nnoremap <silent><buffer><expr> s tree#action('drop', 'split')
-    "nnoremap <silent><buffer><expr> <CR> tree#action('drop')
-    "nnoremap <silent><buffer><expr> <Tab> tree#action('toggle_select') . 'j'
-    "nnoremap <silent><buffer><expr> <C-l> tree#action('redraw')
-    "nnoremap <silent><buffer><expr> <C-g> tree#action('print')
-    "nnoremap <silent><buffer><expr> E tree#action('open', 'vsplit')
-    "nnoremap <silent><buffer><expr> o tree#action('open_or_close_tree')
-    "nnoremap <silent><buffer><expr> R tree#action('open_tree_recursive')
-    "nnoremap <silent><buffer><expr> r tree#action('rename')
-    "nnoremap <silent><buffer><expr> x tree#action('execute_system')
-    "nnoremap <silent><buffer><expr> N tree#action('new_file')
-    "nnoremap <silent><buffer><expr> h tree#action('cd', ['..'])
-    "nnoremap <silent><buffer><expr> cd tree#action('cd', '.')
-    "nnoremap <silent><buffer><expr> \ tree#action('cd', getcwd())
-    "nnoremap <silent><buffer><expr> ~ tree#action('cd')
-    "nnoremap <silent><buffer><expr> l tree#action('open')
-    "nnoremap <silent><buffer><expr> yy tree#action('yank_path')
-"endf
-
 " ----------vim-go--------
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_def_mapping_enable = 0
+
+" ----------vista---------
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
+let g:vista_sidebar_width = 50
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_py_executive = 'coc'
+"let g:vista#renderer#ctags = 'vista_kind'
+noremap <leader>t :Vista<space>
