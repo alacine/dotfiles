@@ -5,6 +5,7 @@
 * Theme
     - [McMojave](https://store.kde.org/p/1305006/)
     - [Sweet](https://store.kde.org/p/1294174/)
+    - [canta-dark](https://store.kde.org/p/1220749/)
 
 * Icon
     - McMojave-circle
@@ -18,9 +19,13 @@
     - ~~Active Window Control~~
     - Application title
     - Global Menu
+    - Active bar
     - Pager Swith between virtual desktop
     - Color Picker
-    - Netspeed Widget
+    - System tray
+    - Digital Clock
+    - Folder View
+    - ~~Netspeed Widget~~
 
 * Login Screen(SDDM)
     - [kde-plasma-chili](https://github.com/MarianArlt/kde-plasma-chili)
@@ -30,9 +35,13 @@
 
 * BreezemiteForman
 
-### Konsole
+### Terminal
 
-* Theme -> One Dark
+* Konsole
+    - Theme -> Breeze, One Dark
+
+* st
+    - 相关配置之后补全
 
 ### 下拉式终端 Yakuake
 

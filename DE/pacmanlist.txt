@@ -106,11 +106,29 @@ dolphin
 discover
 konsole
 kate
+kscreen
+xf86-input-synaptics
+powerdevil
+spectacle
+gwenview
+systemsettings
+network-manager-applet
+plasma-nm
+bluedevil
+latte-dock
+kvantum-qt5
+appmenu-gtk-module
+libdbusmenu-glib
+lib32-libdbusmenu-glib lib32-libdbusmenu-gtk2 lib32-libdbusmenu-gtk3 lib32-libdbusmenu-qt libdbusmenu-glib libdbusmenu-gtk2 libdbusmenu-gtk3 libdbusmenu-qt4 libdbusmenu-qt6
+libdbusmenu-gtk2 libdbusmenu-gtk3 libdbusmenu-qt4 libdbusmenu-qt5
+libdbusmenu-gtk2 libdbusmenu-gtk3
+yakuake
+kdecoration qt5-declarative qt5-x11extras 
+plasma-browser-integration
+kdeplasma-addons
+
 ffmpeg
 vlc
-kcm-fcitx
-fcitx-sogoupinyin
-fcitx-im
 wqy-microhei-lite
 adobe-source-han-serif-cn-fonts
 adobe-source-han-sans-cn-fonts
@@ -120,7 +138,7 @@ ttf-wps-fonts
 noto-fonts
 noto-fonts-cjk
 ttf-symbola
-electronic-wechat
+nerd-fonts-complete
 xournal
 telegram-desktop
 obs-studio
@@ -128,20 +146,12 @@ gimp
 genymotion
 teamviewer
 qbittorrent
-powerdevil
-spectacle
-gwenview
 gtk-engine-murrine gtk-engines
 dmenu
 netease-cloud-music
-systemsettings
-network-manager-applet
-plasma-nm
-kbluetooth
 okular
 kvantum-theme-materia materia-gtk-theme materia-kde
 chromium
-latte-dock
 zeal
 anki
 pepper-flash
@@ -149,15 +159,6 @@ screenkey
 ocs-url
 wireshark-qt
 wps-office
-kvantum-qt5
-appmenu-gtk-module
-libdbusmenu-glib
-lib32-libdbusmenu-glib lib32-libdbusmenu-gtk2 lib32-libdbusmenu-gtk3 lib32-libdbusmenu-qt libdbusmenu-glib libdbusmenu-gtk2 libdbusmenu-gtk3 libdbusmenu-qt4 libdbusmenu-qt6
-libdbusmenu-gtk2 libdbusmenu-gtk3 libdbusmenu-qt4 libdbusmenu-qt5
-libdbusmenu-gtk2 libdbusmenu-gtk3
-firefox-kde-opensuse-bin
-yakuake
-kdecoration qt5-declarative qt5-x11extras 
 code
 baidunetdisk-bin
 
