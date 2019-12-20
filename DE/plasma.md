@@ -40,8 +40,7 @@
 * Konsole
     - Theme -> Breeze, One Dark
 
-* st
-    - 相关配置之后补全
+* [st](https://github.com/alacine/st)
 
 ### 下拉式终端 Yakuake
 

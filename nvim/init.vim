@@ -56,6 +56,7 @@ noremap <leader>p :bp<cr>
 noremap <leader>d :bd<cr>
 
 noremap <space>f :FZF<cr>
+noremap <space>v :e ~/.config/nvim/init.vim<cr>
 
 " sudo to write
 cnoremap w!! w !sudo tee % >/dev/null
@@ -113,6 +114,9 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
 call plug#end()
 "--------------------------------------------------------------------------------
 
@@ -288,3 +292,7 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_py_executive = 'coc'
 "let g:vista#renderer#ctags = 'vista_kind'
 noremap <leader>t :Vista<space>
+
+" ----------range---------
+let g:ranger_map_keys = 0
+map <leader>r :Ranger<CR>

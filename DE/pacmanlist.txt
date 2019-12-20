@@ -94,6 +94,7 @@ expac
 lolcat
 sc-im
 yarn
+tmuxp
 
 bash-language-server
 python-language-server
