@@ -276,6 +276,7 @@ source ~/.config/nvim/coc_example.vim
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_def_mapping_enable = 0
+let g:go_fmt_command = 'goimports'
 
 " ----------vista---------
 function! NearestMethodOrFunction() abort
