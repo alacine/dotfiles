@@ -3,6 +3,7 @@ set clipboard+=unnamedplus
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:python3_host_prog = '/usr/bin/python'
 let g:python_host_prog = '/usr/bin/python2'
+set cc=80
 
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 syntax enable
@@ -29,6 +30,8 @@ set t_Co=256
 set ignorecase
 set scrolloff=5
 "set foldmethod=indent
+set foldmethod=syntax
+set nofoldenable
 "set undofile=~/.vim/undodir
 set encoding=UTF-8
 " 色彩问题 (注意: 这里的^[是按下C-v再按Esc得到的)
@@ -55,7 +58,6 @@ noremap <leader>n :bn<cr>
 noremap <leader>p :bp<cr>
 noremap <leader>d :bd<cr>
 
-noremap <space>f :FZF<cr>
 noremap <space>v :e ~/.config/nvim/init.vim<cr>
 
 " sudo to write
@@ -117,6 +119,7 @@ Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 "--------------------------------------------------------------------------------
 
@@ -213,7 +216,7 @@ let s:colors = {
 "let g:gitgutter_highlight_lines = 1
 
 " ----------vim-markdown--------
-nnoremap <leader>f :TableFormat<CR>
+nnoremap <leader>tf :TableFormat<CR>
 
 " ---------airline----------
 let g:airline#extensions#tabline#enabled = 1
@@ -286,7 +289,7 @@ endfunction
 set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
-let g:vista_sidebar_width = 50
+let g:vista_sidebar_width = 40
 let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
@@ -297,3 +300,36 @@ noremap <leader>t :Vista<space>
 " ----------range---------
 let g:ranger_map_keys = 0
 map <leader>r :Ranger<CR>
+
+" ----------fzf---------
+noremap <space>f :Files<cr>
+noremap <space>C :Commands<cr>
+noremap <space>B :Buffers<cr>
+noremap <space>L :Lines<cr>
+noremap <space>l :BLines<cr>
+" set preview window
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+" set floating window
+let $FZF_DEFAULT_OPTS='--layout=reverse'
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+au FileType fzf set nonu nornu
+
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+
+  let height = &lines - 8
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  let col = float2nr((&columns - width) / 2)
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': 4,
+        \ 'col': col,
+        \ 'width': width,
+        \ 'height': height
+        \ }
+
+  call nvim_open_win(buf, v:true, opts)
+endfunction
