@@ -108,6 +108,12 @@ Plug 'chrisbra/csv.vim'
 Plug 'junegunn/gv.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/vista.vim'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'lambdalisue/suda.vim'
+Plug 'honza/vim-snippets'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
@@ -117,10 +123,7 @@ Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'rbgrouleff/bclose.vim'
-Plug 'francoiscabrol/ranger.vim'
-Plug 'junegunn/fzf.vim'
-Plug 'lambdalisue/suda.vim'
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 "--------------------------------------------------------------------------------
 
