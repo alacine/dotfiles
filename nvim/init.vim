@@ -85,7 +85,7 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'lfv89/vim-interestingwords'
-Plug 'rking/ag.vim'
+"Plug 'rking/ag.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -120,6 +120,7 @@ Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'lambdalisue/suda.vim'
 call plug#end()
 "--------------------------------------------------------------------------------
 
@@ -303,8 +304,9 @@ map <leader>r :Ranger<CR>
 
 " ----------fzf---------
 noremap <space>f :Files<cr>
-noremap <space>C :Commands<cr>
+noremap <space>A :Ag<cr>
 noremap <space>B :Buffers<cr>
+noremap <space>C :Commands<cr>
 noremap <space>L :Lines<cr>
 noremap <space>l :BLines<cr>
 " set preview window
@@ -333,3 +335,8 @@ function! FloatingFZF()
 
   call nvim_open_win(buf, v:true, opts)
 endfunction
+
+" ----------suda---------
+if has("nvim")
+    cnoremap w!! w suda://%
+end
