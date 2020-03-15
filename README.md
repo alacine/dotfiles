@@ -19,4 +19,4 @@
     - ~~i3~~
     - plasma
 
-![screenshot](./DE/screenshot.png)
+![screenshot](./DE/screenshot/desktop.png)
