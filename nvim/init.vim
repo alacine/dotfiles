@@ -44,12 +44,17 @@ if has("termguicolors")
     set termguicolors
 endif
 
+autocmd BufRead,BufNewFile *.vue setlocal ts=2 sw=2 expandtab
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap { {}<LEFT>
 inoremap vv <Esc>`^
 
 noremap <leader>w :w<cr>
+noremap <leader>q :q<cr>
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
@@ -113,6 +118,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'honza/vim-snippets'
+Plug 'voldikss/vim-floaterm'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
@@ -279,6 +285,8 @@ map ss <Plug>(easymotion-s2)
 " ----------coc----------------
 source ~/.config/nvim/coc_example.vim
 
+set ignorecase smartcase
+
 " ----------vim-go--------
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
@@ -306,6 +314,8 @@ let g:ranger_map_keys = 0
 map <leader>r :Ranger<CR>
 
 " ----------fzf---------
+au FileType fzf tnoremap <buffer> <C-j> <Down>
+au FileType fzf tnoremap <buffer> <C-k> <Up>
 noremap <space>f :Files<cr>
 noremap <space>A :Ag<cr>
 noremap <space>B :Buffers<cr>
