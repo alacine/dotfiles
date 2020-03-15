@@ -14,7 +14,7 @@ fcitx5 & # 如果不能自启动，加上这个
 ```
 
 看一张效果图
-[fcitx5](./screenshot/fcitx5.png)
+![fcitx5](./screenshot/fcitx5.png)
 
 ## IBus
 
