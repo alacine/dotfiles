@@ -9,7 +9,7 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 syntax enable
 syntax on
 "command! MakeTags !ctags -R .
-" set termguicolors
+set termguicolors
 let mapleader=","
 set path+=**
 set wildmenu
@@ -75,14 +75,12 @@ autocmd BufNewFile *_leetcode.py 0r ~/.vim/template/leetcode.py
 set nocompatible              " be iMproved, required
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
-Plug 'rakr/vim-one'
-Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
-Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'sainnhe/edge'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'airblade/vim-gitgutter'
+Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'c', 'cpp', 'go'] }
 Plug 'mhinz/vim-startify'
@@ -90,21 +88,16 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'lfv89/vim-interestingwords'
-"Plug 'rking/ag.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'godlygeek/tabular'
 "Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-"Plug 'w0rp/ale'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'Chiel92/vim-autoformat'
-Plug 'mileszs/ack.vim'
 Plug 'brooth/far.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'vue'] }
 Plug 'mbbill/undotree'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -114,11 +107,11 @@ Plug 'junegunn/gv.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/vista.vim'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'francoiscabrol/ranger.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'honza/vim-snippets'
 Plug 'voldikss/vim-floaterm'
+Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
@@ -130,115 +123,71 @@ Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'voldikss/coc-floaterm', {'do': 'yarn install --frozen-lockfile'}
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 "--------------------------------------------------------------------------------
 
-" ----------vim-one-----------
-if (empty($TMUX))
-  if (has("nvim"))
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-set background=dark " for the dark version
-" set background=light " for the light version
-let g:one_allow_italics = 1
-" 解决 one 主题背景色异常问题
-au ColorScheme one hi Normal ctermbg=None
-colorscheme one
-let g:airline_theme='one'
-hi Normal guibg=NONE ctermbg=NONE
+" edge
+set background=dark
+"let g:edge_style = 'default'
+let g:edge_style = 'aura'
+"let g:edge_style = 'neon'
+let g:edge_disable_italic_comment = 1
+colorscheme edge
 
-" ----------hybrid-----------
-"set background=dark
-"let g:hybrid_custom_term_colors=1
-"let g:hybrid_reduced_contrast=1
-"colorscheme hybrid_reverse
-"colorscheme hybrid
-"au ColorScheme hybrid hi Normal ctermbg=None
-"au ColorScheme hybrid_reverse hi Normal ctermbg=None
-"if (has("nvim"))
-  "let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"endif
-"if (has("termguicolors"))
-  "set termguicolors
-"endif
-"set background=dark
-"colorscheme hybrid_reverse
-"let g:enable_italic_font = 1
-"let g:airline_theme = 'hybrid'
-"let g:hybrid_transparent_background = 1
-
-" --------indnetline---------
+" indnetline
 " 取消 indentline 在 markdown 和 latex 文件中的异常行为
 let g:indentLine_concealcursor = ''
 let g:indentLine_conceallevel = 1
 
-" ----------NERDTree-----------
-" 启动 vim 时自动打开 NERDTree
-" autocmd vimenter * NERDTree
-" 自动退出
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-map ,g :NERDTreeToggle<CR>
-map ,v :NERDTreeFind<CR>
-map ,x :GitGutterLineHighlightsToggle<CR>
-let NERDTreeShowHidden=1
-let g:NERDTreeShowIgnoredStatus = 1
-let NERDTreeShowLineNumbers=1
-let NERDTreeAutoCenter=1
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-set updatetime=100
-
-" ----nerdtree-devicons-syntax--
-let s:colors = {
-  \ 'brown'       : "905532",
-  \ 'aqua'        : "3AFFDB",
-  \ 'blue'        : "689FB6",
-  \ 'darkBlue'    : "44788E",
-  \ 'purple'      : "834F79",
-  \ 'lightPurple' : "834F79",
-  \ 'red'         : "AE403F",
-  \ 'beige'       : "F5C06F",
-  \ 'yellow'      : "F09F17",
-  \ 'orange'      : "D4843E",
-  \ 'darkOrange'  : "F16529",
-  \ 'pink'        : "CB6F6F",
-  \ 'salmon'      : "EE6E73",
-  \ 'green'       : "8FAA54",
-  \ 'lightGreen'  : "31B53E",
-  \ 'white'       : "FFFFFF"
-\ }
-
-" ----------gitgutter-----------
+" gitgutter
 "let g:gitgutter_highlight_lines = 1
 
-" ----------vim-markdown--------
+" vim-markdown
 nnoremap <leader>tf :TableFormat<CR>
 
-" ---------airline----------
-let g:airline#extensions#tabline#enabled = 1
+" lightline
+set showtabline=2
+let g:lightline = {
+  \ 'colorscheme': 'edge',
+  \ 'separator': { 'left': '', 'right': '' },
+  \ 'subseparator': { 'left': '', 'right': '' },
+  \ }
+let g:lightline.tabline = {
+  \ 'left': [ [ 'buffers' ] ],
+  \ 'right': [ [ 'close' ] ],
+  \ }
+let g:lightline.component_expand = { 'buffers': 'lightline#bufferline#buffers' }
+let g:lightline.component_type   = { 'buffers': 'tabsel' }
+autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+let g:lightline#bufferline#number_map = {
+  \ '0': ' 0 ',
+  \ '1': ' 1 ',
+  \ '2': ' 2 ',
+  \ '3': ' 3 ',
+  \ '4': ' 4 ',
+  \ '5': ' 5 ',
+  \ '6': ' 6 ',
+  \ '7': ' 7 ',
+  \ '8': ' 8 ',
+  \ '9': ' 9 ',
+  \ }
+let g:lightline#bufferline#show_number = 2
+let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#unnamed = '[No Name]'
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-"let g:airline_theme = 'hybridline'
-
-" -------python-mode---------
+" python-mode
 "let g:pymode_python = 'python3'
 "let g:pymode_motion = 1
 "let pymode_lint_cwindow = 0
@@ -246,24 +195,12 @@ let g:airline_right_alt_sep = ''
 "let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 "let g:pymode_lint = 0
 
-" ---------slime----------
+" slime
 let g:slime_target = 'tmux'
 let g:slime_default_config = {'socket_name': 'default', 'target_pane': '{right-of}'}
 let g:slime_python_ipython = 1
 
-" ---------ale------------
-"let g:ale_python_pylint_options = '--load-plugins pylint_django'
-"let g:ale_python_pylint_options = '--extension-pkg-whitelist=cv2'
-"let g:ale_linters = {
-    "\ 'python': ['pyflakes', 'pep8', 'mccabe'],
-    "\ 'go': ['gopls']
-"\ }
-"let g:ale_set_highlights = 0
-"let g:ale_sign_error = '✗'
-"let g:ale_sign_warning = '⚡'
-"let g:ale_open_list = 0
-
-" --------vim-javascript--------
+" vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
@@ -272,48 +209,56 @@ augroup javascript_folding
     au FileType javascript setlocal foldmethod=syntax
 augroup END
 
-" ---------undotree---------
+" undotree
 nnoremap <Leader>u :UndotreeToggle<CR>
 
-" ----------vim-session----------------
+" vim-session
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
 
-" ----------vim-session----------------
+" vim-session
 map ss <Plug>(easymotion-s2)
 
-" ----------coc----------------
+" coc
 source ~/.config/nvim/coc_example.vim
 
 set ignorecase smartcase
 
-" ----------vim-go--------
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_def_mapping_enable = 0
+" vim-go
 let g:go_fmt_command = 'goimports'
+let g:go_doc_keywordprg_enabled = 0
+let g:go_template_autocreate = 0
+let g:go_textobj_enabled = 0
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_chan_whitespace_error = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_string_spellcheck = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_types = 1
+let g:go_highlight_variable_assignments = 0
+let g:go_highlight_variable_declarations = 0
 
-" ----------vista---------
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-
+" vista
 let g:vista_sidebar_width = 40
 let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_py_executive = 'coc'
 "let g:vista#renderer#ctags = 'vista_kind'
-noremap <leader>t :Vista<space>
+noremap <leader>V :Vista<space>
 
-" ----------range---------
-let g:ranger_map_keys = 0
-map <leader>r :Ranger<CR>
-
-" ----------fzf---------
+" fzf
 au FileType fzf tnoremap <buffer> <C-j> <Down>
 au FileType fzf tnoremap <buffer> <C-k> <Up>
 noremap <space>f :Files<cr>
@@ -326,30 +271,23 @@ noremap <space>l :BLines<cr>
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 " set floating window
-let $FZF_DEFAULT_OPTS='--layout=reverse'
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-au FileType fzf set nonu nornu
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 
-function! FloatingFZF()
-  let buf = nvim_create_buf(v:false, v:true)
-  call setbufvar(buf, '&signcolumn', 'no')
-
-  let height = &lines - 8
-  let width = float2nr(&columns - (&columns * 2 / 10))
-  let col = float2nr((&columns - width) / 2)
-
-  let opts = {
-        \ 'relative': 'editor',
-        \ 'row': 4,
-        \ 'col': col,
-        \ 'width': width,
-        \ 'height': height
-        \ }
-
-  call nvim_open_win(buf, v:true, opts)
-endfunction
-
-" ----------suda---------
+" suda
 if has("nvim")
     cnoremap w!! w suda://%
 end
+
+" floaterm
+noremap <leader>fn :FloatermNew<space>
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F10>'
+autocmd User Startified setlocal buflisted
+
+" aerojump
+nmap <Leader>as <Plug>(AerojumpSpace)
+nmap <Leader>ab <Plug>(AerojumpBolt)
+nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
+nmap <Leader>ad <Plug>(AerojumpDefault) " Boring mode
