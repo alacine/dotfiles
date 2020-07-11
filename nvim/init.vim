@@ -96,7 +96,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'brooth/far.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'vue'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'vue'] }
 Plug 'mbbill/undotree'
 Plug 'xolox/vim-misc'
@@ -112,6 +112,7 @@ Plug 'lambdalisue/suda.vim'
 Plug 'honza/vim-snippets'
 Plug 'voldikss/vim-floaterm'
 Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
@@ -125,6 +126,8 @@ Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'voldikss/coc-floaterm', {'do': 'yarn install --frozen-lockfile'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+Plug 'fannheyward/coc-sql', {'do': 'yarn install --frozen-lockfile'}
+"Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 "--------------------------------------------------------------------------------
 
@@ -135,6 +138,9 @@ let g:edge_style = 'aura'
 "let g:edge_style = 'neon'
 let g:edge_disable_italic_comment = 1
 colorscheme edge
+
+" 背景半透明, 不是 edge 的配置但是需要放在 colorscheme 后面
+"hi Normal guibg=NONE ctermbg=NONE
 
 " indnetline
 " 取消 indentline 在 markdown 和 latex 文件中的异常行为
@@ -280,6 +286,9 @@ end
 
 " floaterm
 noremap <leader>fn :FloatermNew<space>
+noremap <leader>r :FloatermNew ranger<cr>
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
 let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'

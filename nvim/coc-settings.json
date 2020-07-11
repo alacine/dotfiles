@@ -30,7 +30,7 @@
     "explorer.icon.enableNerdfont": true,
     "explorer.file.showHiddenFiles": true,
     "explorer.keyMappings": {
-        "i": "unmap", // cancel default mapkey
+        "i": false,
 
         "k": "nodePrev",
         "j": "nodeNext",

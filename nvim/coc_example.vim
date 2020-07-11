@@ -127,7 +127,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-nnoremap <silent> <space>E  :<C-u>CocCommand explorer<CR>
+nnoremap <silent> <leader>g  :<C-u>CocCommand explorer<CR>
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \      'root-uri': '~/.vim',
