@@ -5,7 +5,7 @@ let g:python3_host_prog = '/usr/bin/python'
 let g:python_host_prog = '/usr/bin/python2'
 set cc=80
 
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
+"autocmd BufWritePost $MYVIMRC source $MYVIMRC
 syntax enable
 syntax on
 "command! MakeTags !ctags -R .
@@ -32,6 +32,7 @@ set scrolloff=5
 "set foldmethod=indent
 set foldmethod=syntax
 set nofoldenable
+set ignorecase smartcase
 "set undofile=~/.vim/undodir
 set encoding=UTF-8
 " 色彩问题 (注意: 这里的^[是按下C-v再按Esc得到的)
@@ -48,11 +49,7 @@ autocmd BufRead,BufNewFile *.vue setlocal ts=2 sw=2 expandtab
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
 
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
 inoremap vv <Esc>`^
-
 noremap <leader>w :w<cr>
 noremap <leader>q :q<cr>
 noremap <C-h> <C-w>h
@@ -90,7 +87,6 @@ Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'lfv89/vim-interestingwords'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'godlygeek/tabular'
-"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'brooth/far.vim'
@@ -113,23 +109,34 @@ Plug 'honza/vim-snippets'
 Plug 'voldikss/vim-floaterm'
 Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'voldikss/coc-floaterm', {'do': 'yarn install --frozen-lockfile'}
-Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
-Plug 'fannheyward/coc-sql', {'do': 'yarn install --frozen-lockfile'}
-"Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 "--------------------------------------------------------------------------------
+
+" coc
+let g:coc_global_extensions = [
+            \ 'coc-vimlsp',
+            \ 'coc-actions',
+            \ 'coc-diagnostic',
+            \ 'coc-prettier',
+            \ 'coc-syntax',
+            \ 'coc-lists',
+            \ 'coc-python',
+            \ 'coc-html',
+            \ 'coc-tsserver',
+            \ 'coc-css',
+            \ 'coc-vetur',
+            \ 'coc-json',
+            \ 'coc-yank',
+            \ 'coc-snippets',
+            \ 'coc-floaterm',
+            \ 'coc-todolist',
+            \ 'coc-translator',
+            \ 'coc-explorer',
+            \ 'coc-gitignore']
+
+source ~/.config/nvim/coc_example.vim
+source ~/.config/nvim/coc_custom.vim
 
 " edge
 set background=dark
@@ -149,9 +156,6 @@ let g:indentLine_conceallevel = 1
 
 " gitgutter
 "let g:gitgutter_highlight_lines = 1
-
-" vim-markdown
-nnoremap <leader>tf :TableFormat<CR>
 
 " lightline
 set showtabline=2
@@ -224,11 +228,6 @@ let g:session_autoload = 'no'
 
 " vim-session
 map ss <Plug>(easymotion-s2)
-
-" coc
-source ~/.config/nvim/coc_example.vim
-
-set ignorecase smartcase
 
 " vim-go
 let g:go_fmt_command = 'goimports'

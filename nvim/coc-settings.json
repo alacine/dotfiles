@@ -1,97 +1,129 @@
 {
-    "python.jediEnabled": false,
-    "yank.enableCompletion" : false,
-    "diagnostic.virtualText": true,
-    "codeLens.enable": true,
-    "suggest.detailMaxLength": 60,
-    "languageserver": {
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod"],
-            "filetypes": ["go"]
-        },
-        "bash": {
-            "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"],
-            "ignoredRootPaths": []
-        },
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-            "rootPatterns": [".ccls-root", "compile_commands.json"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": ".ccls-cache"
-                }
-            }
-        }
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "yank.enableCompletion": false,
+  "diagnostic.signOffset": 1,
+  "diagnostic.errorSign": "\uf467",
+  "diagnostic.warningSign": "\uf071",
+  "diagnostic.infoSign": "\uf129",
+  "diagnostic.hintSign": "\uf864",
+  "diagnostic.displayByAle": false,
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.refreshAfterSave": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualTextPrefix": "\uf071",
+  "diagnostic.virtualText": true,
+  "codeLens.enable": true,
+  "suggest.detailMaxLength": 60,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "html",
+    "javascript",
+    "vim"
+  ],
+  "suggest.completionItemKindLabels": {
+    "class": "\uf0e8",
+    "color": "\ue22b",
+    "constant": "\uf8fe",
+    "default": "\uf29c",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "event": "\ufcc5",
+    "field": "\ue735",
+    "file": "\uf723",
+    "folder": "\uf115",
+    "function": "\u0192",
+    "interface": "\uf417",
+    "keyword": "\uf1de",
+    "method": "\uf6a6",
+    "module": "\uf40d",
+    "operator": "\ue20f",
+    "property": "\ue624",
+    "reference": "\ufbef",
+    "snippet": "\ue60b",
+    "struct": "\ufb44",
+    "text": "\ue612",
+    "typeParameter": "\uf728",
+    "unit": "\uf475",
+    "value": "\uf89f",
+    "variable": "\ue71b"
+  },
+  "python.jediEnabled": false,
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
     },
-    "explorer.icon.enableNerdfont": true,
-    "explorer.file.showHiddenFiles": true,
-    "explorer.keyMappings": {
-        "i": false,
-
-        "k": "nodePrev",
-        "j": "nodeNext",
-        "gk": "expandablePrev",
-        "gj": "expandableNext",
-
-        "*": "toggleSelection",
-        "<tab>": "actionMenu",
-
-        "h": "collapse",
-        "l": ["expandable?", "expand", "open"],
-        "J": ["toggleSelection", "nodeNext"],
-        "K": ["toggleSelection", "nodePrev"],
-        "gl": "expandRecursive",
-        "gh": "collapseRecursive",
-        "o": "expandOrCollapse",
-        "<cr>": ["expandable?", "cd", "open"],
-        "e": "open",
-        "s": "open:split",
-        "S": "open:split:plain",
-        "E": "open:vsplit",
-        "t": "open:tab",
-        "<bs>": "gotoParent",
-        "gp": "preview:labeling",
-
-        "y": "copyFilepath",
-        "Y": "copyFilename",
-        "c": "copyFile",
-        "x": "cutFile",
-        "p": "pasteFile",
-        "d": "delete",
-        "D": "deleteForever",
-
-        "a": "addFile",
-        "A": "addDirectory",
-        "r": "rename",
-
-        ".": "toggleHidden",
-        "R": "refresh",
-
-        "?": "help",
-        "q": "quit",
-        "<esc>": "esc",
-        "X": "systemExecute",
-        "gd": "listDrive",
-
-        "f": "search",
-        "F": "searchRecursive",
-
-        "gf": "gotoSource:file",
-        "gb": "gotoSource:buffer",
-
-        "[[": "sourcePrev",
-        "]]": "sourceNext",
-
-        "[d": "diagnosticPrev",
-        "]d": "diagnosticNext",
-
-        "[c": "gitPrev",
-        "]c": "gitNext",
-        "<<": "gitStage",
-        ">>": "gitUnstage"
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": []
+    },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        }
       }
+    }
+  },
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.keyMappings": {
+    "i": false,
+    "k": "nodePrev",
+    "j": "nodeNext",
+    "gk": "expandablePrev",
+    "gj": "expandableNext",
+    "*": "toggleSelection",
+    "<tab>": "actionMenu",
+    "h": "collapse",
+    "l": ["expandable?", "expand", "open"],
+    "J": ["toggleSelection", "nodeNext"],
+    "K": ["toggleSelection", "nodePrev"],
+    "gl": "expandRecursive",
+    "gh": "collapseRecursive",
+    "o": "expandOrCollapse",
+    "<cr>": ["expandable?", "cd", "open"],
+    "e": "open",
+    "s": "open:split",
+    "S": "open:split:plain",
+    "E": "open:vsplit",
+    "t": "open:tab",
+    "<bs>": "gotoParent",
+    "gp": "preview:labeling",
+    "y": "copyFilepath",
+    "Y": "copyFilename",
+    "c": "copyFile",
+    "x": "cutFile",
+    "p": "pasteFile",
+    "d": "delete",
+    "D": "deleteForever",
+    "a": "addFile",
+    "A": "addDirectory",
+    "r": "rename",
+    ".": "toggleHidden",
+    "R": "refresh",
+    "?": "help",
+    "q": "quit",
+    "<esc>": "esc",
+    "X": "systemExecute",
+    "gd": "listDrive",
+    "f": "search",
+    "F": "searchRecursive",
+    "gf": "gotoSource:file",
+    "gb": "gotoSource:buffer",
+    "[[": "sourcePrev",
+    "]]": "sourceNext",
+    "[d": "diagnosticPrev",
+    "]d": "diagnosticNext",
+    "[c": "gitPrev",
+    "]c": "gitNext",
+    "<<": "gitStage",
+    ">>": "gitUnstage"
+  }
 }
