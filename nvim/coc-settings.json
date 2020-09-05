@@ -18,7 +18,8 @@
     "json",
     "html",
     "javascript",
-    "vim"
+    "vim",
+    "yaml"
   ],
   "suggest.completionItemKindLabels": {
     "class": "\uf0e8",

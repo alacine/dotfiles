@@ -108,19 +108,32 @@ alias nvi='nvim'
 alias emacs='emacs -nw'
 alias ra='ranger'
 alias lg='lazygit'
-PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
-PATH=$PATH:$HOME/.local/bin
+
+export PATH=$PATH:$HOME/.gem/ruby/2.7.0/bin
+
+export PATH=$PATH:$HOME/.local/bin
+
 export PATH="$PATH:$HOME/npm/bin"
 export NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules"
+
 export GOPATH=$HOME/go
-PATH=$PATH:$GOPATH/bin
-PATH=$PATH:/opt/anaconda/bin
+export PATH=$PATH:$GOPATH/bin
+
+export PATH=$PATH:/opt/anaconda/bin
+
+export JAVA_HOME=/usr/lib/jvm/default
+export PATH=$PATH:$JAVA_HOME/bin
+
 source /etc/profile.d/autojump.zsh
 eval "$(pyenv init -)"
 eval $(thefuck --alias)
+
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 export EDITOR=nvim
+export DISABLE_AUTO_TITLE='true'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

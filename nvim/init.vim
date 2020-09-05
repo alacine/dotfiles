@@ -122,6 +122,7 @@ let g:coc_global_extensions = [
             \ 'coc-syntax',
             \ 'coc-lists',
             \ 'coc-python',
+            \ 'coc-java',
             \ 'coc-html',
             \ 'coc-tsserver',
             \ 'coc-css',
