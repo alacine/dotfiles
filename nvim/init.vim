@@ -130,7 +130,6 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-yank',
             \ 'coc-snippets',
-            \ 'coc-floaterm',
             \ 'coc-todolist',
             \ 'coc-translator',
             \ 'coc-explorer',
@@ -285,8 +284,11 @@ if has("nvim")
 end
 
 " floaterm
-noremap <leader>fn :FloatermNew<space>
-noremap <leader>r :FloatermNew ranger<cr>
+noremap <leader>ff :Floaterm
+noremap <leader>fn :FloatermNew<cr>
+noremap <leader>fr :FloatermNew ranger<cr>
+noremap <leader>fl :FloatermNew lazygit<cr>
+let g:floaterm_autoclose=1
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
 let g:floaterm_keymap_new    = '<F7>'
