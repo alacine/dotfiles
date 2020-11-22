@@ -109,6 +109,7 @@ Plug 'honza/vim-snippets'
 Plug 'voldikss/vim-floaterm'
 Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
+Plug 'gcmt/wildfire.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 "--------------------------------------------------------------------------------
