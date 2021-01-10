@@ -47,6 +47,7 @@ endif
 
 autocmd BufRead,BufNewFile *.vue setlocal ts=2 sw=2 expandtab
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
 
 inoremap vv <Esc>`^
@@ -110,6 +111,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'gcmt/wildfire.vim'
+Plug 'matze/vim-move'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 "--------------------------------------------------------------------------------
@@ -129,6 +131,7 @@ let g:coc_global_extensions = [
             \ 'coc-css',
             \ 'coc-vetur',
             \ 'coc-json',
+            \ 'coc-yaml',
             \ 'coc-yank',
             \ 'coc-snippets',
             \ 'coc-todolist',
