@@ -1,20 +1,19 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
   "yank.enableCompletion": false,
-  "diagnostic.signOffset": 1,
   "diagnostic.errorSign": "\uf467",
   "diagnostic.warningSign": "\uf071",
   "diagnostic.infoSign": "\uf129",
   "diagnostic.hintSign": "\uf864",
   "diagnostic.displayByAle": false,
   "diagnostic.refreshOnInsertMode": false,
-  "diagnostic.refreshAfterSave": false,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": "\uf071",
   "diagnostic.virtualText": true,
   "codeLens.enable": true,
+  "suggest.autoTrigger": "always",
   "suggest.detailMaxLength": 60,
-  "suggest.enablePreselect": true,
+  "suggest.enablePreselect": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "json",
     "html",
@@ -73,7 +72,7 @@
       }
     }
   },
-  "explorer.width": 30,
+  "explorer.width": 40,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.showHiddenFiles": true,
   "explorer.keyMappings.global": {

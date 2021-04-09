@@ -30,11 +30,12 @@ set t_Co=256
 set ignorecase
 set scrolloff=5
 "set foldmethod=indent
-set foldmethod=syntax
-set nofoldenable
+"set foldmethod=syntax
+"set nofoldenable
 set ignorecase smartcase
 "set undofile=~/.vim/undodir
 set encoding=UTF-8
+set noautochdir
 " 色彩问题 (注意: 这里的^[是按下C-v再按Esc得到的)
 if has("termguicolors")
     " fix bug for vim
@@ -78,8 +79,7 @@ Plug 'sainnhe/edge'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'airblade/vim-gitgutter'
-Plug 'iamcco/mathjax-support-for-mkdp', { 'for': 'markdown' }
-Plug 'iamcco/markdown-preview.vim', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'c', 'cpp', 'go'] }
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
@@ -112,6 +112,8 @@ Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'gcmt/wildfire.vim'
 Plug 'matze/vim-move'
+"Plug 'puremourning/vimspector'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 "--------------------------------------------------------------------------------
@@ -124,7 +126,7 @@ let g:coc_global_extensions = [
             \ 'coc-prettier',
             \ 'coc-syntax',
             \ 'coc-lists',
-            \ 'coc-python',
+            \ 'coc-jedi',
             \ 'coc-java',
             \ 'coc-html',
             \ 'coc-tsserver',
@@ -138,7 +140,8 @@ let g:coc_global_extensions = [
             \ 'coc-translator',
             \ 'coc-explorer',
             \ 'coc-gitignore']
-
+"\ 'coc-pyright',
+"\ 'coc-python',
 source ~/.config/nvim/coc_example.vim
 source ~/.config/nvim/coc_custom.vim
 
@@ -234,7 +237,7 @@ let g:session_autoload = 'no'
 map ss <Plug>(easymotion-s2)
 
 " vim-go
-let g:go_fmt_command = 'goimports'
+"let g:go_fmt_command = 'goimports'
 let g:go_doc_keywordprg_enabled = 0
 let g:go_template_autocreate = 0
 let g:go_textobj_enabled = 0
@@ -265,14 +268,15 @@ let g:vista#renderer#enable_icon = 1
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_py_executive = 'coc'
 "let g:vista#renderer#ctags = 'vista_kind'
-noremap <leader>V :Vista<space>
+noremap <leader>vt :Vista<Cr>
 
 " fzf
 au FileType fzf tnoremap <buffer> <C-j> <Down>
 au FileType fzf tnoremap <buffer> <C-k> <Up>
 noremap <space>f :Files<cr>
 noremap <space>A :Ag<cr>
-noremap <space>B :Buffers<cr>
+noremap <space>w :Ag <C-R><C-W><cr>
+noremap <space>b :Buffers<cr>
 noremap <space>C :Commands<cr>
 noremap <space>L :Lines<cr>
 noremap <space>l :BLines<cr>
