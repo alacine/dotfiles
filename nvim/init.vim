@@ -59,7 +59,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <leader>n :bn<cr>
-noremap <leader>p :bp<cr>
+noremap <leader>N :bp<cr>
 noremap <leader>d :bd<cr>
 
 noremap <space>v :e ~/.config/nvim/init.vim<cr>
@@ -211,6 +211,9 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 "let g:pymode_breakpoint_bind = '<leader>b'
 "let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 "let g:pymode_lint = 0
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
 
 " slime
 let g:slime_target = 'tmux'

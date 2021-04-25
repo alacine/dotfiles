@@ -53,7 +53,7 @@
 创建 `~/.config/plasma-workspace/env/set_window_manager.sh`, 并添加可执行权限
 
 ```
-exporrt KDEWM=/usr/bin/i3
+export KDEWM=/usr/bin/i3
 ```
 
 ### 屏幕录制闪屏问题

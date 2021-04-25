@@ -72,7 +72,7 @@
       }
     }
   },
-  "explorer.width": 40,
+  "explorer.width": 35,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.showHiddenFiles": true,
   "explorer.keyMappings.global": {
