@@ -14,7 +14,7 @@ let mapleader=","
 set path+=**
 set wildmenu
 set number
-set relativenumber
+"set relativenumber
 set ts=4
 set softtabstop=4
 set shiftwidth=4
@@ -299,7 +299,7 @@ noremap <leader>ff :Floaterm
 noremap <leader>fn :FloatermNew<cr>
 noremap <leader>fr :FloatermNew ranger<cr>
 noremap <leader>fl :FloatermNew lazygit<cr>
-let g:floaterm_autoclose=1
+let g:floaterm_autoclose = 1
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
 let g:floaterm_keymap_new    = '<F7>'
@@ -313,3 +313,6 @@ nmap <Leader>as <Plug>(AerojumpSpace)
 nmap <Leader>ab <Plug>(AerojumpBolt)
 nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
 nmap <Leader>ad <Plug>(AerojumpDefault) " Boring mode
+
+" auto-pairs
+let g:AutoPairsCenterLine = 0
