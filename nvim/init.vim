@@ -36,6 +36,7 @@ set ignorecase smartcase
 "set undofile=~/.vim/undodir
 set encoding=UTF-8
 set noautochdir
+set autowrite
 " 色彩问题 (注意: 这里的^[是按下C-v再按Esc得到的)
 if has("termguicolors")
     " fix bug for vim
@@ -79,7 +80,7 @@ Plug 'sainnhe/edge'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'airblade/vim-gitgutter'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown' }
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'c', 'cpp', 'go'] }
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
@@ -92,7 +93,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'brooth/far.vim'
 Plug 'jpalardy/vim-slime'
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'vue'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'vue'] }
 Plug 'mbbill/undotree'
@@ -112,6 +113,7 @@ Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'gcmt/wildfire.vim'
 Plug 'matze/vim-move'
+Plug 'APZelos/blamer.nvim'
 "Plug 'puremourning/vimspector'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -126,7 +128,8 @@ let g:coc_global_extensions = [
             \ 'coc-prettier',
             \ 'coc-syntax',
             \ 'coc-lists',
-            \ 'coc-jedi',
+            \ 'coc-python',
+            \ 'coc-pyright',
             \ 'coc-java',
             \ 'coc-html',
             \ 'coc-tsserver',
@@ -140,8 +143,7 @@ let g:coc_global_extensions = [
             \ 'coc-translator',
             \ 'coc-explorer',
             \ 'coc-gitignore']
-"\ 'coc-pyright',
-"\ 'coc-python',
+            "\ 'coc-jedi',
 source ~/.config/nvim/coc_example.vim
 source ~/.config/nvim/coc_custom.vim
 
@@ -214,6 +216,8 @@ nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
+" 默认的 ]c 与 gitgutter 的冲突
+nmap ]h <Plug>Markdown_MoveToCurHeader
 
 " slime
 let g:slime_target = 'tmux'
@@ -240,7 +244,7 @@ let g:session_autoload = 'no'
 map ss <Plug>(easymotion-s2)
 
 " vim-go
-"let g:go_fmt_command = 'goimports'
+let g:go_fmt_command = 'goimports'
 let g:go_doc_keywordprg_enabled = 0
 let g:go_template_autocreate = 0
 let g:go_textobj_enabled = 0
@@ -302,10 +306,10 @@ noremap <leader>fl :FloatermNew lazygit<cr>
 let g:floaterm_autoclose = 1
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
-let g:floaterm_keymap_new    = '<F7>'
-let g:floaterm_keymap_prev   = '<F8>'
-let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<F10>'
+"let g:floaterm_keymap_new    = '<F7>'
+"let g:floaterm_keymap_prev   = '<F8>'
+"let g:floaterm_keymap_next   = '<F9>'
+"let g:floaterm_keymap_toggle = '<F10>'
 autocmd User Startified setlocal buflisted
 
 " aerojump
