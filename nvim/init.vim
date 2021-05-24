@@ -109,11 +109,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'honza/vim-snippets'
 Plug 'voldikss/vim-floaterm'
+Plug 'voldikss/fzf-floaterm'
 Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
 Plug 'gcmt/wildfire.vim'
 Plug 'matze/vim-move'
 Plug 'APZelos/blamer.nvim'
+Plug 'kshenoy/vim-signature'
 "Plug 'puremourning/vimspector'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -300,6 +302,7 @@ end
 
 " floaterm
 noremap <leader>ff :Floaterm
+noremap <leader>fh :FloatermHide<cr>
 noremap <leader>fn :FloatermNew<cr>
 noremap <leader>fr :FloatermNew ranger<cr>
 noremap <leader>fl :FloatermNew lazygit<cr>
@@ -311,6 +314,9 @@ let g:floaterm_height = 0.8
 "let g:floaterm_keymap_next   = '<F9>'
 "let g:floaterm_keymap_toggle = '<F10>'
 autocmd User Startified setlocal buflisted
+
+" fzf-floaterm
+noremap <space>t :Floaterms<cr>
 
 " aerojump
 nmap <Leader>as <Plug>(AerojumpSpace)

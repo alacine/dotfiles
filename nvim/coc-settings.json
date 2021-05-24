@@ -21,6 +21,10 @@
     "vim",
     "yaml"
   ],
+  "snippets.ultisnips.directories": [
+    "ultisnips",
+    "$HOME/.config/nvim/ultisnips"
+  ],
   "suggest.completionItemKindLabels": {
     "class": "\uf0e8",
     "color": "\ue22b",
