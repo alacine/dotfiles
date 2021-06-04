@@ -84,7 +84,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'm
 Plug 'Yggdroot/indentLine', { 'for': ['python', 'c', 'cpp', 'go'] }
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'lfv89/vim-interestingwords'
 Plug 'terryma/vim-multiple-cursors'
@@ -283,7 +283,7 @@ noremap <leader>vt :Vista<Cr>
 au FileType fzf tnoremap <buffer> <C-j> <Down>
 au FileType fzf tnoremap <buffer> <C-k> <Up>
 noremap <space>f :Files<cr>
-noremap <space>A :Ag<cr>
+noremap <space>a :Ag<cr>
 noremap <space>w :Ag <C-R><C-W><cr>
 noremap <space>b :Buffers<cr>
 noremap <space>C :Commands<cr>
@@ -294,6 +294,12 @@ command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 " set floating window
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
+
+"command! FZFLib call fzf#run({'source': 'find $GOPATH/pkg/mod /usr/lib/go/src -type f'})
+command! -bang ProjectFiles call fzf#vim#files('$GOPATH/pkg/mod', <bang>0)
+command! -bang StdLibFiles call fzf#vim#files('/usr/lib/go/src', <bang>0)
+noremap <space>F :ProjectFiles<cr>
+noremap <space>S :StdLibFiles<cr>
 
 " suda
 if has("nvim")
@@ -312,7 +318,7 @@ let g:floaterm_height = 0.8
 "let g:floaterm_keymap_new    = '<F7>'
 "let g:floaterm_keymap_prev   = '<F8>'
 "let g:floaterm_keymap_next   = '<F9>'
-"let g:floaterm_keymap_toggle = '<F10>'
+let g:floaterm_keymap_toggle = '<F10>'
 autocmd User Startified setlocal buflisted
 
 " fzf-floaterm

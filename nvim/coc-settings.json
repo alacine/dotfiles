@@ -21,6 +21,7 @@
     "vim",
     "yaml"
   ],
+  "snippets.userSnippetsDirectory": "$HOME/.config/nvim/ultisnips",
   "snippets.ultisnips.directories": [
     "ultisnips",
     "$HOME/.config/nvim/ultisnips"
