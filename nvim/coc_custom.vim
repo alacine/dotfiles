@@ -39,3 +39,4 @@ nmap <space>ef :CocCommand explorer --preset floating<CR>
 
 " List all presets
 nmap <space>el :CocList explPresets
+nnoremap <silent><nowait> <space>t  :CocCommand translator.popup<CR>

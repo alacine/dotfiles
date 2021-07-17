@@ -25,16 +25,20 @@
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
 
 snippet go "Make go demo" b
-target = ${1}
+.PHONY: all run clean
+.DELETE_ON_ERROR:
 
-all: $(target) run
+rwildcard = $(wildcard \$1\$2) $(foreach d,$(wildcard \$1*),$(call rwildcard,$d/,\$2))
+target = $(shell basename $(CURDIR))
 
-$(target): $(wildcard **/*.go)
+all: $(target)
+
+$(target): $(call rwildcard,./,*.go)
 	go build
 
 run: $(target)
-	./${1}
+	./$(target)
 
 clean:
-	rm $(target)
+	go clean -i -x
 endsnippet

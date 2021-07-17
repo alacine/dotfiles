@@ -16,7 +16,6 @@
   "suggest.enablePreselect": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "json",
-    "html",
     "javascript",
     "vim",
     "yaml"
@@ -77,7 +76,7 @@
       }
     }
   },
-  "explorer.width": 35,
+  "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.showHiddenFiles": true,
   "explorer.keyMappings.global": {
