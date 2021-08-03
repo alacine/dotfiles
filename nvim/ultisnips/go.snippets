@@ -5,3 +5,9 @@ endsnippet
 snippet ff "print without new line"
 fmt.Printf("${1}")
 endsnippet
+
+snippet dbline "print debug line"
+fmt.Println("============DEBUG ${1} START===========")
+${0}
+fmt.Println("============DEBUG ${1} END=============")
+endsnippet
