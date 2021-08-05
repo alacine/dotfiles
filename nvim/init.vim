@@ -96,6 +96,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'brooth/far.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
+Plug 'buoto/gotests-vim', { 'for': 'go' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'vue', 'markdown'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'vue'] }
 Plug 'mbbill/undotree'
@@ -263,9 +264,19 @@ map ss <Plug>(easymotion-s2)
 
 " vim-go
 let g:go_fmt_command = 'goimports'
+let g:go_textobj_include_function_doc = 1
 let g:go_doc_keywordprg_enabled = 0
 let g:go_template_autocreate = 0
-let g:go_textobj_enabled = 0
+let g:go_textobj_enabled = 1
+let g:go_addtags_transform = "snake_case"
+"let g:go_addtags_transform = "camelcase"
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_decls_includes = "func,type"
+let g:go_auto_sameids = 0
+let g:go_rename_command = 'gopls'
+let g:go_play_open_browser = 1
+let g:go_play_browser_command = "chrome"
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_chan_whitespace_error = 1
@@ -285,6 +296,10 @@ let g:go_highlight_trailing_whitespace_error = 1
 let g:go_highlight_types = 1
 let g:go_highlight_variable_assignments = 0
 let g:go_highlight_variable_declarations = 0
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
 " vista
 let g:vista_sidebar_width = 40
@@ -312,8 +327,8 @@ command! -bang -nargs=? -complete=dir Files
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
 
 "command! FZFLib call fzf#run({'source': 'find $GOPATH/pkg/mod /usr/lib/go/src -type f'})
-command! -bang ProjectFiles call fzf#vim#files('$GOPATH/pkg/mod', <bang>0)
-command! -bang StdLibFiles call fzf#vim#files('/usr/lib/go/src', <bang>0)
+au FileType go command! -bang ProjectFiles call fzf#vim#files('$GOPATH/pkg/mod', <bang>0)
+au FileType go command! -bang StdLibFiles call fzf#vim#files('/usr/lib/go/src', <bang>0)
 noremap <space>F :ProjectFiles<cr>
 noremap <space>S :StdLibFiles<cr>
 
