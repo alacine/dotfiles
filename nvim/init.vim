@@ -89,7 +89,7 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdcommenter'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'lfv89/vim-interestingwords'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'Chiel92/vim-autoformat'
