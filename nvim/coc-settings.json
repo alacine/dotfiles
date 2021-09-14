@@ -18,7 +18,9 @@
     "json",
     "javascript",
     "vim",
-    "yaml"
+    "yaml",
+    "html",
+    "yml"
   ],
   "snippets.userSnippetsDirectory": "$HOME/.config/nvim/ultisnips",
   "snippets.ultisnips.directories": [
@@ -79,6 +81,7 @@
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.showHiddenFiles": true,
+  "explorer.previewAction.onHover": "labeling",
   "explorer.keyMappings.global": {
     "i": false, // cancel default mapkey
 

@@ -95,7 +95,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'Chiel92/vim-autoformat'
 Plug 'brooth/far.vim'
 Plug 'jpalardy/vim-slime'
-Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoInstallBinaries' }
+Plug 'fatih/vim-go', { 'for': ['go'] ,'do': ':GoInstallBinaries' }
 Plug 'buoto/gotests-vim', { 'for': 'go' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'vue', 'markdown'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'vue'] }
@@ -120,6 +120,9 @@ Plug 'matze/vim-move'
 Plug 'APZelos/blamer.nvim'
 Plug 'kshenoy/vim-signature'
 Plug 'ryanoasis/vim-devicons'
+Plug 'lervag/vimtex'
+Plug 'arcticicestudio/nord-vim'
+Plug 'rakr/vim-two-firewatch'
 "Plug 'puremourning/vimspector'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -172,7 +175,9 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+"set background=dark
 let g:onedark_terminal_italics = 1
+"let g:two_firewatch_italics= 1
 
 " 背景半透明, 需要放在 colorscheme 后面
 "hi Normal guibg=NONE ctermbg=NONE
@@ -213,6 +218,7 @@ let g:lightline#bufferline#number_map = {
   \ }
 let g:lightline#bufferline#show_number = 2
 let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#unnamed = '[No Name]'
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
@@ -263,20 +269,27 @@ let g:session_autoload = 'no'
 map ss <Plug>(easymotion-s2)
 
 " vim-go
-let g:go_fmt_command = 'goimports'
+"let g:go_debug=['lsp']
+"let g:go_debug=['shell-command']
+"let g:go_fmt_command = 'goimports'
+"let g:go_fmt_fail_silently = 0
 let g:go_textobj_include_function_doc = 1
 let g:go_doc_keywordprg_enabled = 0
 let g:go_template_autocreate = 0
 let g:go_textobj_enabled = 1
-let g:go_addtags_transform = "snake_case"
-"let g:go_addtags_transform = "camelcase"
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_autosave = 1
+"let g:go_addtags_transform = "snake_case"
+let g:go_addtags_transform = "camelcase"
+" 这里有关 metalinter 一系列的使用
+" github wiki 中的 Tutorial 写的有问题，注意看 :help vim-go 中的内容
+let g:go_metalinter_autosave = 0
+let g:go_metalinter_deadline = "5s"
+let g:go_metalinter_command = 'golangci-lint'
+"let g:go_metalinter_enabled = ['golangci-lint']
+"let g:go_metalinter_autosave_enabled = ['errcheck', 'vet', 'revive']
 let g:go_decls_includes = "func,type"
 let g:go_auto_sameids = 0
 let g:go_rename_command = 'gopls'
 let g:go_play_open_browser = 1
-let g:go_play_browser_command = "chrome"
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_chan_whitespace_error = 1
@@ -294,12 +307,13 @@ let g:go_highlight_string_spellcheck = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_trailing_whitespace_error = 1
 let g:go_highlight_types = 1
-let g:go_highlight_variable_assignments = 0
-let g:go_highlight_variable_declarations = 0
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_variable_declarations = 1
 autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+noremap <leader>c :GoMetaLinter<cr>
 
 " vista
 let g:vista_sidebar_width = 40
@@ -314,7 +328,7 @@ noremap <leader>vt :Vista<Cr>
 au FileType fzf tnoremap <buffer> <C-j> <Down>
 au FileType fzf tnoremap <buffer> <C-k> <Up>
 noremap <space>f :Files<cr>
-noremap <space>a :Ag<cr>
+noremap <space>g :Ag<cr>
 noremap <space>w :Ag <C-R><C-W><cr>
 noremap <space>b :Buffers<cr>
 noremap <space>C :Commands<cr>

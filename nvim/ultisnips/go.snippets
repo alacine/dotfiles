@@ -11,3 +11,21 @@ fmt.Println("============DEBUG ${1} START===========")
 ${0}
 fmt.Println("============DEBUG ${1} END=============")
 endsnippet
+
+snippet oi "OI input and output" b
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+	in := bufio.NewReader(os.Stdin)
+	out := bufio.NewWriter(os.Stdout)
+	defer out.Flush()
+	var n int
+	fmt.Fscan(in, &n)${0}
+}
+endsnippet
