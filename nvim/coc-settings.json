@@ -83,7 +83,7 @@
   "explorer.file.showHiddenFiles": true,
   "explorer.previewAction.onHover": "labeling",
   "explorer.keyMappings.global": {
-    "i": false, // cancel default mapkey
+    "i": false,
 
     "*": "toggleSelection",
     "<tab>": "actionMenu",

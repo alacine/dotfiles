@@ -1,4 +1,4 @@
-# my_config
+# dotfiles
 
 ## neovim
 
@@ -10,9 +10,16 @@
 
 ## tmux
 
+## pkg
+
+1. pacman 包
+2. pip 包
+3. npm 包
+
+## alacritty
+
 ## DE (桌面环境中用到的配置)
 
-* 软件包
 * 桌面主题, 部分软件主题
     - ~~i3~~
     - KDE plasma

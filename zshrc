@@ -113,15 +113,18 @@ alias nvi='nvim'
 alias emacs='emacs -nw'
 alias ra='ranger'
 alias lg='lazygit'
+alias sc='systemctl'
+alias kb='kubectl'
 
 export LIB_PATH="$HOME/Lib"
 
 # npm config set registry https://registry.npm.taobao.org
 # npm config set prefix '~/Lib/npm'
 export NODE_PATH="$LIB_PATH/npm/lib/node_modules"
+export PATH="$PATH:$LIB_PATH/npm/bin"
 
 # go env -w GO111MODULE=on
-# go env -w GOPROXY=https://goproxy.io
+# go env -w GOPROXY=https://goproxy.cn
 export GOPATH="$LIB_PATH/Golang"
 export PATH=$PATH:$GOPATH/bin
 
@@ -130,6 +133,9 @@ export PATH=$PATH:$HOME/.local/bin
 
 export EDITOR=nvim
 export DISABLE_AUTO_TITLE='true'
+
+# change default libvirt URI
+export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 source /etc/profile.d/autojump.zsh
 

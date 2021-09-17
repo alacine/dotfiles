@@ -3,17 +3,20 @@
 > 安装主题, 图标, 窗口样式什么的, 为方便管理, 优先级 Arch 的源 > plasma-discover > ocs-url(store.kde.org, opendesktop.org) > 手动
 
 * Theme
-    - [McMojave](https://store.kde.org/p/1305006/)
+    - ~~[McMojave](https://store.kde.org/p/1305006/)~~
     - [Sweet](https://store.kde.org/p/1294174/)
-    - [canta-dark](https://store.kde.org/p/1220749/)
+    - ~~[canta-dark](https://store.kde.org/p/1220749/)~~
+    - Layan
 
 * Icon
-    - McMojave-circle
-    - Numix
+    - ~~McMojave-circle~~
+    - ~~Numix~~
     - candy-icons
+    - vimix
 
 * Font
-    - ttf-monaco
+    - ~~ttf-monaco~~
+    - Nerd Font Mono
 
 * Widgets
     - ~~Active Window Control~~
@@ -25,6 +28,7 @@
     - System tray
     - Digital Clock
     - Folder View
+    - Input Method panel
     - ~~Netspeed Widget~~
 
 * Login Screen(SDDM)
@@ -34,6 +38,7 @@
 ### Window Decorations
 
 * BreezemiteForman
+* Sweet-Dark-transparent
 
 ### Terminal
 
