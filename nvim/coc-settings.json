@@ -1,5 +1,18 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "javascript",
+    "vim",
+    "yaml",
+    "html",
+    "yml"
+  ],
+  "snippets.userSnippetsDirectory": "$HOME/.config/nvim/ultisnips",
+  "snippets.ultisnips.directories": [
+    "ultisnips",
+    "$HOME/.config/nvim/ultisnips"
+  ],
   "yank.enableCompletion": false,
   "diagnostic.errorSign": "\uf467",
   "diagnostic.warningSign": "\uf071",
@@ -14,19 +27,6 @@
   "suggest.autoTrigger": "always",
   "suggest.detailMaxLength": 60,
   "suggest.enablePreselect": false,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "json",
-    "javascript",
-    "vim",
-    "yaml",
-    "html",
-    "yml"
-  ],
-  "snippets.userSnippetsDirectory": "$HOME/.config/nvim/ultisnips",
-  "snippets.ultisnips.directories": [
-    "ultisnips",
-    "$HOME/.config/nvim/ultisnips"
-  ],
   "suggest.completionItemKindLabels": {
     "class": "\uf0e8",
     "color": "\ue22b",
