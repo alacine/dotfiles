@@ -25,3 +25,17 @@
     - KDE plasma
 
 ![screenshot](./DE/screenshot/desktop.png)
+
+
+## 新增离线 neovim 的安装 Makefile
+
+打包本地的 neovim 以及插件（暂不包含 coc 插件，后续增加，并增加 tmux 等的配置）
+```bash
+make
+```
+
+解压安装
+```bash
+tar -zxvf neovim.tar.gz
+make install
+```
