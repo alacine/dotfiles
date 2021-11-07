@@ -72,3 +72,9 @@ System Settings > Display and Monitor > Compositor > Tearing prevention: (Never)
 [[已解决]网易云音乐更新到1.1.3以后kde下托盘右键失效问题](https://bbs.archlinuxcn.org/viewtopic.php?id=5691)
 
 在`netease-cloud-music.desktop`中修改启动命令为`env XDG_CURRENT_DESKTOP=DDE netease-cloud-music %U`
+
+### firefox 在页面中搜索找不到内容时系统响铃关闭方法
+
+about:config
+
+accessibility.typeaheadfind.enablesound = false

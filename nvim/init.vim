@@ -76,8 +76,6 @@ autocmd BufNewFile *_leetcode.py 0r ~/.vim/template/leetcode.py
 set nocompatible              " be iMproved, required
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
-"Plug 'flazz/vim-colorschemes'
-"Plug 'sainnhe/edge'
 Plug 'joshdick/onedark.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -108,6 +106,7 @@ Plug 'junegunn/gv.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'liuchengxu/vista.vim'
 Plug 'rbgrouleff/bclose.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/suda.vim'
 Plug 'honza/vim-snippets'
@@ -123,6 +122,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'lervag/vimtex'
 Plug 'arcticicestudio/nord-vim'
 Plug 'rakr/vim-two-firewatch'
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
+Plug 'cappyzawa/starlark.vim'
 "Plug 'puremourning/vimspector'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
