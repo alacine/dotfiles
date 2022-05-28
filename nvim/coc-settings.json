@@ -4,9 +4,7 @@
     "json",
     "javascript",
     "vim",
-    "yaml",
-    "html",
-    "yml"
+    "html"
   ],
   "snippets.userSnippetsDirectory": "$HOME/.config/nvim/ultisnips",
   "snippets.ultisnips.directories": [
@@ -14,6 +12,10 @@
     "$HOME/.config/nvim/ultisnips"
   ],
   "yank.enableCompletion": false,
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck",
+    "systemd": "systemd-analyzer"
+  },
   "diagnostic.errorSign": "\uf467",
   "diagnostic.warningSign": "\uf071",
   "diagnostic.infoSign": "\uf129",
@@ -76,6 +78,11 @@
           "directory": ".ccls-cache"
         }
       }
+    },
+    "rust": {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
     }
   },
   "explorer.width": 30,
@@ -156,5 +163,6 @@
     "]c": "indexNext:git",
     "<<": "gitStage",
     ">>": "gitUnstage"
-  }
+  },
+  "translator.engines": ["bing", "google", "youdao", "haici"]
 }

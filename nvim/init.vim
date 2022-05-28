@@ -2,7 +2,7 @@ set clipboard=unnamed
 set clipboard+=unnamedplus
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:python3_host_prog = '/usr/bin/python'
-let g:python_host_prog = '/usr/bin/python2'
+let g:python_host_prog = '/usr/bin/python'
 set cc=80
 
 "autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -97,6 +97,7 @@ Plug 'fatih/vim-go', { 'for': ['go'] ,'do': ':GoInstallBinaries' }
 Plug 'buoto/gotests-vim', { 'for': 'go' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'vue', 'markdown'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'vue'] }
+Plug 'jvirtanen/vim-hcl'
 Plug 'mbbill/undotree'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
@@ -125,6 +126,10 @@ Plug 'rakr/vim-two-firewatch'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 Plug 'cappyzawa/starlark.vim'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
+Plug 'vmware/differential-datalog', {'rtp': 'tools/vim'}
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'puremourning/vimspector'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -330,6 +335,8 @@ noremap <leader>vt :Vista<Cr>
 au FileType fzf tnoremap <buffer> <C-j> <Down>
 au FileType fzf tnoremap <buffer> <C-k> <Up>
 noremap <space>f :Files<cr>
+" do not match file name when use Ag
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 noremap <space>g :Ag<cr>
 noremap <space>w :Ag <C-R><C-W><cr>
 noremap <space>b :Buffers<cr>
@@ -362,9 +369,9 @@ noremap <leader>fl :FloatermNew lazygit<cr>
 let g:floaterm_autoclose = 1
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
-"let g:floaterm_keymap_new    = '<F7>'
-"let g:floaterm_keymap_prev   = '<F8>'
-"let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F10>'
 autocmd User Startified setlocal buflisted
 
@@ -379,3 +386,18 @@ nmap <Leader>ad <Plug>(AerojumpDefault) " Boring mode
 
 " auto-pairs
 let g:AutoPairsCenterLine = 0
+
+" vim-codefmt
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  "autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+  "autocmd FileType dart AutoFormatBuffer dartfmt
+  "autocmd FileType go AutoFormatBuffer gofmt
+  "autocmd FileType gn AutoFormatBuffer gn
+  "autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  "autocmd FileType java AutoFormatBuffer google-java-format
+  "autocmd FileType python AutoFormatBuffer yapf
+   "Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  "autocmd FileType rust AutoFormatBuffer rustfmt
+  "autocmd FileType vue AutoFormatBuffer prettier
+augroup END
