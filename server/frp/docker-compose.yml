@@ -1,0 +1,12 @@
+version: "3.6"
+
+services:
+  frps:
+    image: alacine/frps
+    pull_policy: always
+    restart: always
+    environment:
+      TOKEN: xxxxxx
+    ports:
+      - "7000:7000"
+      - "6000:6000"

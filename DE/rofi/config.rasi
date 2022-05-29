@@ -1,9 +1,9 @@
 configuration {
-/*	modi: "window,run,ssh";*/
+    modi: "window,run,ssh,keys,filebrowser";
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/
-    font: "monaco 15";
+    font: "mononoki 15";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
