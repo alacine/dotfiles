@@ -47,6 +47,7 @@ if has("termguicolors")
     set termguicolors
 endif
 
+autocmd BufNewFile,BufRead Jenkinsfile,Jenkinsfile*,*.Jenkinsfile setf groovy
 autocmd BufRead,BufNewFile *.vue setlocal ts=2 sw=2 expandtab
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
