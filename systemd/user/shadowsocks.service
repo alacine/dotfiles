@@ -1,0 +1,11 @@
+[Unit]
+Description=Shadowsocks Client Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sslocal -c /home/ryan/.config/shadowsocks/config.json
+
+[Install]
+WantedBy=default.target
+

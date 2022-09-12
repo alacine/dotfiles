@@ -1,0 +1,12 @@
+[Unit]
+Description=V2Ray Service
+Documentation=https://www.v2fly.org/
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/v2ray -config /home/ryan/.config/v2ray/config.json
+Restart=on-failure
+RestartPreventExitStatus=23
+
+[Install]
+WantedBy=default.target
