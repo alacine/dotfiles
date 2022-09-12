@@ -131,6 +131,8 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'vmware/differential-datalog', {'rtp': 'tools/vim'}
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'jbyuki/venn.nvim'
+Plug 'hashivim/vim-terraform'
 "Plug 'puremourning/vimspector'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -168,6 +170,7 @@ source ~/.config/nvim/coc_custom.vim
 
 " onedark
 colorscheme onedark
+"colorscheme nord
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -336,9 +339,10 @@ noremap <leader>vt :Vista<Cr>
 au FileType fzf tnoremap <buffer> <C-j> <Down>
 au FileType fzf tnoremap <buffer> <C-k> <Up>
 noremap <space>f :Files<cr>
-" do not match file name when use Ag
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 noremap <space>g :Ag<cr>
+" do not match file name when use Ag
+command! -bang -nargs=* Agg call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+noremap <space>G :Agg<cr>
 noremap <space>w :Ag <C-R><C-W><cr>
 noremap <space>b :Buffers<cr>
 noremap <space>C :Commands<cr>
@@ -402,3 +406,6 @@ augroup autoformat_settings
   "autocmd FileType rust AutoFormatBuffer rustfmt
   "autocmd FileType vue AutoFormatBuffer prettier
 augroup END
+
+" venn
+"set virtualedit=all
