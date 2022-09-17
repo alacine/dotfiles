@@ -1,41 +1,29 @@
 # dotfiles
 
-## neovim
+管理配置文件
 
-## zsh
+- 软件包清单
+    - [x] pacman 包
+    - [x] pip 包
+    - [ ] npm 包
+- systemd 后台服务
+- 常用软件配置(如 neovim、tmux)
+    - [x] 直接托管配置文件或目录
+    - [ ] 需安装后配置
+- 服务器服务配置
+    - [x] frp
+
+## 下面的还没改为配置或脚本
+
+### zsh
 
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 
 主题使用 [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
-## tmux
+### DE (桌面环境中用到的配置)
 
-## pkg
-
-1. pacman 包
-2. pip 包
-3. npm 包
-
-## alacritty
-
-## DE (桌面环境中用到的配置)
-
-* 桌面主题, 部分软件主题
-    - ~~i3~~
+- 桌面主题, 部分软件主题
     - KDE plasma
 
 ![screenshot](./DE/screenshot/desktop.png)
-
-
-## 新增离线 neovim 的安装 Makefile
-
-打包本地的 neovim 以及插件（暂不包含 coc 插件，后续增加，并增加 tmux 等的配置）
-```bash
-make
-```
-
-解压安装
-```bash
-tar -zxvf neovim.tar.gz
-make install
-```

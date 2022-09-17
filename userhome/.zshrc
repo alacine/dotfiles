@@ -115,6 +115,7 @@ alias ra='ranger'
 alias lg='lazygit'
 alias sc='systemctl'
 alias kb='kubectl'
+alias glra='git pull --rebase --autostash'
 
 export LIB_PATH="$HOME/Lib"
 
@@ -124,9 +125,13 @@ export NODE_PATH="$LIB_PATH/npm/lib/node_modules"
 export PATH="$PATH:$LIB_PATH/npm/bin"
 
 # go env -w GO111MODULE=on
-# go env -w GOPROXY=https://goproxy.cn
+# go env -w GOPROXY=https://goproxy.io
 export GOPATH="$LIB_PATH/Golang"
 export PATH=$PATH:$GOPATH/bin
+
+# ddlog
+export DDLOG_HOME=$LIB_PATH/ddlog
+export PATH=$PATH:$DDLOG_HOME/bin
 
 # pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 export PATH=$PATH:$HOME/.local/bin
