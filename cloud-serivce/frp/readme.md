@@ -3,7 +3,7 @@
 server
 
 ```bash
-wget https://raw.githubusercontent.com/alacine/dotfiles/master/server/frp/docker-compose.yml
+wget https://raw.githubusercontent.com/alacine/dotfiles/master/cloud-serivce/frp/docker-compose.yml
 # ===
 # edit docker-compose.yml
 # ===
