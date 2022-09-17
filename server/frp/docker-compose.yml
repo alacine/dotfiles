@@ -10,3 +10,9 @@ services:
     ports:
       - "7000:7000"
       - "6000:6000"
+
+  frpc:
+    build:
+      context: .
+    ports:
+      - "7000:7000"
