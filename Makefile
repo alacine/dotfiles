@@ -25,6 +25,7 @@ install: ## Install package
 
 .PHONY: deploy
 deploy: ## Create links
+	mkdir -p $(HOME)/.config
 	stow -v -R -t $(HOME) userhome
 	#stow -v -t $(HOME) userhome
 

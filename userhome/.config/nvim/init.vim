@@ -150,6 +150,7 @@ let g:coc_global_extensions = [
             \ 'coc-python',
             \ 'coc-pyright',
             \ 'coc-java',
+            \ 'coc-sumneko-lua',
             \ 'coc-html',
             \ 'coc-tsserver',
             \ 'coc-css',
