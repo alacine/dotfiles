@@ -1,0 +1,151 @@
+{
+  "layer": "top",
+  "height": 30,
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-bottom": 0,
+  "margin-right": 10,
+  "spacing": 5,
+  "modules-left": [
+    "custom/launcher",
+    "wlr/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock",
+    "custom/media"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "backlight",
+    "bluetooth",
+    "pulseaudio",
+    "network",
+    "battery",
+    "tray",
+    "custom/power-menu"
+  ],
+  "wlr/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "urgent": "",
+      "active": "",
+      "default": ""
+    }
+  },
+  "hyprland/window": {
+    "format": "{}"
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "clock": {
+    "format": "<span color='#bf616a'> </span>{:%a %b %d %I:%M %p}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "cpu": {
+    "interval": 10,
+    "format": " {}%",
+    "max-length": 10,
+    "on-click": ""
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {used:0.1f}G",
+    "format-alt": " {}%",
+    "max-length": 10
+  },
+  "backlight": {
+    "device": "DP-1",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "on-click": ""
+  },
+  "network": {
+    "format-wifi": " {signalStrength}%",
+    "format-ethernet": " wired",
+    "on-click": "bash ~/.config/scripts/rofi-wifi-menu",
+    "format-disconnected": "Disconnected  "
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "  {volume}%",
+    "format-bluetooth-muted": " ",
+    "format-muted": "婢",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "bluetooth": {
+    "on-click": "~/.config/scripts/rofi-bluetooth &",
+    "format": " {status}"
+  },
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "ADP1",
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "max-length": 20,
+    "format": "{icon} {capacity}%",
+    "format-warning": "{icon} {capacity}%",
+    "format-critical": "{icon} {capacity}%",
+    "format-charging": "🔌 {capacity}%",
+    "format-plugged": "🔌  {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-full": "🔌  {capacity}%",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
+  },
+  "custom/media": {
+    "exec": "bash ~/.config/scripts/media",
+    "format": "🎶 {}",
+    "return-type": "text",
+    "on-click": "playerctl play-pause",
+    "on-double-click-right": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+  "custom/power-menu": {
+    "format": " <span color='#6a92d7'>⏻ </span>",
+    "on-click": "bash ~/.config/scripts/powermenu"
+  },
+  "custom/launcher": {
+    "format": " <span color='#6a92d7'> </span>",
+    "on-click": "fuzzel"
+  }
+}
