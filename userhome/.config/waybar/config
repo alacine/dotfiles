@@ -8,6 +8,7 @@
   "spacing": 5,
   "modules-left": [
     "custom/launcher",
+    "wlr/taskbar",
     "wlr/workspaces",
     "hyprland/window"
   ],
@@ -26,6 +27,17 @@
     "tray",
     "custom/power-menu"
   ],
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 16,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+      "Alacritty",
+      "kitty"
+    ]
+  },
   "wlr/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
@@ -38,7 +50,9 @@
       "urgent": "",
       "active": "",
       "default": ""
-    }
+    },
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
   },
   "hyprland/window": {
     "format": "{}"
@@ -146,6 +160,6 @@
   },
   "custom/launcher": {
     "format": " <span color='#6a92d7'> </span>",
-    "on-click": "fuzzel"
+    "on-click": "rofi -show drun"
   }
 }
