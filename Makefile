@@ -21,6 +21,7 @@ help: ## Display this help
 .PHONY: install
 install: ## Install package
 	sudo pacman -S --needed - < pkg/pacman.txt
+	yay -S --needed - < pkg/yay.txt
 	pip install --user -r pkg/pip.txt
 
 .PHONY: deploy
@@ -41,3 +42,7 @@ pkg/pacman.txt:
 
 pkg/pip.txt:
 	pip freeze --user > $@
+
+.PHONY: mirror
+mirror: ## (Root) Setup mirror for archlinuxcn
+	./mirrors.sh
