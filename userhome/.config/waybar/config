@@ -8,9 +8,8 @@
   "spacing": 5,
   "modules-left": [
     "custom/launcher",
-    "wlr/taskbar",
     "wlr/workspaces",
-    "hyprland/window"
+    "wlr/taskbar"
   ],
   "modules-center": [
     "clock",
