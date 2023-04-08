@@ -13,6 +13,7 @@ set termguicolors
 let mapleader=","
 set path+=**
 set wildmenu
+set mouse=
 set number
 "set relativenumber
 set ts=4
@@ -165,7 +166,6 @@ let g:coc_global_extensions = [
             \ 'coc-translator',
             \ 'coc-explorer',
             \ 'coc-gitignore']
-            "\ 'coc-jedi',
 source ~/.config/nvim/coc_example.vim
 source ~/.config/nvim/coc_custom.vim
 
