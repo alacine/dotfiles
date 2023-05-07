@@ -142,7 +142,7 @@ export DISABLE_AUTO_TITLE='true'
 # change default libvirt URI
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
-source /etc/profile.d/autojump.zsh
+eval "$(zoxide init zsh)"
 
 eval $(thefuck --alias)
 
