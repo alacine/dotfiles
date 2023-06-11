@@ -116,6 +116,8 @@ alias lg='lazygit'
 alias sc='systemctl'
 alias kb='kubectl'
 alias glra='git pull --rebase --autostash'
+alias dc='docker-compose'
+alias tf='terraform'
 
 export LIB_PATH="$HOME/Lib"
 
