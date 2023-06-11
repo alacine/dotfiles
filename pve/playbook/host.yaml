@@ -1,0 +1,17 @@
+all:
+  children:
+    master:
+      hosts:
+        192.168.31.100:
+          ansible_connection: ssh
+    node:
+      hosts:
+        192.168.31.110:
+          ansible_connection: ssh
+        192.168.31.111:
+          ansible_connection: ssh
+
+    #clash:
+      #hosts:
+        #192.168.31.100:
+          #ansible_connection: ssh
