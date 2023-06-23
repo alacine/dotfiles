@@ -1,0 +1,42 @@
+- name: Install Clash
+  shell:
+    cmd: |
+      go install github.com/Dreamacro/clash@latest
+      install $(go env GOBIN)/clash /usr/bin/
+
+- name: Create User systemd Directory
+  file:
+    path: /etc/systemd/system
+    state: directory
+    mode: '755'
+
+- name: Create Clash Configuration Directory
+  file:
+    path: /etc/clash/
+    state: directory
+    mode: '755'
+
+- name: Transfer Systemd Configuration File
+  copy:
+    src: files/clash.service
+    dest: /etc/systemd/system/clash.service
+    mode: '644'
+
+- name: Transfer Clash Configuration File
+  copy:
+    src: files/config.yaml
+    dest: /etc/clash/config.yaml
+    mode: '644'
+
+- name: Edit Clash Configuration File
+  shell: sed -i '/^external-controller/s/127.0.0.1/192.168.31.100/' /etc/clash/config.yaml
+
+- name: Start Clash service
+  systemd:
+    name: clash
+    enabled: true
+    state: restarted
+    daemon_reload: true
+
+#- name: Start web console
+  #shell: docker run -p 1234:80 -d --name yacd --rm ghcr.io/haishanh/yacd:master

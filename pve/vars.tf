@@ -48,9 +48,16 @@ variable "vm_password" {
   sensitive   = true
 }
 
-variable "vm_sshkey_file" {
-  description = "ssh key for vm_user"
+variable "public_key_path" {
+  description = "public key for vm_user"
   type        = string
   sensitive   = true
   default     = "~/.ssh/id_rsa.pub"
+}
+
+variable "private_key_path" {
+  description = "private key for vm_user"
+  type        = string
+  sensitive   = true
+  default     = "~/.ssh/id_rsa"
 }

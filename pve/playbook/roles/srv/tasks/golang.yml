@@ -1,0 +1,12 @@
+- name: Install golang
+  ansible.builtin.apt:
+    pkg:
+      - golang
+    update_cache: yes
+
+- name: Setup Golang environment
+  shell:
+    cmd: |
+     go env -w GO111MODULE=on
+     go env -w GOPROXY=https://goproxy.cn
+     go env -w GOBIN=$(go env GOPATH)/bin

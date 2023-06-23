@@ -1,0 +1,34 @@
+- name: Install Samba
+  ansible.builtin.apt:
+    pkg:
+      - samba
+    update_cache: yes
+
+- name: Create Samba Share Directory
+  file:
+    path: /home/{{ ansible_user }}/samba_share
+    state: directory
+    mode: '755'
+
+- name: Install Samba config file
+  template:
+    src: templates/smb.conf.j2
+    dest: /etc/samba/smb.conf
+  register: netplan_config
+
+- name: Start Samba service
+  systemd:
+    name: smbd
+    enabled: true
+    state: restarted
+    daemon_reload: true
+
+#- name: Add system user
+  #user:
+    #name: samba
+    #system: true
+    #state: present
+    #password: "{{ ansible_password | password_hash('sha512') }}"
+
+- name: Add Samba user
+  shell: printf '{{ ansible_password }}\n{{ ansible_password }}\n' | smbpasswd -a {{ ansible_user }}

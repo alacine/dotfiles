@@ -20,7 +20,7 @@ resource "local_file" "cloud_init_user_data_file" {
     {
       "name" : var.vm_user,
       "password" : var.vm_password,
-      "ssh_key" : file(var.vm_sshkey_file)
+      "public_key" : file(var.public_key_path)
     }
   )
   filename = "${path.module}/files/user_data.cfg"
@@ -60,13 +60,13 @@ resource "null_resource" "cloud_init_config_files" {
   }
 }
 
-resource "proxmox_vm_qemu" "k8s-master" {
+resource "proxmox_vm_qemu" "srv" {
   depends_on = [
     null_resource.cloud_init_config_files,
   ]
   count = 1
-  name  = "k8s-master-${count.index + 1}"
-  desc  = "Kubernetes controller"
+  name  = "srv-${count.index + 1}"
+  desc  = "Home Server"
 
   target_node = "pve"
 
@@ -76,16 +76,16 @@ resource "proxmox_vm_qemu" "k8s-master" {
   qemu_os  = "l26"
   os_type  = "ubuntu"
   onboot   = true
-  cores    = 1
+  cores    = 2
   sockets  = 1
   cpu      = "host"
-  memory   = 2048
+  memory   = 4096
   scsihw   = "virtio-scsi-pci"
   bootdisk = "scsi0"
 
   disk {
     #slot     = 0
-    size    = "25G"
+    size    = "200G"
     type    = "scsi"
     storage = "local-lvm"
     #iothread = 1
@@ -106,66 +106,15 @@ resource "proxmox_vm_qemu" "k8s-master" {
   cicustom = "user=local:snippets/user_data_vm.yml"
 }
 
-resource "proxmox_vm_qemu" "k8s-node" {
-  depends_on = [
-    null_resource.cloud_init_config_files,
-  ]
-  count = 2
-  name  = "k8s-node-${count.index + 1}"
-  desc  = "Kubernetes worker"
-
-  target_node = "pve"
-
-  clone = "ubuntu-cloud-init"
-
-  agent    = 1
-  qemu_os  = "l26"
-  os_type  = "ubuntu"
-  onboot   = true
-  cores    = 1
-  sockets  = 1
-  cpu      = "host"
-  memory   = 2048
-  scsihw   = "virtio-scsi-pci"
-  bootdisk = "scsi0"
-
-  disk {
-    #slot     = 0
-    size    = "25G"
-    type    = "scsi"
-    storage = "local-lvm"
-    #iothread = 1
-  }
-
-  network {
-    model  = "virtio"
-    bridge = "vmbr0"
-  }
-
-  lifecycle {
-    ignore_changes = [
-      network,
-    ]
-  }
-  ipconfig0 = "ip=192.168.31.${count.index + 110}/24,gw=192.168.31.1"
-
-  cicustom = "user=local:snippets/user_data_vm.yml"
-}
-
 resource "null_resource" "refresh_ssh_config" {
   depends_on = [
-    proxmox_vm_qemu.k8s-master,
-    proxmox_vm_qemu.k8s-node,
+    proxmox_vm_qemu.srv,
   ]
 
   provisioner "local-exec" {
     command = <<EOF
       ssh-keygen -R 192.168.31.100
-      ssh-keygen -R 192.168.31.110
-      ssh-keygen -R 192.168.31.111
       ssh-keyscan 192.168.31.100 >> ~/.ssh/known_hosts
-      ssh-keyscan 192.168.31.110 >> ~/.ssh/known_hosts
-      ssh-keyscan 192.168.31.111 >> ~/.ssh/known_hosts
     EOF
   }
 
@@ -173,8 +122,41 @@ resource "null_resource" "refresh_ssh_config" {
     when    = destroy
     command = <<EOF
       ssh-keygen -R 192.168.31.100
-      ssh-keygen -R 192.168.31.110
-      ssh-keygen -R 192.168.31.111
     EOF
   }
+}
+
+resource "null_resource" "setup_server" {
+  provisioner "local-exec" {
+    command = <<EOF
+      ansible-playbook \
+        --connection=ssh \
+        --inventory=${local_file.inventory.filename} \
+        playbook/server.yml
+    EOF
+  }
+}
+
+resource "local_file" "inventory" {
+  content = templatefile(
+    "${path.module}/inventory.tftpl",
+    {
+      "user" : var.vm_user,
+      "password": var.vm_password,
+      "private_key_path" : var.private_key_path,
+      "servers" : proxmox_vm_qemu.srv,
+    }
+  )
+  filename = "${path.module}/inventory"
+}
+
+resource "local_file" "sshconf" {
+  content = templatefile("${path.module}/sshconf.tftpl",
+    {
+      "user" : var.vm_user,
+      "private_key_path" : pathexpand(var.private_key_path),
+      "server" = proxmox_vm_qemu.srv[0],
+    }
+  )
+  filename = "sshconf"
 }

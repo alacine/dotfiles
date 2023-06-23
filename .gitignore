@@ -7,4 +7,9 @@ userhome/.config/ranger/plugins/
 *.tfstate
 *.tfstate.*
 *.tfvars
+pve/.terraform.lock.hcl
+
+# Generated files
 pve/files/*
+pve/sshconf
+pve/inventory

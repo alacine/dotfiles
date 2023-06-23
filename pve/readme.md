@@ -11,6 +11,6 @@ pm_user             = "xxxx"
 pm_api_token_id     = "xxxx"
 pm_api_token_secret = "xxxx"
 vm_user             = "xxxx"
-vm_password         = "xxxx"
-vm_sshkey_file      = "xxxx"
+public_key_path     = "~/.ssh/id_rsa.pub"
+private_key_path    = "~/.ssh/id_rsa"
 ```
