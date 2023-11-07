@@ -118,6 +118,8 @@ alias kb='kubectl'
 alias glra='git pull --rebase --autostash'
 alias dc='docker-compose'
 alias tf='terraform'
+alias sz='lrzsz-sz'
+alias rz='lrzsz-rz'
 
 export LIB_PATH="$HOME/Lib"
 
@@ -127,7 +129,7 @@ export NODE_PATH="$LIB_PATH/npm/lib/node_modules"
 export PATH="$PATH:$LIB_PATH/npm/bin"
 
 # go env -w GO111MODULE=on
-# go env -w GOPROXY=https://goproxy.io
+# go env -w GOPROXY=https://goproxy.cn
 export GOPATH="$LIB_PATH/Golang"
 export PATH=$PATH:$GOPATH/bin
 
