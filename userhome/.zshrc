@@ -116,7 +116,7 @@ alias lg='lazygit'
 alias sc='systemctl'
 alias kb='kubectl'
 alias glra='git pull --rebase --autostash'
-alias dc='docker-compose'
+alias dc='docker compose'
 alias tf='terraform'
 alias sz='lrzsz-sz'
 alias rz='lrzsz-rz'
@@ -150,9 +150,21 @@ eval "$(zoxide init zsh)"
 
 eval $(thefuck --alias)
 
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+#export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source "$HOME/.config/broot/launcher/bash/br"
