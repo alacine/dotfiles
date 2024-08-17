@@ -148,7 +148,6 @@ let g:coc_global_extensions = [
             \ 'coc-prettier',
             \ 'coc-syntax',
             \ 'coc-lists',
-            \ 'coc-python',
             \ 'coc-pyright',
             \ 'coc-java',
             \ 'coc-sumneko-lua',
@@ -353,7 +352,7 @@ end
 noremap <leader>ff :Floaterm
 noremap <leader>fh :FloatermHide<cr>
 noremap <leader>fn :FloatermNew<cr>
-noremap <leader>fr :FloatermNew ranger<cr>
+noremap <leader>fy :FloatermNew yazi<cr>
 noremap <leader>fl :FloatermNew lazygit<cr>
 let g:floaterm_autoclose = 1
 let g:floaterm_width = 0.8

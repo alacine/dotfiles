@@ -243,7 +243,6 @@ qbittorrent-enhanced-git
 qemu-user-static
 qt5-websockets
 qv2ray-dev-git
-ranger
 rar
 redis
 ripgrep
@@ -350,7 +349,7 @@ xtrlock
 yacd
 yakuake
 yarn
-yay
+yazi
 you-get
 youtube-dl
 yq
