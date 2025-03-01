@@ -16,7 +16,7 @@ touch chrome/userChrome.css
 
 ```css
 /*================== TABS BAR ==================*/
-#titlebar #TabsToolbar {
+#TabsToolbar {
   visibility: collapse !important;
 }
 
