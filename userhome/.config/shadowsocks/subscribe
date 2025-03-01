@@ -1,0 +1,71 @@
+#!/bin/bash
+set -e
+set -o pipefail
+set -u
+
+subscribe_url="https://xxxx.xxxx"
+
+url_decode() {
+    local data=${1:?}
+    echo "${data}" | sed -E 's/%([0-9a-fA-F]{2})/\\x\1/g' | xargs -0 printf "%b"
+}
+
+generate_ss_config() {
+    local encoded_data=${1:?}
+    local server=${2:?}
+    local port=${3:?}
+    local remarks=${4:?}
+    local decode_data method password json
+
+    remarks=$(url_decode "${remarks}" | xargs)
+
+    decode_data="$(echo "${encoded_data}" | base64 --decode)"
+    IFS=":" read -r method password <<< "${decode_data}"
+
+    json=$(jq -n \
+      --arg server "$server" \
+      --argjson port "$port" \
+      --arg password "$password" \
+      --arg method "$method" \
+      --arg remarks "$remarks" \
+      '{
+        server: $server,
+        server_port: $port,
+        local_address: "127.0.0.1",
+        local_port: 1080,
+        timeout: 300,
+        password: $password,
+        method: $method,
+        fast_open: false,
+        workers: 1,
+        preferrr_ipv6: false,
+        remarks: $remarks
+      }')
+
+    echo "${json}" | jq
+}
+
+main() {
+    curl -s "${subscribe_url}" > origin.data
+    local i=0
+    while IFS=":/@#" read -r protocol _ _ encoded_data server port remark; do
+        #echo "================================"
+        #echo "protocol: ${protocol}"
+        #echo "encoded_data: ${encoded_data}"
+        #echo "server: ${server}"
+        #echo "port: ${port}"
+        #echo "remark: ${remark}"
+        #echo "================================"
+        case "${protocol}" in
+            ss)
+                generate_ss_config "${encoded_data}" "${server}" "${port}" "${remark}" > ss_${i}.json
+                ;;
+            *)
+                echo "Protocol ${protocol} is not supported yet."
+                ;;
+        esac
+        i=$((i+1))
+    done < <(base64 --decode origin.data)
+}
+
+main "$@"

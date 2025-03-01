@@ -79,7 +79,7 @@ case ${chosen} in
         run_cmd --reboot
         ;;
     "$lock")
-        "${SCRIPT_DIR}/screenlock"
+        hyprlock
         ;;
     "$suspend")
         run_cmd --suspend
