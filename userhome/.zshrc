@@ -123,7 +123,7 @@ alias rz='lrzsz-rz'
 
 export LIB_PATH="$HOME/Lib"
 
-# npm config set registry https://registry.npm.taobao.org
+# npm config set registry https://registry.npmmirror.com
 # npm config set prefix '~/Lib/npm'
 export NODE_PATH="$LIB_PATH/npm/lib/node_modules"
 export PATH="$PATH:$LIB_PATH/npm/bin"
@@ -177,3 +177,10 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+if [[ -n $TMUX ]]; then
+    __kdwithtmuxpopup() {
+        tmux display-popup "kd $@"
+    }
+    alias kd=__kdwithtmuxpopup
+fi
