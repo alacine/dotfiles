@@ -1,12 +1,10 @@
 {
-  "coc.preferences.extensionUpdateCheck": "daily",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "json",
-    "javascript",
-    "vim",
-    "html"
-  ],
+  "extensions.updateCheck": "daily",
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSave": true,
   "snippets.userSnippetsDirectory": "$HOME/.config/nvim/ultisnips",
+  "snippets.ultisnips.enable": true,
+  "snippets.autoTrigger": true,
   "snippets.ultisnips.directories": [
     "ultisnips",
     "$HOME/.config/nvim/ultisnips"
@@ -57,6 +55,9 @@
     "variable": "\ue71b"
   },
   "python.jediEnabled": false,
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.parameterTypes": false,
   "languageserver": {
     "golang": {
       "command": "gopls",

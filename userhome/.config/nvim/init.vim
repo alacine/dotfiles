@@ -134,6 +134,8 @@ Plug 'vmware/differential-datalog', {'rtp': 'tools/vim'}
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jbyuki/venn.nvim'
 Plug 'hashivim/vim-terraform'
+Plug 'folke/snacks.nvim'
+Plug 'ledger/vim-ledger', { 'for': ['ledger'] }
 "Plug 'puremourning/vimspector'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
