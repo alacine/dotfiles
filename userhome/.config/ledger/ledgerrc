@@ -1,1 +1,2 @@
 --no-pager
+--date-format %Y-%m-%d

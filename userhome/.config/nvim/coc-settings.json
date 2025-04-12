@@ -5,10 +5,8 @@
   "snippets.userSnippetsDirectory": "$HOME/.config/nvim/ultisnips",
   "snippets.ultisnips.enable": true,
   "snippets.autoTrigger": true,
-  "snippets.ultisnips.directories": [
-    "ultisnips",
-    "$HOME/.config/nvim/ultisnips"
-  ],
+  "snippets.trace": "verbose",
+  "snippets.ultisnips.directories": ["$PWD/ultisnips"],
   "yank.enableCompletion": false,
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
