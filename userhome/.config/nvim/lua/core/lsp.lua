@@ -1,4 +1,5 @@
 local keymap = vim.keymap -- for conciseness
+local lsp_prefix = "LSP: "
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -8,75 +9,119 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local opts = { buffer = ev.buf, silent = true }
 
     -- set keybinds
-    opts.desc = "LSP: Goto definitions"
+    opts.desc = lsp_prefix .. "Goto definitions"
     --keymap.set("n", "gd", "<CMD>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
     keymap.set("n", "gd", function()
-      Snacks.picker.lsp_definitions()
+      Snacks.picker.lsp_definitions({ focus = "list" })
     end, opts)
 
-    opts.desc = "LSP: Goto declaration"
+    opts.desc = lsp_prefix .. "Goto declaration"
     -- keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
     keymap.set("n", "gD", function()
-      Snacks.picker.lsp_declarations()
+      Snacks.picker.lsp_declarations({ focus = "list" })
     end, opts)
 
-    opts.desc = "LSP: Show references"
+    opts.desc = lsp_prefix .. "Show references"
     -- keymap.set("n", "gr", "<CMD>Telescope lsp_references<CR>", opts) -- show definition, references
     keymap.set("n", "gr", function()
-      Snacks.picker.lsp_references()
+      Snacks.picker.lsp_references({ focus = "list" })
     end, { nowait = true, desc = "References", buffer = ev.buf })
 
-    opts.desc = "LSP: Show implementations"
+    opts.desc = lsp_prefix .. "Show implementations"
     -- keymap.set("n", "gi", "<CMD>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
     keymap.set("n", "gI", function()
-      Snacks.picker.lsp_implementations()
+      Snacks.picker.lsp_implementations({ focus = "list" })
     end, opts)
 
-    opts.desc = "LSP: Show type definitions"
+    opts.desc = lsp_prefix .. "Show type definitions"
     -- keymap.set("n", "gt", "<CMD>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
     keymap.set("n", "gt", function()
-      Snacks.picker.lsp_type_definitions()
+      Snacks.picker.lsp_type_definitions({ focus = "list" })
     end, opts)
 
-    opts.desc = "LSP: Show Symbols"
+    opts.desc = lsp_prefix .. "Show Symbols"
     keymap.set("n", "gs", function()
-      Snacks.picker.lsp_symbols()
+      Snacks.picker.lsp_symbols({ focus = "list" })
     end, opts)
 
-    opts.desc = "LSP: Show Workspace Symbols"
+    opts.desc = lsp_prefix .. "Show Workspace Symbols"
     keymap.set("n", "gws", function()
-      Snacks.picker.lsp_workspace_symbols()
+      Snacks.picker.lsp_workspace_symbols({ focus = "list" })
     end, opts)
 
-    opts.desc = "LSP: See available code actions"
+    opts.desc = lsp_prefix .. "See available code actions"
     keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
-    opts.desc = "LSP: Smart rename"
+    opts.desc = lsp_prefix .. "Smart rename"
     keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
-    opts.desc = "LSP: Show buffer diagnostics"
-    keymap.set("n", "<space>d", "<CMD>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+    opts.desc = lsp_prefix .. "Show buffer diagnostics"
+    keymap.set("n", "gF", "<CMD>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
-    opts.desc = "LSP: Show line diagnostics"
-    keymap.set("n", "<space>l", vim.diagnostic.open_float, opts) -- show diagnostics for line
+    opts.desc = lsp_prefix .. "Show line diagnostics"
+    keymap.set("n", "gl", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
-    opts.desc = "LSP: Go to previous diagnostic"
+    opts.desc = lsp_prefix .. "Go to previous diagnostic"
     keymap.set("n", "[g", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
 
-    opts.desc = "LSP: Go to next diagnostic"
+    opts.desc = lsp_prefix .. "Go to next diagnostic"
     keymap.set("n", "]g", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
 
-    opts.desc = "LSP: Show documentation under cursor"
+    opts.desc = lsp_prefix .. "Show documentation under cursor"
     keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
-    opts.desc = "LSP: Restart LSP"
+    opts.desc = lsp_prefix .. "Restart LSP"
     keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    -- Inlay hint
+    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+      -- vim.lsp.inlay_hint.enable()
+      vim.keymap.set("n", "<leader>th", function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
+      end, { buffer = ev.buf, desc = lsp_prefix .. "Toggle Inlay Hints" })
+    end
+
+    -- folding
+    if client and client.supports_method("textDocument/foldingRange") then
+      local win = vim.api.nvim_get_current_win()
+      vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+    end
+
+    -- Highlight words under cursor
+    if
+      client
+      and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight)
+      and vim.bo.filetype ~= "bigfile"
+    then
+      local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        buffer = ev.buf,
+        group = highlight_augroup,
+        callback = vim.lsp.buf.document_highlight,
+      })
+
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        buffer = ev.buf,
+        group = highlight_augroup,
+        callback = vim.lsp.buf.clear_references,
+      })
+
+      vim.api.nvim_create_autocmd("LspDetach", {
+        group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+        callback = function(ev2)
+          vim.lsp.buf.clear_references()
+          vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = ev2.buf })
+          -- vim.cmd 'setl foldexpr <'
+        end,
+      })
+    end
   end,
 })
 
 vim.diagnostic.config({
   -- virtual_lines = true,
-  -- virtual_text = true,
+  virtual_text = true,
   underline = true,
   update_in_insert = false,
   severity_sort = true,
@@ -98,8 +143,11 @@ vim.diagnostic.config({
   },
 })
 
-vim.lsp.config["gopls"] = {
-  cmd = { "gopls" },
-  filetype = { "go", "gomod", "gowork", "gotmpl" },
-}
---vim.lsp.enable("gopls")
+vim.lsp.enable({
+  "lua_ls",
+  "gopls",
+  "golangci_lint_ls",
+  "basedpyright",
+  "rust_analyer",
+  "bashls",
+})

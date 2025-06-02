@@ -12,7 +12,6 @@ return {
         end,
       },
     },
-    opts = {},
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
@@ -31,6 +30,9 @@ return {
               ["<esc>"] = actions.close,
               ["<C-[>"] = actions.close,
               ["<C-d>"] = actions.close,
+              ["<C-u>"] = false,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
             },
           },
         },
@@ -47,7 +49,7 @@ return {
 
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<space>f", builtin.find_files, { desc = "Telescope find files" })
-      vim.keymap.set("n", "<space>g", builtin.live_grep, { desc = "Telescope live grep" })
+      vim.keymap.set("n", "<space>a", builtin.live_grep, { desc = "Telescope live grep" })
       vim.keymap.set("n", "<space>b", builtin.buffers, { desc = "Telescope buffers" })
       vim.keymap.set("n", "<space>h", builtin.help_tags, { desc = "Telescope help tags" })
       vim.keymap.set("n", "<space>m", "<CMD>Telescope notify<CR>", { desc = "Telescopt message" })

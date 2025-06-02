@@ -1,7 +1,7 @@
 return {
   "voldikss/vim-floaterm",
   keys = {
-    { "<leader>ff", "<CMD>FloatermNew<CR>", desc = "Open Floaterm" },
+    { "<leader>fg", "<CMD>FloatermNewloatermNew<CR>", desc = "Open Floaterm" },
     { "<leader>fy", "<CMD>FloatermNew yazi<CR>", desc = "Open Yazi" },
     { "<leader>fl", "<CMD>FloatermNew lazygit<CR>", desc = "Open Lazygit" },
   },

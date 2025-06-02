@@ -42,7 +42,26 @@ return {
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
-    picker = { enabled = true },
+    picker = {
+      enabled = true,
+      lsp_config = {
+        finder = "lsp.config#find",
+        format = "lsp.config#format",
+        preview = "lsp.config#preview",
+        confirm = "close",
+        sort = { fields = { "score:desc", "attached_buf", "attached", "enabled", "installed", "name" } },
+        matcher = { sort_empty = true },
+      },
+      win = {
+        input = {
+          keys = {
+            ["<esc>"] = { "close", mode = { "n", "i" } },
+            ["<C-[>"] = { "close", mode = { "n", "i" } },
+            ["<C-d>"] = { "close", mode = { "n", "i" } },
+          },
+        },
+      },
+    },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
@@ -50,5 +69,58 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
     lazygit = {},
+    blame_line = {
+      width = 0.6,
+      height = 0.6,
+      border = "rounded",
+      title = " Git Blame ",
+      title_pos = "center",
+      ft = "git",
+    },
+    log_line = {
+      width = 0.6,
+      height = 0.6,
+      border = "rounded",
+      title = " Git Blame ",
+      title_pos = "center",
+      ft = "git",
+    },
+  },
+  keys = {
+    {
+      "<space>gb",
+      function()
+        Snacks.git.blame_line()
+      end,
+      desc = "Git blame line",
+    },
+    {
+      "<space>gl",
+      function()
+        Snacks.picker.git_log()
+      end,
+      desc = "Git log",
+    },
+    {
+      "<space>gL",
+      function()
+        Snacks.picker.git_log_line()
+      end,
+      desc = "Git log line",
+    },
+    {
+      "<space>gS",
+      function()
+        Snacks.picker.git_stash()
+      end,
+      desc = "Git stash",
+    },
+    {
+      "<space>gs",
+      function()
+        Snacks.picker.git_status()
+      end,
+      desc = "Git status",
+    },
   },
 }
