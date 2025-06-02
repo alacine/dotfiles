@@ -1,11 +1,12 @@
 return {
   "voldikss/vim-floaterm",
   keys = {
-    { "<leader>fg", "<CMD>FloatermNewloatermNew<CR>", desc = "Open Floaterm" },
+    { "<leader>ff", "<CMD>FloatermNew<CR>", desc = "Open Floaterm" },
     { "<leader>fy", "<CMD>FloatermNew yazi<CR>", desc = "Open Yazi" },
     { "<leader>fl", "<CMD>FloatermNew lazygit<CR>", desc = "Open Lazygit" },
   },
   config = function()
+    -- TODO: function key dose not work
     vim.g.floaterm_keymap_new = "<F7>"
     vim.g.floaterm_keymap_prev = "<F8>"
     vim.g.floaterm_keymap_next = "<F9>"
