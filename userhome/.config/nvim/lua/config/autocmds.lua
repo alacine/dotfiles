@@ -21,6 +21,13 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*.ldg", "*.ledger", "*.journal" },
+  callback = function()
+    vim.bo.filetype = "ledger"
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "html", "yaml", "lua", "javascript", "json", "groovy" },
   callback = function()

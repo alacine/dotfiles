@@ -86,41 +86,12 @@ return {
       ft = "git",
     },
   },
+  -- stylua: ignore
   keys = {
-    {
-      "<space>gb",
-      function()
-        Snacks.git.blame_line()
-      end,
-      desc = "Git blame line",
-    },
-    {
-      "<space>gl",
-      function()
-        Snacks.picker.git_log()
-      end,
-      desc = "Git log",
-    },
-    {
-      "<space>gL",
-      function()
-        Snacks.picker.git_log_line()
-      end,
-      desc = "Git log line",
-    },
-    {
-      "<space>gS",
-      function()
-        Snacks.picker.git_stash()
-      end,
-      desc = "Git stash",
-    },
-    {
-      "<space>gs",
-      function()
-        Snacks.picker.git_status()
-      end,
-      desc = "Git status",
-    },
+    { "<space>gb", function() Snacks.git.blame_line() end, desc = "Git blame line" },
+    { "<space>gl", function() Snacks.picker.git_log() end, desc = "Git log" },
+    { "<space>gL", function() Snacks.picker.git_log_line() end, desc = "Git log line" },
+    { "<space>gS", function() Snacks.picker.git_stash() end, desc = "Git stash" },
+    { "<space>gs", function() Snacks.picker.git_status() end, desc = "Git status" },
   },
 }
