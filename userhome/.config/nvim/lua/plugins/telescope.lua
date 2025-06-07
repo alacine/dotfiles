@@ -19,6 +19,7 @@ return {
       telescope.setup({
         defaults = {
           dynamic_preview_title = true,
+          sorting_strategy = "ascending",
           layout_strategy = "horizontal",
           layout_config = {
             horizontal = {

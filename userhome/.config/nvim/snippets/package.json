@@ -1,0 +1,19 @@
+{
+	"name": "custom-snippets",
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+					"go"
+				],
+				"path": "./go.json"
+			},
+			{
+				"language": [
+					"make"
+				],
+				"path": "./make.json"
+			}
+		]
+	}
+}

@@ -1,10 +1,10 @@
 return {
   {
-    "jiangmiao/auto-pairs",
-    config = function()
-      vim.g.AutoPairsCenterLine = 0
-      vim.g.AutoPairsMapCR = 0
-    end,
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
   },
   { "itchyny/vim-cursorword" },
   { "tpope/vim-surround" },

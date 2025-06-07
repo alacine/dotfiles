@@ -1,0 +1,26 @@
+{
+  "debug line": {
+    "prefix": "dbline",
+    "body": [
+      "fmt.Println(\"============DEBUG ${1} START===========\")",
+      "${0}",
+      "fmt.Println(\"============DEBUG ${1} END=============\")"
+    ]
+  },
+  "OI input and output": {
+    "prefix": "oi",
+    "body": [
+      "package main\n",
+      "import (",
+      "\t\"bufio\"",
+      ")\n",
+      "func main() {",
+      "\tin := bufio.NewReader(os.Stdin)",
+      "\tout := bufio.NewWriter(os.Stdout)",
+      "\tdefer out.Flush()",
+      "\tvar n int",
+      "\tfmt.Fscan(in, &n)${0}",
+      "}"
+    ]
+  }
+}

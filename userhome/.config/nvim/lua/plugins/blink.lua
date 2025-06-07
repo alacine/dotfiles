@@ -1,7 +1,10 @@
 return {
   "saghen/blink.cmp",
   -- optional: provides snippets for the snippet source
-  dependencies = { "rafamadriz/friendly-snippets" },
+  dependencies = {
+    { "L3MON4D3/LuaSnip", version = "v2.*" },
+    "rafamadriz/friendly-snippets",
+  },
 
   -- use a release tag to download pre-built binaries
   version = "1.*",
@@ -59,6 +62,7 @@ return {
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
     },
+    snippets = { preset = "luasnip" },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
     -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
@@ -68,4 +72,14 @@ return {
     fuzzy = { implementation = "prefer_rust_with_warning" },
   },
   opts_extend = { "sources.default" },
+
+  config = function(_, opts)
+    require("luasnip.loaders.from_vscode").lazy_load()
+    require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets" })
+    require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.getcwd() .. "/snippets" })
+    require("luasnip").setup({
+      enable_autosnippets = true,
+    })
+    require("blink.cmp").setup(opts)
+  end,
 }
