@@ -104,4 +104,9 @@ return {
       vim.g.suda_smart_edit = 1
     end,
   },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
 }
