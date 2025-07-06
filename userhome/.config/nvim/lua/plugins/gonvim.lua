@@ -21,7 +21,9 @@ return {
         group = format_sync_grp,
       })
     end,
-    event = { "CmdlineEnter" },
+    -- FIXME: This will enable lsp_inlay_hints and change my diagnostics sign
+    -- https://github.com/ray-x/go.nvim/issues/579
+    -- event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },

@@ -119,7 +119,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.diagnostic.config({
+-- TODO: Temporarily export lsp config to global,
+-- because we need to run vim.diagnostic.config(local_config) manually
+-- since go.nvim modifies lsp config unexpectly.
+local_lsp_config = {
   virtual_lines = false,
   virtual_text = false,
   underline = true,
@@ -141,7 +144,9 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.WARN] = "WarningMsg",
     },
   },
-})
+}
+
+vim.diagnostic.config(local_lsp_config)
 
 vim.lsp.enable({
   "lua_ls",
