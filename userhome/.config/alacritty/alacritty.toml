@@ -1,0 +1,45 @@
+[general]
+import = [ "~/.config/alacritty/tokyonight_night.toml" ]
+
+[colors.vi_mode_cursor]
+cursor = "#d8dee9"
+text = "#2e3440"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 15
+
+[font.bold]
+family = "Mononoki Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Mononoki Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Mononoki Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Mononoki Nerd Font Mono"
+# style = "Regular"
+style = "Italic"
+
+[window]
+opacity = 0.90
+blur = true
+
+[[hints.enabled]]
+command         = "xdg-open" # On Linux/BSD
+# command       = "open" # On macOS
+# command       = { program = "cmd", args = [ "/c", "start",  "" ] } # On Windows
+hyperlinks      = true
+post_processing = true
+persist         = false
+mouse.enabled   = true
+mouse.mods      = "Control" # "Control|Shift" is my preference
+binding         = { key = "O", mods = "Control|Shift" }
+regex           = "(ipfs:|ipns:|magnet:|mailto:|gemini://|go‐pher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"

@@ -1,7 +1,7 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: mononoki Nerd Font Mono;
-  font-size: 18px;
+  font-family: Mononoki Nerd Font Mono;
+  font-size: 25px;
 }
 
 window#waybar {

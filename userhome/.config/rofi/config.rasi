@@ -1,9 +1,10 @@
 // https://github.com/newmanls/rofi-themes-collection
-@theme "themes/rounded-nord-dark.rasi"
+// @theme "themes/rounded-nord-dark.rasi"
+@theme "themes/simple-tokyonight.rasi"
 
 configuration {
     modi: "window,run,ssh,keys,filebrowser";
-    font: "mononoki 15";
+    // font: "mononoki 20";
 }
 
 window {

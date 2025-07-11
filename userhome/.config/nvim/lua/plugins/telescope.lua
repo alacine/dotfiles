@@ -17,9 +17,15 @@ return {
       local actions = require("telescope.actions")
 
       telescope.setup({
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+        },
         defaults = {
           dynamic_preview_title = true,
           sorting_strategy = "ascending",
+          file_ignore_patterns = { "^.git/" },
           layout_strategy = "horizontal",
           layout_config = {
             horizontal = {

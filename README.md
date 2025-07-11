@@ -25,5 +25,6 @@
 
 - 桌面主题, 部分软件主题
     - KDE plasma
+    - Hyprland
 
 ![screenshot](./DE/screenshot/desktop.png)
