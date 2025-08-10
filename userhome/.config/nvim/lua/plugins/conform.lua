@@ -20,9 +20,17 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "isort", "black" },
+      python = {
+        -- To fix auto-fixable lint errors.
+        "ruff_fix",
+        -- To run the Ruff formatter.
+        "ruff_format",
+        -- Too organize the imports.
+        "ruff_organize_imports",
+      },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       json = { "jq" },
+      go = { "goimports", "gofmt" },
     },
     -- Set default options
     default_format_opts = {

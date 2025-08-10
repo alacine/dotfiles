@@ -155,4 +155,5 @@ vim.lsp.enable({
   "basedpyright",
   "rust_analyer",
   "bashls",
+  "solidity_ls_nomicfoundation",
 })
