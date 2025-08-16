@@ -7,6 +7,15 @@ configuration {
     // font: "mononoki 20";
 }
 
+element {
+  children: [element-icon, element-text];
+}
+
+element-icon {
+  padding: 5px 5px;
+  size: 20px;
+}
+
 window {
     location:       center;
     width:          800;
