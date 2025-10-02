@@ -144,10 +144,11 @@
     "exec": "bash ~/.config/scripts/media",
     "format": "🎶 {}",
     "return-type": "text",
+    "interval": 2,
     "on-click": "playerctl play-pause",
     "on-double-click-right": "playerctl next",
     "on-scroll-down": "playerctl previous",
-    "max-length": 20
+    "max-length": 50
   },
   "custom/power-menu": {
     "format": " <span color='#6a92d7'>⏻ </span>",

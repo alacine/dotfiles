@@ -1,26 +1,26 @@
 #!/bin/bash
 
-while true; do
-    player_status=$(playerctl status 2> /dev/null)
-    content=""
-    if [ -z "$(playerctl metadata album 2> /dev/null)" ]; then
-        if [ "$player_status" = "Playing" ]; then
-            content="$(playerctl metadata artist) - $(playerctl metadata title)"
-        elif [ "$player_status" = "Paused" ]; then
-            content=" $(playerctl metadata artist) - $(playerctl metadata title)"
-        else
-            content=""
-        fi
-    else
-        if [ "$player_status" = "Playing" ]; then
-            content="$(playerctl metadata artist) - $(playerctl metadata title)"
-        elif [ "$player_status" = "Paused" ]; then
-            content=" $(playerctl metadata artist) - $(playerctl metadata title)"
-        else
-            content=""
-        fi
-    fi
-    echo "${content::25}"
+player_status=$(playerctl status 2>/dev/null)
+content=""
 
-    sleep 1
-done
+if [ "$player_status" = "Playing" ]; then
+    artist=$(playerctl metadata artist 2>/dev/null)
+    title=$(playerctl metadata title 2>/dev/null)
+    if [ -n "$artist" ] && [ -n "$title" ]; then
+        content="$artist - $title"
+    else
+        content="Playing"
+    fi
+elif [ "$player_status" = "Paused" ]; then
+    artist=$(playerctl metadata artist 2>/dev/null)
+    title=$(playerctl metadata title 2>/dev/null)
+    if [ -n "$artist" ] && [ -n "$title" ]; then
+        content="⏸ $artist - $title"
+    else
+        content="⏸ Paused"
+    fi
+else
+    content=""
+fi
+
+echo "${content::50}"
