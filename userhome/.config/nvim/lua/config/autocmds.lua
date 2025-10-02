@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "html", "yaml", "lua", "javascript", "json", "groovy" },
+  pattern = { "html", "yaml", "lua", "javascript", "json", "jsonc", "groovy" },
   callback = function()
     vim.bo.tabstop = 2
     vim.bo.shiftwidth = 2

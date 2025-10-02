@@ -13,3 +13,5 @@ pve/.terraform.lock.hcl
 pve/files/*
 pve/sshconf
 pve/inventory
+
+CLAUDE.md

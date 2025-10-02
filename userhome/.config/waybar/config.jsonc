@@ -6,8 +6,14 @@
   "margin-bottom": 0,
   "margin-right": 10,
   "spacing": 5,
-  "modules-left": ["custom/launcher", "hyprland/workspaces"],
-  "modules-center": ["clock", "custom/media"],
+  "modules-left": [
+    "custom/launcher",
+    "clock",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "custom/media"
+  ],
   "modules-right": [
     "cpu",
     "memory",
@@ -59,14 +65,31 @@
   "backlight": {
     "device": "eDP-1",
     "format": "{icon} {percent}",
-    "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"]
+    "format-icons": [
+      "󱩎",
+      "󱩏",
+      "󱩐",
+      "󱩑",
+      "󱩒",
+      "󱩓",
+      "󱩔",
+      "󱩕",
+      "󱩖",
+      "󰛨"
+    ]
   },
   "network": {
     "format-wifi": "{icon} {signalStrength}%",
     "format-ethernet": " ",
     "on-click": "bash ~/.config/scripts/rofi-wifi-menu",
     "format-disconnected": "Disconnected  ",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
     "tooltip-format": "{ifname} via {gwaddr} ",
     "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
     "tooltip-format-ethernet": "{ifname} "
@@ -83,7 +106,11 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
     "on-click": "pavucontrol",
     "tooltip-format": "({volume}%) {desc}"
@@ -104,7 +131,13 @@
     "format-plugged": " {capacity}%",
     "format-alt": "{icon} {time}",
     "format-full": " {capacity}%",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "tooltip": "{capacity}% {timeTo}"
   },
   "custom/media": {

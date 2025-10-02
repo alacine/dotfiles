@@ -29,7 +29,6 @@ return {
         "ruff_organize_imports",
       },
       javascript = { "prettierd", "prettier", stop_after_first = true },
-      json = { "jq" },
       go = { "goimports", "gofmt" },
     },
     -- Set default options

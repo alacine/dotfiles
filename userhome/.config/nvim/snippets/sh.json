@@ -1,0 +1,16 @@
+{
+  "get self path": {
+    "prefix": "sp",
+    "body": [
+      "SELF_NAME=$(readlink -f \"$0\")",
+      "SELF_PATH=$(dirname \"${SELF_NAME\")"
+    ]
+  },
+  "read mulit lines": {
+    "prefix": "rls",
+    "body": [
+      "while IFS=$1 read -r $2; do",
+      "done < $0"
+    ]
+  }
+}
