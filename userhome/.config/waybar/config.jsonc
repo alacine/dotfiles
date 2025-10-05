@@ -9,7 +9,7 @@
   "modules-left": [
     "custom/launcher",
     "clock",
-    "hyprland/workspaces"
+    "niri/workspaces"
   ],
   "modules-center": [
     "custom/media"

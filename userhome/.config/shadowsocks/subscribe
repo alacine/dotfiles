@@ -20,15 +20,15 @@ generate_ss_config() {
     remarks=$(url_decode "${remarks}" | xargs)
 
     decode_data="$(echo "${encoded_data}" | base64 --decode)"
-    IFS=":" read -r method password <<< "${decode_data}"
+    IFS=":" read -r method password <<<"${decode_data}"
 
     json=$(jq -n \
-      --arg server "$server" \
-      --argjson port "$port" \
-      --arg password "$password" \
-      --arg method "$method" \
-      --arg remarks "$remarks" \
-      '{
+        --arg server "$server" \
+        --argjson port "$port" \
+        --arg password "$password" \
+        --arg method "$method" \
+        --arg remarks "$remarks" \
+        '{
         server: $server,
         server_port: $port,
         local_address: "127.0.0.1",
@@ -46,7 +46,7 @@ generate_ss_config() {
 }
 
 main() {
-    curl -s "${subscribe_url}" > origin.data
+    curl -s "${subscribe_url}" >origin.data
     local i=0
     while IFS=":/@#" read -r protocol _ _ encoded_data server port remark; do
         #echo "================================"
@@ -57,14 +57,14 @@ main() {
         #echo "remark: ${remark}"
         #echo "================================"
         case "${protocol}" in
-            ss)
-                generate_ss_config "${encoded_data}" "${server}" "${port}" "${remark}" > ss_${i}.json
-                ;;
-            *)
-                echo "Protocol ${protocol} is not supported yet."
-                ;;
+        ss)
+            generate_ss_config "${encoded_data}" "${server}" "${port}" "${remark}" >ss_${i}.json
+            ;;
+        *)
+            echo "Protocol ${protocol} is not supported yet."
+            ;;
         esac
-        i=$((i+1))
+        i=$((i + 1))
     done < <(base64 --decode origin.data)
 }
 
