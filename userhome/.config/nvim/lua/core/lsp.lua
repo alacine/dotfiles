@@ -158,4 +158,6 @@ vim.lsp.enable({
   "jsonls",
   "solidity_ls_nomicfoundation",
   "tinymist",
+  "vtsls",
+  "superhtml",
 })

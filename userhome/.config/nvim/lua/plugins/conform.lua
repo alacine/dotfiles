@@ -30,6 +30,7 @@ return {
       },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       go = { "goimports", "gofmt" },
+      html = { "superhtml" },
     },
     -- Set default options
     default_format_opts = {
