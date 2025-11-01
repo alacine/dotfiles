@@ -8,5 +8,17 @@ return {
         package_uninstalled = "✗",
       },
     },
+    ensure_installed = {
+      "basedpyright",
+      "json-lsp",
+      "lua-language-server",
+      "bash-language-server",
+      "nomicfoundation-solidity-language-server",
+      "shfmt",
+      "stylua",
+      -- manually install
+      -- "gopls",
+      -- "rust-analyzer",
+    },
   },
 }
