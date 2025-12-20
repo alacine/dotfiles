@@ -104,7 +104,14 @@ output "eDP-1" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    position x=1080 y=0
+}
+
+output "DP-2" {
+    mode "1920x1080@144"
+    scale 1
+    transform "270"
+    position x=0 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -391,7 +398,7 @@ binds {
     Super+Alt+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
 
     // custom
-    Alt+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Alt+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Ctrl+Alt+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Ctrl+Alt+E hotkey-overlay-title="Open File Manager: dolphin" { spawn "dolphin"; }
     Alt+Space hotkey-overlay-title="Run an Application: rofi" { spawn-sh "rofi -show drun"; }
@@ -401,11 +408,13 @@ binds {
     Ctrl+Alt+B hotkey-overlay-title="Bluetooth: rofi" { spawn-sh "~/.config/scripts/rofi-bluetooth"; }
     Ctrl+Alt+L hotkey-overlay-title="Power Menu: rofi" { spawn-sh "~/.config/scripts/powermenu"; }
     Ctrl+Alt+Space hotkey-overlay-title="Run bin: rofi" { spawn-sh "rofi -show run"; }
-    Ctrl+Alt+V hotkey-overlay-title="Clipboard: clipse" { spawn-sh "kitty --class clipse -e clipse"; }
-    Ctrl+Alt+Left  { focus-column-left; }
-    Ctrl+Alt+Down  { focus-window-down; }
-    Ctrl+Alt+Up    { focus-window-up; }
-    Ctrl+Alt+Right { focus-column-right; }
+    Ctrl+Alt+V hotkey-overlay-title="Clipboard: clipse" { spawn-sh "alacritty --class clipse -e clipse"; }
+    Ctrl+Left  { focus-column-left; }
+    Ctrl+Down  { focus-window-down; }
+    Ctrl+Up    { focus-window-up; }
+    Ctrl+Right { focus-column-right; }
+    Ctrl+Alt+Down      { focus-workspace-down; }
+    Ctrl+Alt+Up        { focus-workspace-up; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

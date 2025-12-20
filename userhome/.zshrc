@@ -133,9 +133,9 @@ export PATH="$PATH:$LIB_PATH/npm/bin"
 export GOPATH="$LIB_PATH/Golang"
 export PATH=$PATH:$GOPATH/bin
 
-# ddlog
-export DDLOG_HOME=$LIB_PATH/ddlog
-export PATH=$PATH:$DDLOG_HOME/bin
+# cargo
+export CARGO_HOME=$LIB_PATH/cargo
+export PATH=$PATH:$CARGO_HOME/bin
 
 # pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 export PATH=$PATH:$HOME/.local/bin
@@ -184,3 +184,6 @@ if [[ -n $TMUX ]]; then
     }
     alias kd=__kdwithtmuxpopup
 fi
+
+source ${HOME}/.privaterc
+source ${HOME}/.workrc

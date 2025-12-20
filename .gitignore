@@ -15,3 +15,5 @@ pve/sshconf
 pve/inventory
 
 CLAUDE.md
+.privaterc
+.workrc

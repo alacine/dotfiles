@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+export LEDGER_FILE=""
+export GEMINI_API_KEY=""
