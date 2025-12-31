@@ -80,7 +80,7 @@
     ]
   },
   "network": {
-    "format-wifi": "{icon} {signalStrength}%",
+    "format-wifi": "{icon} {signalStrength}% ↑ {bandwidthUpBytes} | ↓ {bandwidthDownBytes}",
     "format-ethernet": " ",
     "on-click": "bash ~/.config/scripts/rofi-wifi-menu",
     "format-disconnected": "Disconnected  ",
