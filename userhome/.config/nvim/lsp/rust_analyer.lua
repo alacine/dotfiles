@@ -116,6 +116,10 @@ return {
   },
   settings = {
     ["rust-analyzer"] = {
+      cachePriming = {
+        enable = true,
+        numThreads = 2, -- 减少线程数
+      },
       lens = {
         debug = { enable = true },
         enable = true,
