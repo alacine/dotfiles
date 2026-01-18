@@ -31,6 +31,8 @@ return {
       javascript = { "prettierd", "prettier", stop_after_first = true },
       go = { "goimports", "gofmt" },
       html = { "superhtml" },
+      json = { "prettierd", "prettier", stop_after_first = true },
+      jsonc = { "prettierd", "prettier", stop_after_first = true },
     },
     -- Set default options
     default_format_opts = {
@@ -42,6 +44,12 @@ return {
     formatters = {
       shfmt = {
         prepend_args = { "-i", "2" },
+      },
+      prettierd = {
+        prepend_args = { "--print-width", "120" },
+      },
+      prettier = {
+        prepend_args = { "--print-width", "120" },
       },
     },
   },

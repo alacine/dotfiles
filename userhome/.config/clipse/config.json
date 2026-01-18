@@ -1,0 +1,24 @@
+{
+  "keyBindings": {
+    "choose": "enter",
+    "clearSelected": "d",
+    "down": "j",
+    "end": "G",
+    "filter": "/",
+    "forceQuit": "Q",
+    "home": "home",
+    "more": "?",
+    "nextPage": "l",
+    "prevPage": "h",
+    "preview": " ",
+    "quit": "esc",
+    "remove": "d",
+    "selectDown": "shift+down",
+    "selectSingle": "v",
+    "selectUp": "shift+up",
+    "togglePin": "p",
+    "togglePinned": "tab",
+    "up": "k",
+    "yankFilter": "ctrl+s"
+  }
+}
