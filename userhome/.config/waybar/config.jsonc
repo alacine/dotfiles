@@ -6,25 +6,9 @@
   "margin-bottom": 0,
   "margin-right": 10,
   "spacing": 5,
-  "modules-left": [
-    "custom/launcher",
-    "clock",
-    "hyprland/workspaces",
-    "niri/workspaces"
-  ],
-  "modules-center": [
-    "custom/media"
-  ],
-  "modules-right": [
-    "cpu",
-    "memory",
-    "backlight",
-    "pulseaudio",
-    "network",
-    "battery",
-    "tray",
-    "custom/power-menu"
-  ],
+  "modules-left": ["custom/launcher", "clock", "hyprland/workspaces", "niri/workspaces", "custom/media"],
+  // "modules-center": [],
+  "modules-right": ["network", "cpu", "memory", "backlight", "pulseaudio", "battery", "tray", "custom/power-menu"],
   "hyprland/workspaces": {
     "on-click": "activate",
     "persistent-workspaces": {
@@ -36,48 +20,37 @@
       "6": [],
       "7": [],
       "8": [],
-      "9": []
+      "9": [],
     },
     "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1"
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
   },
   "hyprland/window": {
-    "format": "{}"
+    "format": "{}",
   },
   "tray": {
-    "spacing": 10
+    "spacing": 10,
   },
   "clock": {
     "format": "<span color='#bf616a'> </span>{:%a %b %d %I:%M %p}",
-    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "cpu": {
     "interval": 10,
     "format": "󰍛 {}%",
     "max-length": 10,
-    "on-click": ""
+    "on-click": "",
   },
   "memory": {
     "interval": 10,
     "format": " {used:0.1f}G",
     "format-alt": " {}%",
-    "max-length": 10
+    "max-length": 10,
   },
   "backlight": {
     "device": "eDP-1",
     "format": "{icon} {percent}",
-    "format-icons": [
-      "󱩎",
-      "󱩏",
-      "󱩐",
-      "󱩑",
-      "󱩒",
-      "󱩓",
-      "󱩔",
-      "󱩕",
-      "󱩖",
-      "󰛨"
-    ]
+    "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
   },
   "network": {
     "format-wifi": "{icon} {signalStrength}% ↑ {bandwidthUpBytes} | ↓ {bandwidthDownBytes}",
@@ -85,16 +58,10 @@
     "format-ethernet": " ",
     "on-click": "bash ~/.config/scripts/rofi-wifi-menu",
     "format-disconnected": "Disconnected  ",
-    "format-icons": [
-      "󰤯",
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "tooltip-format": "{ifname} via {gwaddr} ",
     "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} "
+    "tooltip-format-ethernet": "{ifname} ",
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -108,14 +75,10 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
+      "default": ["", "", ""],
     },
     "on-click": "pavucontrol",
-    "tooltip-format": "({volume}%) {desc}"
+    "tooltip-format": "({volume}%) {desc}",
   },
   "battery": {
     "bat": "BAT0",
@@ -123,7 +86,7 @@
     "interval": 60,
     "states": {
       "warning": 30,
-      "critical": 15
+      "critical": 15,
     },
     "max-length": 20,
     "format": "{icon} {capacity}%",
@@ -133,14 +96,8 @@
     "format-plugged": " {capacity}%",
     "format-alt": "{icon} {time}",
     "format-full": " {capacity}%",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "tooltip": "{capacity}% {timeTo}"
+    "format-icons": ["", "", "", "", ""],
+    "tooltip": "{capacity}% {timeTo}",
   },
   "custom/media": {
     "exec": "bash ~/.config/scripts/media",
@@ -150,14 +107,14 @@
     "on-click": "playerctl play-pause",
     "on-double-click-right": "playerctl next",
     "on-scroll-down": "playerctl previous",
-    "max-length": 50
+    "max-length": 50,
   },
   "custom/power-menu": {
     "format": " <span color='#6a92d7'>⏻ </span>",
-    "on-click": "bash ~/.config/scripts/powermenu"
+    "on-click": "bash ~/.config/scripts/powermenu",
   },
   "custom/launcher": {
     "format": " <span color='#6a92d7'> </span>",
-    "on-click": "rofi -show drun"
-  }
+    "on-click": "rofi -show drun",
+  },
 }

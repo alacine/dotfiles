@@ -5,6 +5,7 @@
 configuration {
     modi: "window,run,ssh,keys,filebrowser";
     terminal: "alacritty";
+    transparency: "real";
     // font: "mononoki 20";
 }
 

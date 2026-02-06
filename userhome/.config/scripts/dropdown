@@ -1,0 +1,6 @@
+#!/bin/sh
+if pgrep -f "alacritty --class dropdown" >/dev/null; then
+    pkill -f "alacritty --class dropdown"
+else
+    alacritty --class dropdown -e tmux new-session -A -s dropdown
+fi

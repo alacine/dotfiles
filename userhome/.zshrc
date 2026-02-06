@@ -178,12 +178,12 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
-if [[ -n $TMUX ]]; then
-    __kdwithtmuxpopup() {
-        tmux display-popup "kd $@"
-    }
-    alias kd=__kdwithtmuxpopup
-fi
+# if [[ -n $TMUX ]]; then
+#     __kdwithtmuxpopup() {
+#         tmux display-popup "kd $@"
+#     }
+#     alias kd=__kdwithtmuxpopup
+# fi
 
 source ${HOME}/.privaterc
 source ${HOME}/.workrc

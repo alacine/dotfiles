@@ -282,11 +282,13 @@ spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "hyprpaper"
 spawn-at-startup "clipse" "-listen"
-spawn-at-startup "fcitx5" "-d" "--replace"
+// spawn-at-startup "fcitx5" "-d" "--replace"
 spawn-at-startup "kdeconnect-indicator"
 
 environment {
-    QT_IM_MODULES "@im=fcitx5"
+    QT_IM_MODULE "fcitx"
+    GTK_IM_MODULE "fcitx"
+    XMODIFIERS "@im=fcitx"
     XDG_MENU_PREFIX "arch-"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     ELECTRON_ENABLE_WAYLAND_IME "true"
@@ -362,12 +364,20 @@ window-rule {
     // block-out-from "screencast"
 }
 
+// Dropdown terminal (yakuake-style)
+window-rule {
+    match app-id="dropdown"
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-window-height { proportion 0.8; }
+}
+
 // Open the clipse as floating by default
 window-rule {
     match app-id="clipse$"
     open-floating true
-    default-column-width { fixed 1400; }
-    default-window-height { fixed 652; }
+    default-column-width { proportion 0.75; }
+    default-window-height { proportion 0.6; }
 }
 
 // Example: enable rounded corners for all windows.
@@ -399,6 +409,7 @@ binds {
 
     // custom
     Alt+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Alt+Q hotkey-overlay-title="Toggle Dropdown Terminal" { spawn-sh "~/.config/scripts/dropdown"; }
     Ctrl+Alt+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Ctrl+Alt+E hotkey-overlay-title="Open File Manager: dolphin" { spawn "dolphin"; }
     Alt+Space hotkey-overlay-title="Run an Application: rofi" { spawn-sh "rofi -show drun"; }
