@@ -63,11 +63,11 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -420,10 +420,10 @@ binds {
     Ctrl+Alt+L hotkey-overlay-title="Power Menu: rofi" { spawn-sh "~/.config/scripts/powermenu"; }
     Ctrl+Alt+Space hotkey-overlay-title="Run bin: rofi" { spawn-sh "rofi -show run"; }
     Ctrl+Alt+V hotkey-overlay-title="Clipboard: clipse" { spawn-sh "alacritty --class clipse -e clipse"; }
-    Ctrl+Left  { focus-column-left; }
-    Ctrl+Down  { focus-window-down; }
-    Ctrl+Up    { focus-window-up; }
-    Ctrl+Right { focus-column-right; }
+    Ctrl+Up    { focus-window-or-workspace-up; }
+    Ctrl+Down  { focus-window-or-workspace-down; }
+    Ctrl+Left  { focus-column-or-monitor-left; }
+    Ctrl+Right { focus-column-or-monitor-right; }
     Ctrl+Alt+Down      { focus-workspace-down; }
     Ctrl+Alt+Up        { focus-workspace-up; }
 
