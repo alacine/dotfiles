@@ -39,7 +39,13 @@ return {
       lsp_format = "fallback",
     },
     -- Set up format-on-save
-    format_on_save = { timeout_ms = 500 },
+    format_on_save = function(buffer)
+      -- 支持通过变量禁用自动格式化
+      if vim.g.disable_autoformat or vim.b[buffer].disable_autoformat then
+        return
+      end
+      return { timeout_ms = 500 }
+    end,
     -- Customize formatters
     formatters = {
       shfmt = {
@@ -56,5 +62,25 @@ return {
   init = function()
     -- If you want the formatexpr, here is the place to set it
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    -- 添加用户命令来控制格式化
+    vim.api.nvim_create_user_command("FormatDisable", function(args)
+      if args.bang then
+        -- FormatDisable! 只禁用当前 buffer
+        vim.b.disable_autoformat = true
+      else
+        -- FormatDisable 全局禁用
+        vim.g.disable_autoformat = true
+      end
+    end, {
+      desc = "禁用保存时自动格式化",
+      bang = true,
+    })
+
+    vim.api.nvim_create_user_command("FormatEnable", function()
+      vim.b.disable_autoformat = false
+      vim.g.disable_autoformat = false
+    end, {
+      desc = "启用保存时自动格式化",
+    })
   end,
 }
