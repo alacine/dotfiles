@@ -9,6 +9,8 @@
     path: /home/{{ ansible_user }}/samba_share
     state: directory
     mode: '755'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
 
 - name: Install Samba config file
   template:

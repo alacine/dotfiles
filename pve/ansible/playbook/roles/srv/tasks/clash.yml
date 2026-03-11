@@ -38,5 +38,21 @@
     state: restarted
     daemon_reload: true
 
+- name: Set DNS
+  tags: dns
+  copy:
+    src: files/resolved.conf
+    dest: /etc/systemd/resolved.conf
+    backup: true
+    mode: '644'
+
+- name: Start resolve service
+  tags: dns
+  systemd:
+    name: systemd-resolved
+    enabled: true
+    state: restarted
+    daemon_reload: true
+
 #- name: Start web console
   #shell: docker run -p 1234:80 -d --name yacd --rm ghcr.io/haishanh/yacd:master

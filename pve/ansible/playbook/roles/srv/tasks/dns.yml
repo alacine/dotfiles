@@ -1,0 +1,13 @@
+- name: Set DNS
+  copy:
+    src: files/resolved.conf
+    dest: /etc/systemd/resolved.conf
+    backup: true
+    mode: '644'
+
+- name: Start resolve service
+  systemd:
+    name: resolved
+    enabled: true
+    state: restarted
+    daemon_reload: true

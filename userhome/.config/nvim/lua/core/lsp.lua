@@ -159,5 +159,7 @@ vim.lsp.enable({
   "solidity_ls_nomicfoundation",
   "tinymist",
   "vtsls",
+  "terraformls",
+  "ruby_lsp",
   "superhtml",
 })

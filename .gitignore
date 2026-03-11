@@ -17,3 +17,5 @@ pve/inventory
 CLAUDE.md
 .privaterc
 .workrc
+
+output/

@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+required_plugins = %w[vagrant-libvirt]
+required_plugins.each do |plugin|
+  unless Vagrant.has_plugin?(plugin)
+    system "vagrant plugin install #{plugin}"
+    exit
+  end
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "arch"
+  config.vm.define 'test'
+
+  config.vm.provider :libvirt
+end

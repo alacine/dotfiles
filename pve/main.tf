@@ -16,7 +16,7 @@ provider "proxmox" {
 
 resource "local_file" "cloud_init_user_data_file" {
   content = templatefile(
-    "${path.module}/cloud-inits/user_data.tftpl",
+    "${path.module}/cloud-init/user_data.tftpl",
     {
       "name" : var.vm_user,
       "password" : var.vm_password,
@@ -129,10 +129,11 @@ resource "null_resource" "refresh_ssh_config" {
 resource "null_resource" "setup_server" {
   provisioner "local-exec" {
     command = <<EOF
+      ANSIBLE_CONFIG=${path.module}/ansible/ansible.cfg \
       ansible-playbook \
         --connection=ssh \
         --inventory=${local_file.inventory.filename} \
-        playbook/server.yml
+        ${path.module}/ansible/playbook/server.yml
     EOF
   }
 }
