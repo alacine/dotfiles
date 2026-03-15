@@ -5,20 +5,38 @@ gem install vagrant-libvirt
 vagrant plugin install vagrant-libvirt
 ```
 
+- for Arch Linux
 ```bash
+packer init arch-template.pkr.hcl
 packer build -only=qemu.arch arch-template.pkr.hcl
 packer build -parallel-builds=1 -only=qemu.arch,virtualbox-iso.arch arch-template.pkr.hcl
 ```
 
 ```bash
-vagrant box add arch ./output/packer_arch_libvirt-2026.03.01.box
-vagrant up
+vagrant box add arch ./output/arch_libvirt-2026.03.box
+vagrant up arch
 ```
 
 `scripts/` 中的脚本参考 [packer-arch](https://github.com/elasticdog/packer-arch)
 
+- for Debian
+```bash
+packer init debian-template.pkr.hcl
+packer build debian-template.pkr.hcl
+```
 
-考虑到墙，手动下载公钥
+```bash
+vagrant box add debian ./output/debian_libvirt-2026.03.box
+vagrant up debian
+```
+
+- for Fedora
+```bash
+# TODO:
+```
+
+
+考虑到墙，并要的话手动下载公钥
 ```bash
 /usr/bin/curl --output /home/vagrant/.ssh/authorized_keys --location https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
 # 手动执行获取公钥

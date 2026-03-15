@@ -192,6 +192,6 @@ build {
   }
 
   post-processor "vagrant" {
-    output = "output/packer_arch_{{ .Provider }}-${formatdate("YYYY.MM", timestamp())}.01.box"
+    output = "output/arch_{{ .Provider }}-${formatdate("YYYY.MM", timestamp())}.box"
   }
 }
