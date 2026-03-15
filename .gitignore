@@ -7,12 +7,14 @@ userhome/.config/ranger/plugins/
 *.tfstate
 *.tfstate.*
 *.tfvars
-pve/.terraform.lock.hcl
+
+# Packer
+*.pkrvars.hcl
 
 # Generated files
-pve/files/*
-pve/sshconf
-pve/inventory
+homelab/files/*
+homelab/sshconf
+homelab/inventory
 
 CLAUDE.md
 .privaterc
