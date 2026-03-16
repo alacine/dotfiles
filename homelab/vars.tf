@@ -1,26 +1,7 @@
-variable "pm_host" {
-  description = "proxmox host"
+variable "pm_endpoint" {
+  description = "proxmox api endpoint (e.g. https://host:8006/)"
   type        = string
-  default     = "192.168.31.169"
-}
-
-variable "pm_admin" {
-  description = "proxmox user"
-  type        = string
-  default     = "root"
-}
-
-variable "pm_api_url" {
-  description = "proxmox api url"
-  type        = string
-  default     = "https://192.168.31.169:8006/api2/json"
-  sensitive   = false
-}
-
-variable "pm_user" {
-  description = "proxmox user"
-  type        = string
-  sensitive   = false
+  default     = "https://192.168.88.100:8006/"
 }
 
 variable "pm_api_token_id" {
@@ -33,6 +14,11 @@ variable "pm_api_token_secret" {
   description = "proxmox api token id"
   type        = string
   sensitive   = true
+}
+
+variable "vm_template_id" {
+  description = "proxmox VM template ID to clone from"
+  type        = number
 }
 
 variable "vm_user" {

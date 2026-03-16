@@ -1,7 +1,12 @@
+- name: Wait for cloud-init to finish
+  command: cloud-init status --wait
+  changed_when: false
+  failed_when: false
+
 - import_tasks: timezone.yml
 
-- import_tasks: golang.yml
+# - import_tasks: dns.yml
 
-- import_tasks: clash.yml
+- import_tasks: golang.yml
 
 - import_tasks: samba.yml
