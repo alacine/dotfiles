@@ -1,0 +1,24 @@
+# macOS-only Ghostty config
+
+# Font (Monaco as primary, LXGW WenKai as CJK fallback, no italic)
+font-family = Monaco
+font-family = LXGW WenKai
+font-style = Regular
+font-family-bold = Monaco
+font-family-bold = LXGW WenKai
+font-style-bold = Bold
+font-family-italic = Monaco
+font-family-italic = LXGW WenKai
+font-style-italic = Regular
+font-family-bold-italic = Monaco
+font-family-bold-italic = LXGW WenKai
+font-style-bold-italic = Bold
+
+# Use Option as Alt (recommended for terminal apps). Disable if you need
+# the native macOS Option-based Unicode input behavior.
+macos-option-as-alt = true
+
+# Swap Command (Super) and Control inside Ghostty.
+# Note: macOS menu shortcuts are handled before Ghostty.
+key-remap = super=ctrl
+key-remap = ctrl=super

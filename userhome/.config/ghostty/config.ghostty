@@ -1,0 +1,42 @@
+# Ghostty config
+# Based on existing Alacritty config in userhome/.config/alacritty/alacritty.toml
+
+# Theme
+# Ghostty will look in ~/.config/ghostty/themes/ for custom themes.
+theme = "tokyonight_night"
+
+# Font
+font-family = "Mononoki Nerd Font Mono"
+font-family = "LXGW WenKai"
+font-style = "Italic"
+font-family-bold = "Mononoki Nerd Font Mono"
+font-family-bold = "LXGW WenKai"
+font-style-bold = "Bold"
+font-family-italic = "Mononoki Nerd Font Mono"
+font-family-italic = "LXGW WenKai"
+font-style-italic = "Italic"
+font-family-bold-italic = "Mononoki Nerd Font Mono"
+font-family-bold-italic = "LXGW WenKai"
+font-style-bold-italic = "Bold Italic"
+font-size = 13
+
+# Match Alacritty font.offset x/y (cell size adjustments)
+adjust-cell-width = -1
+adjust-cell-height = -2
+
+# Terminal
+term = "xterm-256color"
+
+# Window
+background-opacity = 0.9
+background-blur = true
+
+# ctrl+[ sends ESC for shell programs (fzf etc.) that don't support kitty keyboard protocol
+keybind = ctrl+[=text:\x1b
+
+# Cursor shader: faded warp trail + ripple on mode change
+custom-shader = ~/.config/ghostty/shaders/faded_warp_ripple.glsl
+custom-shader-animation = always
+
+# Platform-specific overrides (optional)
+config-file = ?config.macos
