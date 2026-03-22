@@ -19,10 +19,17 @@ help: ## Display this help
 		$(MAKEFILE_LIST)
 
 .PHONY: install
-install: ## Install package
-	sudo pacman -S --needed - < pkg/pacman.txt
-	yay -S --needed - < pkg/yay.txt
-	pip install --user -r pkg/pip.txt
+install: install-gui ## Install full GUI environment (default)
+
+.PHONY: install-gui
+install-gui: ## Install GUI desktop environment (includes CLI)
+	cd pkg && makepkg -si --needed --noconfirm --pkg alacine-gui
+	cd pkg && paru -U --needed --noconfirm PKGBUILD-aur --pkg alacine-aur-gui
+
+.PHONY: install-cli
+install-cli: ## Install CLI/dev environment only (for VMs)
+	cd pkg && makepkg -si --needed --noconfirm --pkg alacine-cli
+	cd pkg && paru -U --needed --noconfirm PKGBUILD-aur --pkg alacine-aur-cli
 
 .PHONY: deploy
 deploy: ## Create links
@@ -33,15 +40,6 @@ deploy: ## Create links
 .PHONY: withdraw
 withdraw: ## Remove links
 	stow -v -t $(HOME) -D userhome
-
-.PHONY: pkglist
-pkglist: | pkg pkg/pacman.txt pkg/pip.txt ## Update package list
-
-pkg/pacman.txt:
-	pacman -Qqe > $@
-
-pkg/pip.txt:
-	pip freeze --user > $@
 
 .PHONY: mirror
 mirror: ## (Root) Setup mirror for archlinuxcn
