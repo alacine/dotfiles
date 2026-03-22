@@ -19,5 +19,6 @@ homelab/inventory
 CLAUDE.md
 .privaterc
 .workrc
+userhome/.config/ghostty/config.macos
 
 output/

@@ -35,6 +35,7 @@ install-cli: ## Install CLI/dev environment only (for VMs)
 deploy: ## Create links
 	mkdir -p $(HOME)/.config
 	stow -v -R -t $(HOME) userhome
+	fc-cache -f
 	#stow -v -t $(HOME) userhome
 
 .PHONY: withdraw
