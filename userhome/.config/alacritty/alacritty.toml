@@ -12,25 +12,29 @@ TERM = "xterm-256color"
 size = 13
 
 [font.offset]
-x = -1
+x = -2
 y = -2
 
 [font.bold]
-family = "Mononoki Nerd Font Mono"
+# family = "Mononoki Nerd Font Mono"
+family = "Monaco"
 style = "Bold"
 
 [font.bold_italic]
-family = "Mononoki Nerd Font Mono"
+# family = "Mononoki Nerd Font Mono"
+family = "Monaco"
 style = "Bold Italic"
 
 [font.italic]
-family = "Mononoki Nerd Font Mono"
+# family = "Mononoki Nerd Font Mono"
+family = "Monaco"
 style = "Italic"
 
 [font.normal]
-family = "Mononoki Nerd Font Mono"
-# style = "Regular"
-style = "Italic"
+# family = "Mononoki Nerd Font Mono"
+family = "Monaco"
+style = "Regular"
+# style = "Italic"
 
 [window]
 opacity = 0.90

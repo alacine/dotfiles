@@ -1,6 +1,7 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: Mononoki Nerd Font Mono;
+  font-family: Monaco;
+  /* font-family: Mononoki Nerd Font Mono; */
   font-size: 20px;
 }
 
