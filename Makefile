@@ -23,13 +23,17 @@ install: install-gui ## Install full GUI environment (default)
 
 .PHONY: install-gui
 install-gui: ## Install GUI desktop environment (includes CLI)
-	cd pkg && makepkg -si --needed --noconfirm --pkg alacine-gui
-	cd pkg && paru -U --needed --noconfirm PKGBUILD-aur --pkg alacine-aur-gui
+	cd pkg && makepkg -si --needed --noconfirm -p PKGBUILD-cli
+	# rustup default stable
+	cd pkg && makepkg -si --needed --noconfirm -p PKGBUILD-gui
+	grep -v '^\s*#\|^\s*$$' pkg/aur-cli.txt | xargs paru -S --needed --noconfirm
+	grep -v '^\s*#\|^\s*$$' pkg/aur-gui.txt | xargs paru -S --needed --noconfirm
 
 .PHONY: install-cli
 install-cli: ## Install CLI/dev environment only (for VMs)
-	cd pkg && makepkg -si --needed --noconfirm --pkg alacine-cli
-	cd pkg && paru -U --needed --noconfirm PKGBUILD-aur --pkg alacine-aur-cli
+	cd pkg && makepkg -si --needed --noconfirm -p PKGBUILD-cli
+	# rustup default stable
+	grep -v '^\s*#\|^\s*$$' pkg/aur-cli.txt | xargs paru -S --needed --noconfirm
 
 .PHONY: deploy
 deploy: ## Create links
@@ -42,6 +46,6 @@ deploy: ## Create links
 withdraw: ## Remove links
 	stow -v -t $(HOME) -D userhome
 
-.PHONY: mirror
-mirror: ## (Root) Setup mirror for archlinuxcn
-	./mirrors.sh
+.PHONY: setup-mirror
+setup-mirror: ## (Root) Setup mirror for archlinuxcn
+	sudo ./mirrors.sh

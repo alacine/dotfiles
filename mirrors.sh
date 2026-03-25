@@ -13,3 +13,5 @@ Server = https://mirrors.aliyun.com/archlinuxcn/\$arch
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/\$arch
 Server = https://repo.archlinuxcn.org/\$arch
 EOF
+
+pacman -Syy archlinuxcn-keyring --noconfirm

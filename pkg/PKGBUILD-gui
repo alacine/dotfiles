@@ -1,0 +1,91 @@
+# Maintainer: alacine
+pkgname=alacine-gui
+pkgver=1
+pkgrel=1
+pkgdesc="Personal GUI desktop environment"
+arch=('any')
+license=('custom')
+depends=(
+    'alacine-cli'
+
+    ## System & Boot
+    'base' 'linux' 'linux-firmware' 'amd-ucode' 'grub' 'zram-generator'
+    'earlyoom' 'cloud-init' 'lsb-release'
+
+    ## Drivers
+    'nvidia-open' 'xf86-input-synaptics' 'xf86-video-amdgpu'
+
+    ## Display Manager
+    'ly'
+
+    ## Display / Wayland
+    # Wayland utilities
+    'grim' 'slurp' 'wl-clipboard' 'uwsm'
+    # Compositor / WM launcher
+    'waybar-git' 'rofi' 'wofi' 'fuzzel' 'mako'
+    # Hyprland
+    'hyprland' 'hyprlock' 'hyprpaper'
+    # Niri
+    'niri'
+
+    ## KDE Plasma
+    'plasma-desktop' 'plasma-browser-integration' 'plasma-sdk'
+    'plasma-systemmonitor' 'plasma-thunderbolt' 'plasma-vault'
+    'plasma-disks' 'plasma-nm' 'plasma-pa'
+    'plasma6-applets-fokus' 'kde-gtk-config' 'kdeplasma-addons'
+    'kgamma' 'kwallet-pam' 'kwrited' 'kvantum' 'oxygen'
+    'extra-cmake-modules' 'powerdevil' 'bluedevil' 'kscreen'
+    # KDE Apps
+    'ark' 'dolphin' 'gwenview' 'kate' 'kchmviewer'
+    'kdeconnect' 'konsole' 'krdc' 'krdp' 'okular'
+    'partitionmanager' 'print-manager' 'spectacle' 'yakuake'
+
+    ## Terminal (GUI)
+    'alacritty' 'ghostty' 'kitty'
+
+    ## Fonts (full set)
+    'adobe-source-han-sans-cn-fonts' 'adobe-source-han-serif-cn-fonts'
+    'unicode-emoji' 'wqy-microhei-lite' 'wqy-zenhei'
+
+    ## Input Method (fcitx5)
+    'fcitx5-chinese-addons' 'fcitx5-configtool' 'fcitx5-gtk'
+    'fcitx5-mozc' 'fcitx5-rime' 'rime-double-pinyin' 'rime-wubi'
+
+    ## Audio
+    'pamixer' 'pavucontrol' 'mpd' 'cava' 'termusic'
+
+    ## Bluetooth
+    'bluetui' 'bluez-utils'
+
+    ## Security (GUI)
+    'ghidra' 'wireshark-qt'
+
+    ## Virtualization
+    'virt-manager' 'virt-viewer' 'tigervnc' 'wayvnc'
+
+    ## GUI Apps
+    'firefox-i18n-zh-cn' 'chromium' 'discord' 'obs-studio' 'obsidian'
+    'gimp' 'krita' 'blender' 'libreoffice-fresh-zh-cn'
+    'thunderbird' 'thunderbird-i18n-zh-cn' 'telegram-desktop'
+    'calibre' 'dbeaver' 'xournalpp' 'zathura' 'zed' 'aegisub'
+    'amule' 'qbittorrent-enhanced-git' 'vlc'
+
+    ## Finance
+    'hledger-bin' 'ledger'
+
+    ## Desktop CLI extras
+    'screenfetch' 'scrcpy' 'screenkey' 'workrave' 'deskflow' 'v2ray-desktop'
+
+    ## Chinese Software
+    'archlinux-xdg-menu' 'archlinuxcn-keyring' 'baidupcs-go'
+
+    ## Misc
+    'go-ethereum' 'go-musicfox-git' 'herdtools7-git' 'httpbin'
+    'lemurs' 'libguestfs' 'netctl' 'openai-codex'
+    'python-camelot' 'qt5-websockets'
+    'vsftpd' 'kbt' 'throne' 'teeworlds' 'critest'
+)
+
+package() {
+    true
+}

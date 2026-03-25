@@ -1,0 +1,77 @@
+# Maintainer: alacine
+pkgname=alacine-cli
+pkgver=1
+pkgrel=1
+pkgdesc="Personal CLI & dev environment"
+arch=('any')
+license=('custom')
+depends=(
+    ## Shell & Multiplexer
+    'zsh' 'nushell' 'thefuck' 'powerline'
+    'tmux' 'zellij' 'tmuxp' 'screen'
+
+    ## Editors
+    'neovim' 'vim' 'emacs'
+    'python-pynvim'
+
+    ## Fonts (terminal)
+    'ttf-lxgw-wenkai' 'ttf-monaco' 'ttf-mononoki-nerd'
+
+    ## System Services
+    'sudo' 'openssh' 'networkmanager' 'firewalld'
+    'libvirt' 'samba' 'mariadb'
+
+    ## Network & Proxy
+    'shadowsocks' 'v2raya' 'frpc' 'privoxy' 'proxychains-ng' 'sshuttle' 'wgcf'
+    # Network Tools
+    'nethogs' 'mtr' 'nmap' 'fping' 'hping' 'tcpdump' 'whois' 'ipcalc'
+    'axel' 'croc' 'httpie' 'mitmproxy'
+    'aria2' 'wget' 'rsync' 'sshfs' 'sshpass' 'w3m'
+
+    ## Development
+    # Languages
+    'go' 'rustup' 'zig' 'ruby' 'jdk-openjdk'
+    # Build Tools
+    'clang' 'cmake' 'bazel' 'maven' 'yarn' 'npm' 'uv'
+    # Containers & Infra
+    'docker' 'docker-compose' 'podman'
+    'kubectl' 'kubeadm' 'helm' 'minikube'
+    'terraform' 'terraform-ls' 'ansible' 'packer'
+    # Git
+    'git' 'git-delta' 'git-lfs' 'lazygit' 'tig' 'gitlogue'
+    # LSP / Language Tools
+    'ccls' 'lua-language-server' 'bash-language-server'
+    'tinymist' 'ruby-lsp' 'zls' 'prettier' 'ctags'
+    # Typesetting
+    'typst'
+    # Code Search & Stats
+    'the_silver_searcher' 'ripgrep' 'fd' 'tokei' 'scc' 'cloc'
+    # Misc Dev
+    'go-swagger' 'expac' 'jaq' 'yq' 'paru' 'yay' 'stow'
+    'lazydocker' 'mycli' 'openldap' 'pdftk' 'plantuml'
+
+    ## Security & Reverse Engineering
+    'rizin' 'hydra' 'chntpw'
+
+    ## Media (CLI)
+    'ffmpeg' 'yt-dlp' 'asciinema'
+
+    ## CLI Tools
+    # Shell Utilities
+    'bat' 'fzf' 'zoxide'
+    # System Monitor
+    'btop' 'htop' 'bpytop' 'glances' 'iotop' 's-tui'
+    'powertop' 'turbostat' 'sysstat'
+    # File Management
+    'dust' 'eza' 'joshuto' 'yazi' 'tree' 'lrzsz' 'pv'
+    # Misc CLI
+    'fastfetch' 'tldr' 'csvlens' 'man-pages' 'man-db'
+    'rfc' 'serie' 'wimlib' 'libcpuid' '7zip'
+    # Fun
+    'lolcat' 'cowsay' 'figlet' 'toilet' 'sl' 'cmatrix'
+    'asciiquarium' 'fortune-mod' 'genact' 'ascii'
+)
+
+package() {
+    true
+}

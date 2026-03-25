@@ -1,0 +1,27 @@
+# AUR CLI packages
+# Install: grep -v '^\s*#\|^\s*$' pkg/aur-cli.txt | xargs paru -S --needed --noconfirm
+
+# Dev Tools
+bun-bin
+neovim-remote
+debtap
+sipcalc
+wrk
+whatweb
+vagrant
+watchdog
+weylus-bin
+
+# AI / Editors (CLI)
+claude-code
+opencode-bin
+
+# CLI Fun
+cbonsai
+pipes.sh
+shell-color-scripts-git
+tmux-xpanes
+
+# System Tools
+brillo
+gotop-bin

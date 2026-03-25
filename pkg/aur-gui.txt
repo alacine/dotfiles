@@ -1,0 +1,53 @@
+# AUR GUI packages (includes aur-cli.txt)
+# Install: grep -v '^\s*#\|^\s*$' pkg/aur-gui.txt | xargs paru -S --needed --noconfirm
+
+# Editors / IDE (GUI)
+cursor-bin
+visual-studio-code-bin
+
+# System Tools (GUI)
+clipse
+libinput-gestures
+
+# Proxy / VPN
+clash-party-bin
+clash-verge-rev-bin
+
+# Chinese Apps
+wechat-bin
+wemeet-wayland-screenshare-git
+linuxqq-nt-bwrap
+netease-cloud-music
+spotifox
+z-library-bin
+
+# Editors / IDE
+typora
+
+# Fonts
+ttf-symbola
+ttf-wps-fonts
+noto-color-emoji-fontconfig
+
+# System Tools
+asciinema-agg
+blueberry
+wl-color-picker
+
+# Apps
+genymotion
+google-chrome
+slack-desktop
+remix-desktop
+puffin
+
+# Finance
+hledger-web-bin
+paisa-bin
+
+# Theme
+vimix-gtk-themes-git
+
+# Misc
+kd-bin
+youtube-dl
