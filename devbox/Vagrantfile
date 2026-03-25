@@ -13,10 +13,18 @@ Vagrant.configure("2") do |config|
   config.vm.provider "libvirt" do |v|
     v.memory = 4096
     v.cpus = 4
+    v.memorybacking :access, :mode => "shared"
   end
 
   config.vm.define "arch" do |m|
     m.vm.box = "arch"
+    m.vm.synced_folder "../", "/home/vagrant/dotfiles", type: "virtiofs"
+    m.vm.post_up_message = <<-MSG
+VM is ready. SSH in and run the following to set up the environment:
+
+  export https_proxy=http://192.168.121.1:7890 http_proxy=http://192.168.121.1:7890 all_proxy=http://192.168.121.1:7890
+  cd ~/dotfiles && make setup-mirror && make install-cli && make deploy
+    MSG
   end
 
   config.vm.define "debian" do |m|

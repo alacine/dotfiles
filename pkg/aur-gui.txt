@@ -50,4 +50,3 @@ vimix-gtk-themes-git
 
 # Misc
 kd-bin
-youtube-dl

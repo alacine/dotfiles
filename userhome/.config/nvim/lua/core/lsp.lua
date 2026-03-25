@@ -153,7 +153,7 @@ vim.lsp.enable({
   "gopls",
   "golangci_lint_ls",
   "basedpyright",
-  "rust_analyer",
+  "rust_analyzer",
   "bashls",
   "jsonls",
   "solidity_ls_nomicfoundation",

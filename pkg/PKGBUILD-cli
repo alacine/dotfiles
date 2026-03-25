@@ -11,8 +11,7 @@ depends=(
     'tmux' 'zellij' 'tmuxp' 'screen'
 
     ## Editors
-    'neovim' 'vim' 'emacs'
-    'python-pynvim'
+    'neovim' 'vim' 'emacs-nox'
 
     ## Fonts (terminal)
     'ttf-lxgw-wenkai' 'ttf-monaco' 'ttf-mononoki-nerd'
@@ -22,10 +21,10 @@ depends=(
     'libvirt' 'samba' 'mariadb'
 
     ## Network & Proxy
-    'shadowsocks' 'v2raya' 'frpc' 'privoxy' 'proxychains-ng' 'sshuttle' 'wgcf'
+    'shadowsocks' 'frpc' 'privoxy' 'proxychains-ng' 'sshuttle' 'wgcf'
     # Network Tools
     'nethogs' 'mtr' 'nmap' 'fping' 'hping' 'tcpdump' 'whois' 'ipcalc'
-    'axel' 'croc' 'httpie' 'mitmproxy'
+    'axel' 'croc'
     'aria2' 'wget' 'rsync' 'sshfs' 'sshpass' 'w3m'
 
     ## Development
@@ -45,22 +44,22 @@ depends=(
     # Typesetting
     'typst'
     # Code Search & Stats
-    'the_silver_searcher' 'ripgrep' 'fd' 'tokei' 'scc' 'cloc'
+    'ripgrep' 'fd' 'tokei' 'scc' 'cloc'
     # Misc Dev
     'go-swagger' 'expac' 'jaq' 'yq' 'paru' 'yay' 'stow'
-    'lazydocker' 'mycli' 'openldap' 'pdftk' 'plantuml'
+    'lazydocker' 'mycli' 'pdftk' 'plantuml'
 
     ## Security & Reverse Engineering
-    'rizin' 'hydra' 'chntpw'
+    'rizin'
 
     ## Media (CLI)
-    'ffmpeg' 'yt-dlp' 'asciinema'
+    'yt-dlp' 'asciinema'
 
     ## CLI Tools
     # Shell Utilities
     'bat' 'fzf' 'zoxide'
     # System Monitor
-    'btop' 'htop' 'bpytop' 'glances' 'iotop' 's-tui'
+    'btop' 'htop' 'glances' 'iotop' 's-tui'
     'powertop' 'turbostat' 'sysstat'
     # File Management
     'dust' 'eza' 'joshuto' 'yazi' 'tree' 'lrzsz' 'pv'
@@ -68,7 +67,7 @@ depends=(
     'fastfetch' 'tldr' 'csvlens' 'man-pages' 'man-db'
     'rfc' 'serie' 'wimlib' 'libcpuid' '7zip'
     # Fun
-    'lolcat' 'cowsay' 'figlet' 'toilet' 'sl' 'cmatrix'
+    'lolcat' 'cowsay' 'figlet' 'sl' 'cmatrix'
     'asciiquarium' 'fortune-mod' 'genact' 'ascii'
 )
 

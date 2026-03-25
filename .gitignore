@@ -11,6 +11,9 @@ userhome/.config/ranger/plugins/
 # Packer
 *.pkrvars.hcl
 
+# Neovim runtime data (lazy.nvim plugins, mason packages, etc.)
+userhome/.local/
+
 # Generated files
 homelab/files/*
 homelab/sshconf

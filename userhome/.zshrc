@@ -121,8 +121,8 @@ alias tf='terraform'
 alias sz='lrzsz-sz'
 alias rz='lrzsz-rz'
 
-export no_proxy=127.0.0.1,localhost,local,.local,172.0.0.0/24,10.0.0.0/24,.cn
-export NO_PROXY=127.0.0.1,localhost,local,.local,172.0.0.0/24,10.0.0.0/24,.cn
+export no_proxy=127.0.0.1,::1,localhost,local,.local,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.cn
+export NO_PROXY=127.0.0.1,::1,localhost,local,.local,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.cn
 
 export LIB_PATH="$HOME/Lib"
 

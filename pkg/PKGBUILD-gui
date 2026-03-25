@@ -40,6 +40,9 @@ depends=(
     'kdeconnect' 'konsole' 'krdc' 'krdp' 'okular'
     'partitionmanager' 'print-manager' 'spectacle' 'yakuake'
 
+    ## Editors (GUI)
+    'emacs'
+
     ## Terminal (GUI)
     'alacritty' 'ghostty' 'kitty'
 
@@ -50,6 +53,9 @@ depends=(
     ## Input Method (fcitx5)
     'fcitx5-chinese-addons' 'fcitx5-configtool' 'fcitx5-gtk'
     'fcitx5-mozc' 'fcitx5-rime' 'rime-double-pinyin' 'rime-wubi'
+
+    ## Media
+    'ffmpeg' 'toilet'
 
     ## Audio
     'pamixer' 'pavucontrol' 'mpd' 'cava' 'termusic'
