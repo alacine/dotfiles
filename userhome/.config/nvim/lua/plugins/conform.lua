@@ -12,6 +12,15 @@ return {
       mode = "",
       desc = "Format buffer",
     },
+    {
+      "<leader>tf",
+      function()
+        vim.g.disable_autoformat = not vim.g.disable_autoformat
+        vim.notify(("Autoformat on save: %s"):format(vim.g.disable_autoformat and "OFF" or "ON"))
+      end,
+      mode = "",
+      desc = "Toggle autoformat on save",
+    },
   },
   -- This will provide type hinting with LuaLS
   ---@module "conform"
@@ -60,6 +69,8 @@ return {
     },
   },
   init = function()
+    -- 默认禁用保存时自动格式化
+    vim.g.disable_autoformat = false
     -- If you want the formatexpr, here is the place to set it
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     -- 添加用户命令来控制格式化

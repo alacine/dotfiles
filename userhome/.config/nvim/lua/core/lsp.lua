@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     -- Inlay hint
-    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
       -- vim.lsp.inlay_hint.enable()
       vim.keymap.set("n", "<leader>th", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
@@ -83,7 +83,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     -- folding
-    if client and client.supports_method("textDocument/foldingRange") then
+    if client and client:supports_method("textDocument/foldingRange") then
       local win = vim.api.nvim_get_current_win()
       vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
     end
@@ -91,7 +91,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Highlight words under cursor
     if
       client
-      and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight)
+      and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight)
       and vim.bo.filetype ~= "bigfile"
     then
       local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
