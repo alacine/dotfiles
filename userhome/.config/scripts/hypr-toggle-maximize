@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+layout=$(hyprctl activeworkspace -j | jq -r '.tiledLayout // ""')
+
+if [[ "$layout" != "scrolling" ]]; then
+  hyprctl dispatch fullscreen 1 toggle
+  exit 0
+fi
+
+window_json=$(hyprctl activewindow -j)
+fullscreen=$(jq -r '.fullscreen // 0' <<<"$window_json")
+fullscreen_client=$(jq -r '.fullscreenClient // 0' <<<"$window_json")
+window_width=$(jq -r '.size[0] // 0' <<<"$window_json")
+monitor_id=$(jq -r '.monitor // 0' <<<"$window_json")
+
+monitor_width=$(
+  hyprctl monitors -j |
+    jq -r --argjson id "$monitor_id" '.[] | select(.id == $id) | (.width / .scale | floor)'
+)
+
+if [[ "$fullscreen" != "0" || "$fullscreen_client" != "0" ]] ||
+  ((window_width * 100 >= monitor_width * 90)); then
+  hyprctl dispatch fullscreenstate 0 0 set >/dev/null
+  hyprctl dispatch layoutmsg colresize 0.5
+else
+  hyprctl dispatch fullscreenstate 0 0 set >/dev/null
+  hyprctl dispatch layoutmsg colresize 1.0
+  hyprctl dispatch layoutmsg fit active
+fi

@@ -1,0 +1,1 @@
+../.config/ai-coding/generated/codex/AGENTS.md

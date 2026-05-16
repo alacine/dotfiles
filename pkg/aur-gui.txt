@@ -8,6 +8,7 @@ visual-studio-code-bin
 # System Tools (GUI)
 clipse
 libinput-gestures
+grimblast-git
 
 # Proxy / VPN
 clash-party-bin
@@ -15,7 +16,7 @@ clash-verge-rev-bin
 
 # Chinese Apps
 wechat-bin
-wemeet-wayland-screenshare-git
+wemeet-bin
 linuxqq-nt-bwrap
 netease-cloud-music
 spotifox

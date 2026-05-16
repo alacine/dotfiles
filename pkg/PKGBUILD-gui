@@ -22,7 +22,7 @@ depends=(
     # Wayland utilities
     'grim' 'slurp' 'wl-clipboard' 'uwsm'
     # Compositor / WM launcher
-    'waybar-git' 'rofi' 'wofi' 'fuzzel' 'mako'
+    'waybar-git' 'rofi' 'wofi' 'fuzzel' 'swaync'
     # Hyprland
     'hyprland' 'hyprlock' 'hyprpaper'
     # Niri

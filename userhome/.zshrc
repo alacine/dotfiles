@@ -144,10 +144,8 @@ export PATH=$PATH:$CARGO_HOME/bin
 export PATH=$PATH:$HOME/.local/bin
 
 # ruby
-# gem sources --remove https://rubygems.org/
-# gem sources --add https://gems.ruby-china.com/
-export GEM_HOME="$LIB_PATH/gems"
-export PATH=$PATH:$HOME/.local/share/gem/ruby/3.4.0/bin
+# (Intentionally do not export GEM_HOME or add gem bins to PATH globally.
+# This avoids leaking user gems into makepkg/paru builds.)
 
 # packer
 export PACKER_PLUGIN_PATH="$HOME/.local/share/packer/plugins"

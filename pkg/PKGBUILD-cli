@@ -37,17 +37,17 @@ depends=(
     'kubectl' 'kubeadm' 'helm' 'minikube'
     'terraform' 'terraform-ls' 'ansible' 'packer'
     # Git
-    'git' 'git-delta' 'git-lfs' 'lazygit' 'tig' 'gitlogue'
+    'git' 'git-delta' 'git-lfs' 'lazygit' 'tig' 'gitlogue' 'github-cli'
     # LSP / Language Tools
     'ccls' 'lua-language-server' 'bash-language-server'
-    'tinymist' 'ruby-lsp' 'zls' 'prettier' 'ctags'
+    'tinymist' 'ruby-lsp' 'zls' 'prettier' 'ctags' 'tree-sitter-cli'
     # Typesetting
     'typst'
     # Code Search & Stats
     'ripgrep' 'fd' 'tokei' 'scc' 'cloc'
     # Misc Dev
     'go-swagger' 'expac' 'jaq' 'yq' 'paru' 'yay' 'stow'
-    'lazydocker' 'mycli' 'pdftk' 'plantuml'
+    'lazydocker' 'mycli' 'pdftk' 'plantuml' 'jpegoptim'
 
     ## Security & Reverse Engineering
     'rizin'

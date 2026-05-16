@@ -11,9 +11,6 @@ userhome/.config/ranger/plugins/
 # Packer
 *.pkrvars.hcl
 
-# Neovim runtime data (lazy.nvim plugins, mason packages, etc.)
-userhome/.local/
-
 # Generated files
 homelab/files/*
 homelab/sshconf
@@ -23,5 +20,6 @@ CLAUDE.md
 .privaterc
 .workrc
 userhome/.config/ghostty/config.macos
+userhome/.config/ai-coding/generated/
 
 output/
