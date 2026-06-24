@@ -59,7 +59,7 @@ return {
       vim.keymap.set("n", "<space>a", builtin.live_grep, { desc = "Telescope live grep" })
       vim.keymap.set("n", "<space>b", builtin.buffers, { desc = "Telescope buffers" })
       vim.keymap.set("n", "<space>h", builtin.help_tags, { desc = "Telescope help tags" })
-      vim.keymap.set("n", "<space>m", "<CMD>Telescope notify<CR>", { desc = "Telescopt message" })
+      vim.keymap.set("n", "<space>m", "<CMD>Noice telescope<CR>", { desc = "Noice message history" })
       vim.keymap.set("n", "<space>s", "<CMD>Telescope aerial<CR>", { desc = "Goto Symbol (Aerial)" })
     end,
   },
