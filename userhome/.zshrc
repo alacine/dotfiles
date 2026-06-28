@@ -162,8 +162,8 @@ eval $(thefuck --alias)
 
 #export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse"
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 # Preview file content using bat (https://github.com/sharkdp/bat)
 export FZF_CTRL_T_OPTS="
   --walker-skip .git,node_modules,target
@@ -195,5 +195,3 @@ function yy() {
 
 source ${HOME}/.privaterc
 source ${HOME}/.workrc
-
-# vagrant autocomplete install

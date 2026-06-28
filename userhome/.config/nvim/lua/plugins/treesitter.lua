@@ -22,6 +22,7 @@ local langs = {
   "python",
   "javascript",
   "typescript",
+  "html",
 }
 
 return {
