@@ -37,8 +37,8 @@ style = "Regular"
 # style = "Italic"
 
 [window]
-opacity = 0.90
-blur = true
+opacity = 0.85
+blur = false
 # for macos
 option_as_alt = "Both"
 

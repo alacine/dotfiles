@@ -52,8 +52,8 @@ gtk-toolbar-style = flat
 keybind = ctrl+[=text:\x1b
 
 # Cursor shader: faded warp trail + ripple on mode change
-custom-shader = ~/.config/ghostty/shaders/faded_warp_ripple.glsl
-custom-shader-animation = true
+# custom-shader = ~/.config/ghostty/shaders/faded_warp_ripple.glsl
+# custom-shader-animation = true
 
 # Platform-specific overrides (optional)
 config-file = ?config.macos
