@@ -4,7 +4,7 @@ set -euo pipefail
 layout=$(hyprctl activeworkspace -j | jq -r '.tiledLayout // ""')
 
 if [[ "$layout" != "scrolling" ]]; then
-  hyprctl dispatch fullscreen 1 toggle
+  hyprctl dispatch 'hl.dsp.window.fullscreen({mode = 1, action = "toggle"})'
   exit 0
 fi
 
@@ -21,10 +21,10 @@ monitor_width=$(
 
 if [[ "$fullscreen" != "0" || "$fullscreen_client" != "0" ]] ||
   ((window_width * 100 >= monitor_width * 90)); then
-  hyprctl dispatch fullscreenstate 0 0 set >/dev/null
-  hyprctl dispatch layoutmsg colresize 0.5
+  hyprctl dispatch 'hl.dsp.window.fullscreen_state({internal = 0, client = 0, action = "set"})' >/dev/null
+  hyprctl dispatch 'hl.dsp.layout("colresize 0.5")'
 else
-  hyprctl dispatch fullscreenstate 0 0 set >/dev/null
-  hyprctl dispatch layoutmsg colresize 1.0
-  hyprctl dispatch layoutmsg fit active
+  hyprctl dispatch 'hl.dsp.window.fullscreen_state({internal = 0, client = 0, action = "set"})' >/dev/null
+  hyprctl dispatch 'hl.dsp.layout("colresize 1.0")'
+  hyprctl dispatch 'hl.dsp.layout("fit active")'
 fi
