@@ -2,6 +2,7 @@ local terminal = "alacritty"
 local file_manager = "dolphin"
 local menu = "rofi -show drun"
 local main_mod = "CTRL + ALT"
+local maximize_tag = "__hypr_maximized"
 
 local function bind(keys, dispatcher, opts)
 	hl.bind(keys, dispatcher, opts)
@@ -9,6 +10,73 @@ end
 
 local function exec(cmd, rules)
 	return hl.dsp.exec_cmd(cmd, rules)
+end
+
+local function has_tag(window, tag)
+	if type(window.tags) ~= "table" then
+		return window.tags == tag
+	end
+
+	for _, existing in ipairs(window.tags) do
+		if existing == tag then
+			return true
+		end
+	end
+
+	return false
+end
+
+local function is_wide(window)
+	local monitor = window.monitor
+	if not monitor or type(window.size) ~= "table" then
+		return false
+	end
+
+	local width = window.size.x or 0
+	local monitor_width = math.floor(monitor.width / monitor.scale)
+
+	return width * 100 >= monitor_width * 80
+end
+
+local function toggle_dropdown()
+	local window = hl.get_windows({ class = "dropdown" })[1]
+
+	if window then
+		hl.dispatch(hl.dsp.focus({ window = window }))
+		hl.dispatch(hl.dsp.window.close())
+		return
+	end
+
+	hl.exec_cmd("alacritty --class dropdown -e tmux new-session -A -s dropdown")
+end
+
+local function toggle_maximize()
+	local workspace = hl.get_active_workspace()
+	local window = hl.get_active_window()
+
+	if not window then
+		return
+	end
+
+	if not workspace or workspace.tiled_layout ~= "scrolling" then
+		hl.dispatch(hl.dsp.window.fullscreen({ mode = 1, action = "toggle" }))
+		return
+	end
+
+	hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 0, action = "set" }))
+
+	local tagged = has_tag(window, maximize_tag)
+	if tagged or is_wide(window) then
+		if tagged then
+			hl.dispatch(hl.dsp.window.tag({ tag = maximize_tag }))
+		end
+
+		hl.dispatch(hl.dsp.layout("colresize 0.5"))
+	else
+		hl.dispatch(hl.dsp.window.tag({ tag = maximize_tag }))
+		hl.dispatch(hl.dsp.layout("colresize 1.0"))
+		hl.dispatch(hl.dsp.layout("fit active"))
+	end
 end
 
 hl.monitor({
@@ -167,7 +235,7 @@ hl.device({
 bind(main_mod .. " + Q", hl.dsp.window.close())
 bind(main_mod .. " + M", hl.dsp.exit())
 bind(main_mod .. " + F", hl.dsp.window.float({ action = "toggle" }))
-bind("SUPER + F", exec("~/.config/scripts/hypr-toggle-maximize"))
+bind("SUPER + F", toggle_maximize)
 bind(main_mod .. " + P", hl.dsp.window.pseudo())
 bind(main_mod .. " + J", hl.dsp.layout("togglesplit"))
 bind(main_mod .. " + comma", hl.dsp.layout("move -col"))
@@ -177,7 +245,7 @@ bind(main_mod .. " + SHIFT + period", hl.dsp.layout("swapcol r"))
 
 bind(main_mod .. " + E", exec(file_manager, { float = true }))
 bind("CTRL + ALT + T", exec("alacritty", { float = true }))
-bind("ALT + Q", exec("~/.config/scripts/hypr-dropdown"))
+bind("ALT + Q", toggle_dropdown)
 bind("ALT + code:36", exec(terminal))
 
 bind("ALT + code:65", exec(menu))

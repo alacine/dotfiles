@@ -1,6 +1,0 @@
-#!/bin/sh
-if hyprctl clients -j | grep -q '"class": "dropdown"'; then
-    hyprctl dispatch closewindow class:dropdown
-else
-    alacritty --class dropdown -e tmux new-session -A -s dropdown &
-fi
