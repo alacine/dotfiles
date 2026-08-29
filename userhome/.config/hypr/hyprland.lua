@@ -232,6 +232,11 @@ hl.device({
 	sensitivity = -0.5,
 })
 
+hl.device({
+	name = "at-raw-set-2-keyboard",
+	kb_options = "ctrl:swapcaps",
+})
+
 bind(main_mod .. " + Q", hl.dsp.window.close())
 bind(main_mod .. " + M", hl.dsp.exit())
 bind(main_mod .. " + F", hl.dsp.window.float({ action = "toggle" }))
