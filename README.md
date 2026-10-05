@@ -13,13 +13,14 @@
 - 服务器服务配置
     - [x] frp
 
-## 下面的还没改为配置或脚本
-
 ### zsh
 
-[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+使用 zsh 原生补全和历史记录，配合 fzf、zoxide。
 
-主题使用 [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+提示符使用 Starship，与 Nushell 共用 `userhome/.config/starship.toml`。
+配置通过 `make deploy` 部署，无需安装 oh-my-zsh 或 Powerlevel10k。
+
+## 下面的还没改为配置或脚本
 
 ### DE (桌面环境中用到的配置)
 

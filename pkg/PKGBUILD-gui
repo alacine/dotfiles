@@ -48,6 +48,8 @@ depends=(
 
     ## Fonts (full set)
     'adobe-source-han-sans-cn-fonts' 'adobe-source-han-serif-cn-fonts'
+    'ttf-lxgw-wenkai' 'ttf-monaco' 'ttf-mononoki-nerd' 'ttf-firacode-nerd'
+    'ttf-nerd-fonts-symbols'
     'unicode-emoji' 'wqy-microhei-lite' 'wqy-zenhei'
 
     ## Input Method (fcitx5)
@@ -80,7 +82,7 @@ depends=(
     'hledger-bin' 'ledger'
 
     ## Desktop CLI extras
-    'screenfetch' 'scrcpy' 'screenkey' 'workrave' 'deskflow' 'v2ray-desktop'
+    'screenfetch' 'scrcpy' 'screenkey' 'workrave' 'deskflow'
 
     ## Chinese Software
     'archlinux-xdg-menu' 'archlinuxcn-keyring' 'baidupcs-go'

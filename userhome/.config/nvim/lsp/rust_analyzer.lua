@@ -120,6 +120,9 @@ return {
         enable = true,
         numThreads = 2, -- 减少线程数
       },
+      -- cargo = {
+      --   features = { "ssr", "hydrate" },
+      -- },
       lens = {
         debug = { enable = true },
         enable = true,

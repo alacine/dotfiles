@@ -7,24 +7,21 @@ arch=('any')
 license=('custom')
 depends=(
     ## Shell & Multiplexer
-    'zsh' 'nushell' 'thefuck' 'powerline'
+    'zsh' 'nushell' 'starship' 'powerline'
     'tmux' 'zellij' 'tmuxp' 'screen'
 
     ## Editors
     'neovim' 'vim' 'emacs-nox'
-
-    ## Fonts (terminal)
-    'ttf-lxgw-wenkai' 'ttf-monaco' 'ttf-mononoki-nerd'
 
     ## System Services
     'sudo' 'openssh' 'networkmanager' 'firewalld'
     'libvirt' 'samba' 'mariadb'
 
     ## Network & Proxy
-    'shadowsocks' 'frpc' 'privoxy' 'proxychains-ng' 'sshuttle' 'wgcf'
+    'shadowsocks-rust' 'frpc' 'privoxy' 'proxychains-ng' 'sshuttle' 'wgcf'
     # Network Tools
     'nethogs' 'mtr' 'nmap' 'fping' 'hping' 'tcpdump' 'whois' 'ipcalc'
-    'axel' 'croc'
+    'axel' 'croc' 'dnsutils' 'iputils'
     'aria2' 'wget' 'rsync' 'sshfs' 'sshpass' 'w3m'
 
     ## Development

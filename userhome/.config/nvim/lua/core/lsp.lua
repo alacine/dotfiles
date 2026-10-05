@@ -166,4 +166,5 @@ vim.lsp.enable({
   "terraformls",
   "ruby_lsp",
   "superhtml",
+  "clangd",
 })

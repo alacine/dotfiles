@@ -42,7 +42,14 @@ install-cli: ## Install CLI/dev environment only (for VMs)
 deploy: ## Create links
 	mkdir -p $(HOME)/{.config,.local/share/applications,.claude,.codex,.vagrant.d}
 	stow -v -R -t $(HOME) userhome
+	$(MAKE) nushell-vendor-autoload
 	fc-cache -f
+
+.PHONY: nushell-vendor-autoload
+nushell-vendor-autoload: ## Generate Nushell vendor autoload files from installed tools
+	@if command -v nu >/dev/null 2>&1; then \
+		nu scripts/generate-nushell-vendor-autoload; \
+	fi
 
 .PHONY: setup-ai
 setup-ai: ## Generate and deploy shared AI coding rules and skills

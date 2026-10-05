@@ -164,7 +164,7 @@ hl.config({
 	},
 
 	scrolling = {
-		column_width = 0.5,
+		column_width = 1.0,
 		follow_focus = true,
 		focus_fit_method = 1,
 		direction = "right",
@@ -234,6 +234,11 @@ hl.device({
 
 hl.device({
 	name = "at-raw-set-2-keyboard",
+	kb_options = "ctrl:swapcaps",
+})
+
+hl.device({
+	name = "ite-tech.-inc.-ite-device(8296)-keyboard",
 	kb_options = "ctrl:swapcaps",
 })
 

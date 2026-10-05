@@ -1,0 +1,12 @@
+#!/usr/bin/env nu
+
+let autoload_dir = ($nu.data-dir | path join "vendor/autoload")
+mkdir $autoload_dir
+
+if (which fzf | is-not-empty) {
+  fzf --nushell | save -f ($autoload_dir | path join "fzf.nu")
+}
+
+if (which zoxide | is-not-empty) {
+  zoxide init nushell | save -f ($autoload_dir | path join "zoxide.nu")
+}
