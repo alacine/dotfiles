@@ -23,36 +23,25 @@ macos-option-as-alt = true
 key-remap = super=ctrl
 key-remap = ctrl=super
 
+# Command is remapped to Control before keybind matching when the macOS menu
+# does not consume Command+=. Bind the remapped key to font zoom explicitly.
+keybind = ctrl+==increase_font_size:1
+
+# Physical Ctrl is remapped to Super above.
+keybind = super+shift+t=new_tab
+
 # Copy/paste
 keybind = super+shift+c=copy_to_clipboard
 keybind = super+shift+v=paste_from_clipboard
 
-# Explicitly override macOS menu shortcuts that conflict with key-remap.
-# These cmd+key bindings send the corresponding ctrl+key character directly,
-# taking priority over Ghostty's own menu items (e.g. cmd+d = split right).
 keybind = super+a=text:\x01
-keybind = super+b=text:\x02
-keybind = super+c=text:\x03
 keybind = super+d=text:\x04
-keybind = super+e=text:\x05
-keybind = super+f=text:\x06
-keybind = super+g=text:\x07
-keybind = super+h=text:\x08
-keybind = super+i=text:\x09
-keybind = super+j=text:\x0a
-keybind = super+k=text:\x0b
-keybind = super+l=text:\x0c
-keybind = super+m=text:\x0d
 keybind = super+n=text:\x0e
-keybind = super+o=text:\x0f
-keybind = super+p=text:\x10
-keybind = super+q=text:\x11
-keybind = super+r=text:\x12
-keybind = super+s=text:\x13
 keybind = super+t=text:\x14
-keybind = super+u=text:\x15
-keybind = super+v=text:\x16
 keybind = super+w=text:\x17
-keybind = super+x=text:\x18
-keybind = super+y=text:\x19
-keybind = super+z=text:\x1a
+keybind = super+[=text:\x1b
+keybind = ctrl+[=text:\x1b
+
+# Allow applications to read and write from your clipboard without prompting
+clipboard-read = allow
+clipboard-write = allow

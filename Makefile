@@ -1,5 +1,10 @@
 SHELL := /bin/bash
 
+STOW_PACKAGES := userhome
+ifeq ($(shell uname -s),Darwin)
+STOW_PACKAGES += userhome-macos
+endif
+
 ##@ General
 
 # The help target prints out all targets with their descriptions organized
@@ -41,7 +46,7 @@ install-cli: ## Install CLI/dev environment only (for VMs)
 .PHONY: deploy
 deploy: ## Create links
 	mkdir -p $(HOME)/{.config,.local/share/applications,.claude,.codex}
-	stow -v -R -t $(HOME) userhome
+	stow -v -R -t $(HOME) $(STOW_PACKAGES)
 	$(MAKE) nushell-vendor-autoload
 	fc-cache -f
 
@@ -59,7 +64,7 @@ setup-ai: ## Generate and deploy shared AI coding rules and skills
 
 .PHONY: withdraw
 withdraw: ## Remove links
-	stow -v -t $(HOME) -D userhome
+	stow -v -t $(HOME) -D $(STOW_PACKAGES)
 
 .PHONY: setup-mirror
 setup-mirror: ## (Root) Setup mirror for archlinuxcn

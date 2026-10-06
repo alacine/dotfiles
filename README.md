@@ -20,6 +20,11 @@
 提示符使用 Starship，与 Nushell 共用 `userhome/.config/starship.toml`。
 配置通过 `make deploy` 部署，无需安装 oh-my-zsh 或 Powerlevel10k。
 
+### Ghostty
+
+通用配置位于 `userhome/.config/ghostty`。macOS 专用配置位于
+`userhome-macos/.config/ghostty`，只会在 Darwin 上由 `make deploy` 部署。
+
 ## 下面的还没改为配置或脚本
 
 ### DE (桌面环境中用到的配置)
