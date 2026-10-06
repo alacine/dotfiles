@@ -1,4 +1,4 @@
-local terminal = "alacritty"
+local terminal = "ghostty"
 local file_manager = "dolphin"
 local menu = "rofi -show drun"
 local main_mod = "CTRL + ALT"
@@ -164,7 +164,8 @@ hl.config({
 	},
 
 	scrolling = {
-		column_width = 1.0,
+		fullscreen_on_one_column = true,
+		column_width = 0.5,
 		follow_focus = true,
 		focus_fit_method = 1,
 		direction = "right",
@@ -217,7 +218,7 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 1.94, bezier = "almo
 hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 
-for i = 1, 5 do
+for i = 6, 9 do
 	hl.workspace_rule({ workspace = tostring(i), layout = "scrolling" })
 end
 
