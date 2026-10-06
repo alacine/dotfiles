@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -euxo pipefail
 
 # 基础包
 apt-get update
@@ -13,7 +13,7 @@ apt-get install -y --no-install-recommends \
 
 # 网络：用 systemd-networkd 替代 ifupdown
 # 原因：/etc/network/interfaces 硬编码了构建时的接口名（如 ens3），
-# 但 Vagrant/libvirt 启动时接口名可能不同（如 enp1s0），导致 DHCP 不跑。
+# 但 QEMU/libvirt 启动时接口名可能不同（如 enp1s0），导致 DHCP 不跑。
 # systemd-networkd 用 Name=en* 匹配所有以太网接口，与名字无关。
 cat >/etc/systemd/network/10-dhcp.network <<'EOF'
 [Match]
@@ -30,16 +30,9 @@ systemctl disable networking 2>/dev/null || true
 # systemd-resolved 管 DNS，/etc/resolv.conf 指向它的 stub resolver
 ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
-# Vagrant SSH 免密登录（标准 insecure key）
-mkdir -pm 700 /home/vagrant/.ssh
-curl -fsSL https://raw.githubusercontent.com/hashicorp/vagrant/main/keys/vagrant.pub \
-    -o /home/vagrant/.ssh/authorized_keys
-chmod 600 /home/vagrant/.ssh/authorized_keys
-chown -R vagrant:vagrant /home/vagrant/.ssh
-
-# sudo 免密（Vagrant 标准配置）
-echo "vagrant ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/vagrant
-chmod 0440 /etc/sudoers.d/vagrant
+# Passwordless sudo for the development user.
+echo "devbox ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/devbox
+chmod 0440 /etc/sudoers.d/devbox
 
 # 清理
 apt-get clean

@@ -13,4 +13,4 @@ echo ">>>> install-virtualbox.sh: Enabling RPC Bind service.."
 
 # Add groups for VirtualBox folder sharing
 echo ">>>> install-virtualbox.sh: Enabling VirtualBox Shared Folders.."
-/usr/bin/usermod --append --groups vagrant,vboxsf vagrant
+/usr/bin/usermod --append --groups devbox,vboxsf devbox

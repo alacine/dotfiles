@@ -31,7 +31,6 @@ ttf-wps-fonts
 noto-color-emoji-fontconfig
 
 # System Tools
-asciinema-agg
 blueberry
 wl-color-picker
 
@@ -51,3 +50,4 @@ vimix-gtk-themes-git
 
 # Misc
 kd-bin
+weylus-bin

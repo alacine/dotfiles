@@ -40,7 +40,7 @@ install-cli: ## Install CLI/dev environment only (for VMs)
 
 .PHONY: deploy
 deploy: ## Create links
-	mkdir -p $(HOME)/{.config,.local/share/applications,.claude,.codex,.vagrant.d}
+	mkdir -p $(HOME)/{.config,.local/share/applications,.claude,.codex}
 	stow -v -R -t $(HOME) userhome
 	$(MAKE) nushell-vendor-autoload
 	fc-cache -f

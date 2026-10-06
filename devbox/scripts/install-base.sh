@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # stop on errors
-set -eu
+set -euo pipefail
 
 if [[ $PACKER_BUILDER_TYPE == "qemu" ]]; then
     DISK='/dev/vda'
@@ -9,10 +9,10 @@ else
     DISK='/dev/sda'
 fi
 
-FQDN='vagrant-arch.vagrantup.com'
+FQDN='devbox-arch'
 KEYMAP='us'
 LANGUAGE='en_US.UTF-8'
-PASSWORD="$(/usr/bin/openssl passwd -6 'vagrant')"
+PASSWORD="$(/usr/bin/openssl passwd -6 'devbox')"
 TIMEZONE='UTC'
 
 CONFIG_SCRIPT='/usr/local/bin/arch-config.sh'
@@ -46,10 +46,8 @@ curl -s "$MIRRORLIST" | sed 's/^#Server/Server/' >/etc/pacman.d/mirrorlist
 echo ">>>> install-base.sh: Bootstrapping the base installation.."
 /usr/bin/pacstrap "${TARGET_DIR}" base base-devel linux
 
-# Need to install netctl as well: https://github.com/archlinux/arch-boxes/issues/70
-# Can be removed when Vagrant's Arch plugin will use systemd-networkd: https://github.com/hashicorp/vagrant/pull/11400
 echo ">>>> install-base.sh: Installing basic packages.."
-/usr/bin/arch-chroot "${TARGET_DIR}" pacman -S --noconfirm gptfdisk openssh syslinux dhcpcd netctl
+/usr/bin/arch-chroot "${TARGET_DIR}" pacman -S --noconfirm gptfdisk openssh syslinux dhcpcd
 
 echo ">>>> install-base.sh: Configuring syslinux.."
 /usr/bin/arch-chroot ${TARGET_DIR} syslinux-install_update -i -a -m
@@ -90,18 +88,13 @@ cat <<-EOF >"${TARGET_DIR}${CONFIG_SCRIPT}"
   /usr/bin/pacman -S --noconfirm rng-tools
   /usr/bin/systemctl enable rngd
 
-  # Vagrant-specific configuration
-  echo ">>>> ${CONFIG_SCRIPT_SHORT}: Creating vagrant user.."
-  /usr/bin/useradd --password '${PASSWORD}' --comment 'Vagrant User' --create-home --user-group vagrant
+  # Development user for Packer provisioning
+  echo ">>>> ${CONFIG_SCRIPT_SHORT}: Creating devbox user.."
+  /usr/bin/useradd --password '${PASSWORD}' --comment 'DevBox User' --create-home --user-group devbox
   echo ">>>> ${CONFIG_SCRIPT_SHORT}: Configuring sudo.."
-  echo 'Defaults env_keep += "SSH_AUTH_SOCK"' > /etc/sudoers.d/10_vagrant
-  echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_vagrant
-  /usr/bin/chmod 0440 /etc/sudoers.d/10_vagrant
-  echo ">>>> ${CONFIG_SCRIPT_SHORT}: Configuring ssh access for vagrant.."
-  /usr/bin/install --directory --owner=vagrant --group=vagrant --mode=0700 /home/vagrant/.ssh
-  /usr/bin/curl --output /home/vagrant/.ssh/authorized_keys --location https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
-  /usr/bin/chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
-  /usr/bin/chmod 0600 /home/vagrant/.ssh/authorized_keys
+  echo 'Defaults env_keep += "SSH_AUTH_SOCK"' > /etc/sudoers.d/10_devbox
+  echo 'devbox ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_devbox
+  /usr/bin/chmod 0440 /etc/sudoers.d/10_devbox
 
   echo ">>>> ${CONFIG_SCRIPT_SHORT}: Cleaning up.."
   /usr/bin/pacman -Rcns --noconfirm gptfdisk

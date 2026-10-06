@@ -30,6 +30,10 @@ bindkey '^X^E' edit-command-line
 bindkey ' ' magic-space
 
 # Personal aliases
+alias ls='ls --color=auto'
+alias ll='ls -hl --color=auto'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 alias vi='vim'
 alias nvi='nvim'
 alias emacs='emacs -nw'

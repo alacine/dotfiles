@@ -9,8 +9,8 @@ sipcalc
 wrk
 whatweb
 watchdog
-weylus-bin
 herdr-bin
+asciinema-agg
 
 # AI / Editors (CLI)
 claude-code

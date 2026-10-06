@@ -16,10 +16,6 @@ packer {
       version = ">= 1.2.8"
       source  = "github.com/Parallels/parallels"
     }
-    vagrant = {
-      version = ">= 1.1.6"
-      source  = "github.com/hashicorp/vagrant"
-    }
   }
 }
 
@@ -31,6 +27,17 @@ variable "iso_url" {
 variable "iso_checksum_url" {
   type    = string
   default = "https://mirrors.kernel.org/archlinux/iso/latest/sha256sums.txt"
+}
+
+variable "ssh_public_key_path" {
+  type        = string
+  description = "Path to the SSH public key installed for the devbox user."
+  default     = "~/.ssh/id_ed25519.pub"
+
+  validation {
+    condition     = fileexists(pathexpand(var.ssh_public_key_path))
+    error_message = "The SSH public key path must point to an existing public key file."
+  }
 }
 
 variable "ssh_timeout" {
@@ -55,6 +62,7 @@ variable "headless" {
 }
 
 source "parallels-iso" "arch" {
+  output_directory       = "output/arch-parallels"
   parallels_tools_flavor = "lin"
   parallels_tools_mode   = "attach"
   guest_os_type          = "linux-2.6"
@@ -71,18 +79,19 @@ source "parallels-iso" "arch" {
   cpus             = 1
   memory           = 1024
   disk_size        = 20480
-  ssh_username     = "vagrant"
-  ssh_password     = "vagrant"
+  ssh_username     = "devbox"
+  ssh_password     = "devbox"
   ssh_timeout      = var.ssh_timeout
-  shutdown_command = "sudo systemctl start poweroff.timer"
+  shutdown_command = "sudo bash -c 'passwd -l devbox && passwd -l root && systemctl start poweroff.timer'"
 }
 
 source "virtualbox-iso" "arch" {
+  vm_name              = "arch"
   iso_url              = var.iso_url
   iso_checksum         = "file:${var.iso_checksum_url}"
   guest_os_type        = "ArchLinux_64"
   guest_additions_mode = "disable"
-  output_directory     = "output-virtualbox"
+  output_directory     = "output/arch-virtualbox"
   http_directory       = "srv"
   boot_wait            = "5s"
   boot_command = [
@@ -95,18 +104,19 @@ source "virtualbox-iso" "arch" {
   memory               = 1024
   disk_size            = 20480
   hard_drive_interface = "sata"
-  ssh_username         = "vagrant"
-  ssh_password         = "vagrant"
+  ssh_username         = "devbox"
+  ssh_password         = "devbox"
   ssh_timeout          = var.ssh_timeout
-  shutdown_command     = "sudo systemctl start poweroff.timer"
+  shutdown_command     = "sudo bash -c 'passwd -l devbox && passwd -l root && systemctl start poweroff.timer'"
   headless             = var.headless
 }
 
 source "vmware-iso" "arch" {
-  iso_url        = var.iso_url
-  iso_checksum   = "file:${var.iso_checksum_url}"
-  http_directory = "srv"
-  boot_wait      = "5s"
+  output_directory = "output/arch-vmware"
+  iso_url          = var.iso_url
+  iso_checksum     = "file:${var.iso_checksum_url}"
+  http_directory   = "srv"
+  boot_wait        = "5s"
   boot_command = [
     "<enter><wait10><wait10><wait10><wait10>",
     "/usr/bin/curl -O http://{{ .HTTPIP }}:{{ .HTTPPort }}/enable-ssh.sh<enter><wait5>",
@@ -116,18 +126,19 @@ source "vmware-iso" "arch" {
   cpus                 = 1
   memory               = 1024
   disk_size            = 20480
-  ssh_username         = "vagrant"
-  ssh_password         = "vagrant"
+  ssh_username         = "devbox"
+  ssh_password         = "devbox"
   ssh_timeout          = var.ssh_timeout
-  shutdown_command     = "sudo systemctl start poweroff.timer"
+  shutdown_command     = "sudo bash -c 'passwd -l devbox && passwd -l root && systemctl start poweroff.timer'"
   headless             = var.headless
   network_adapter_type = "e1000"
 }
 
 source "qemu" "arch" {
+  vm_name          = "arch.qcow2"
   iso_url          = var.iso_url
   iso_checksum     = "file:${var.iso_checksum_url}"
-  output_directory = "output-qemu"
+  output_directory = "output/arch-qemu"
   http_directory   = "srv"
   boot_wait        = "5s"
   boot_command = [
@@ -140,10 +151,10 @@ source "qemu" "arch" {
   memory           = 1024
   disk_size        = 20480
   format           = "qcow2"
-  ssh_username     = "vagrant"
-  ssh_password     = "vagrant"
+  ssh_username     = "devbox"
+  ssh_password     = "devbox"
   ssh_timeout      = var.ssh_timeout
-  shutdown_command = "sudo systemctl start poweroff.timer"
+  shutdown_command = "sudo bash -c 'passwd -l devbox && passwd -l root && systemctl start poweroff.timer'"
   headless         = var.headless
 
   accelerator = "kvm"
@@ -191,7 +202,18 @@ build {
     script          = "scripts/cleanup.sh"
   }
 
-  post-processor "vagrant" {
-    output = "output/arch_{{ .Provider }}-${formatdate("YYYY.MM", timestamp())}.box"
+  provisioner "file" {
+    source      = pathexpand(var.ssh_public_key_path)
+    destination = "/tmp/devbox.pub"
   }
+
+  provisioner "shell" {
+    execute_command = "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    inline = [
+      "install -d -m 0700 -o devbox -g devbox /home/devbox/.ssh",
+      "install -m 0600 -o devbox -g devbox /tmp/devbox.pub /home/devbox/.ssh/authorized_keys",
+      "rm -f /tmp/devbox.pub",
+    ]
+  }
+
 }

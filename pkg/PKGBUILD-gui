@@ -8,10 +8,6 @@ license=('custom')
 depends=(
     'alacine-cli'
 
-    ## System & Boot
-    'base' 'linux' 'linux-firmware' 'amd-ucode' 'grub' 'zram-generator'
-    'earlyoom' 'cloud-init' 'lsb-release'
-
     ## Drivers
     'nvidia-open' 'xf86-input-synaptics' 'xf86-video-amdgpu'
 
@@ -56,11 +52,8 @@ depends=(
     'fcitx5-chinese-addons' 'fcitx5-configtool' 'fcitx5-gtk'
     'fcitx5-mozc' 'fcitx5-rime' 'rime-double-pinyin' 'rime-wubi'
 
-    ## Media
-    'ffmpeg' 'toilet'
-
     ## Audio
-    'pamixer' 'pavucontrol' 'mpd' 'cava' 'termusic'
+    'pavucontrol'
 
     ## Bluetooth
     'bluetui' 'bluez-utils'
@@ -69,7 +62,7 @@ depends=(
     'ghidra' 'wireshark-qt'
 
     ## Virtualization
-    'virt-manager' 'virt-viewer' 'tigervnc' 'wayvnc'
+    'virtualbox-host-dkms' 'virt-manager' 'virt-viewer' 'tigervnc' 'wayvnc'
 
     ## GUI Apps
     'firefox-i18n-zh-cn' 'chromium' 'discord' 'obs-studio' 'obsidian'
@@ -78,20 +71,15 @@ depends=(
     'calibre' 'dbeaver' 'xournalpp' 'zathura' 'zed' 'aegisub'
     'amule' 'qbittorrent-enhanced-git' 'vlc'
 
-    ## Finance
-    'hledger-bin' 'ledger'
-
     ## Desktop CLI extras
-    'screenfetch' 'scrcpy' 'screenkey' 'workrave' 'deskflow'
+    'scrcpy' 'screenkey' 'workrave' 'deskflow'
 
     ## Chinese Software
-    'archlinux-xdg-menu' 'archlinuxcn-keyring' 'baidupcs-go'
+    'archlinux-xdg-menu' 'baidupcs-go'
 
     ## Misc
-    'go-ethereum' 'go-musicfox-git' 'herdtools7-git' 'httpbin'
-    'lemurs' 'libguestfs' 'netctl' 'openai-codex'
-    'python-camelot' 'qt5-websockets'
-    'vsftpd' 'kbt' 'throne' 'teeworlds' 'critest'
+    'lemurs' 'qt5-websockets'
+    'kbt' 'throne' 'teeworlds' 'critest'
 )
 
 package() {

@@ -6,8 +6,7 @@ echo ">>>> cleanup.sh: Cleaning pacman cache.."
 
 # Write zeros to improve virtual disk compaction.
 # dd fills all free disk space with zeros until "No space left on device" -- this is intentional.
-# The zero file is then deleted, leaving those blocks zeroed. When packer packages the .box,
-# zstd can compress large runs of zeros extremely well, significantly reducing the final box size.
+# The zero file is then deleted so Packer can compact the disk image.
 if [[ $WRITE_ZEROS == "true" ]]; then
   echo ">>>> cleanup.sh: Writing zeros to improve virtual disk compaction.."
   zerofile=$(/usr/bin/mktemp /zerofile.XXXXX)

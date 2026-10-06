@@ -6,6 +6,11 @@ pkgdesc="Personal CLI & dev environment"
 arch=('any')
 license=('custom')
 depends=(
+    ## Base system
+    'base' 'linux' 'linux-headers' 'linux-firmware'
+    'amd-ucode' 'grub' 'zram-generator'
+    'earlyoom' 'cloud-init' 'lsb-release' 'archlinuxcn-keyring'
+
     ## Shell & Multiplexer
     'zsh' 'nushell' 'starship' 'powerline'
     'tmux' 'zellij' 'tmuxp' 'screen'
@@ -14,8 +19,8 @@ depends=(
     'neovim' 'vim' 'emacs-nox'
 
     ## System Services
-    'sudo' 'openssh' 'networkmanager' 'firewalld'
-    'libvirt' 'samba' 'mariadb'
+    'sudo' 'openssh' 'networkmanager' 'firewalld' 'netctl'
+    'libvirt' 'samba' 'mariadb' 'vsftpd' 'mpd'
 
     ## Network & Proxy
     'shadowsocks-rust' 'frpc' 'privoxy' 'proxychains-ng' 'sshuttle' 'wgcf'
@@ -32,7 +37,7 @@ depends=(
     # Containers & Infra
     'docker' 'docker-compose' 'podman'
     'kubectl' 'kubeadm' 'helm' 'minikube'
-    'terraform' 'terraform-ls' 'ansible' 'packer'
+    'terraform' 'terraform-ls' 'ansible' 'packer' 'libguestfs'
     # Git
     'git' 'git-delta' 'git-lfs' 'lazygit' 'tig' 'gitlogue' 'github-cli'
     # LSP / Language Tools
@@ -45,12 +50,15 @@ depends=(
     # Misc Dev
     'go-swagger' 'expac' 'jaq' 'yq' 'paru' 'yay' 'stow'
     'lazydocker' 'mycli' 'pdftk' 'plantuml' 'jpegoptim'
+    'go-ethereum' 'go-musicfox-git' 'herdtools7-git' 'httpbin'
+    'openai-codex' 'python-camelot'
 
     ## Security & Reverse Engineering
     'rizin'
 
     ## Media (CLI)
-    'yt-dlp' 'asciinema'
+    'yt-dlp' 'asciinema' 'asciinema-agg' 'ffmpeg' 'toilet'
+    'pamixer' 'cava' 'termusic'
 
     ## CLI Tools
     # Shell Utilities
@@ -63,6 +71,7 @@ depends=(
     # Misc CLI
     'fastfetch' 'tldr' 'csvlens' 'man-pages' 'man-db'
     'rfc' 'serie' 'wimlib' 'libcpuid' '7zip'
+    'hledger-bin' 'ledger' 'screenfetch'
     # Fun
     'lolcat' 'cowsay' 'figlet' 'sl' 'cmatrix'
     'asciiquarium' 'fortune-mod' 'genact' 'ascii'
