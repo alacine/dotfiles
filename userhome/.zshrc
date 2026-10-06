@@ -60,9 +60,15 @@ export GOPATH="$LIB_PATH/Golang"
 export PATH=$PATH:$GOPATH/bin
 
 # cargo
-export CARGO_HOME=$LIB_PATH/cargo
-export PATH=$PATH:$CARGO_HOME/bin
-export PATH="$(brew --prefix rustup)/bin:$CARGO_HOME/bin:$PATH"
+export CARGO_HOME="$LIB_PATH/cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
+if (( $+commands[brew] )); then
+	rustup_prefix="$(brew --prefix rustup 2>/dev/null)"
+	if [[ -n "$rustup_prefix" ]]; then
+		export PATH="$rustup_prefix/bin:$PATH"
+	fi
+	unset rustup_prefix
+fi
 
 # pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 export PATH=$PATH:$HOME/.local/bin
