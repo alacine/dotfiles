@@ -30,8 +30,6 @@ bindkey '^X^E' edit-command-line
 bindkey ' ' magic-space
 
 # Personal aliases
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
 alias vi='vim'
 alias nvi='nvim'
 alias emacs='emacs -nw'
@@ -48,6 +46,7 @@ alias rz='lrzsz-rz'
 export no_proxy=127.0.0.1,::1,localhost,local,.local,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.cn
 export NO_PROXY=127.0.0.1,::1,localhost,local,.local,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.cn
 
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export LIB_PATH="$HOME/Lib"
 
 # npm config set registry https://registry.npmmirror.com
@@ -63,6 +62,7 @@ export PATH=$PATH:$GOPATH/bin
 # cargo
 export CARGO_HOME=$LIB_PATH/cargo
 export PATH=$PATH:$CARGO_HOME/bin
+export PATH="$(brew --prefix rustup)/bin:$CARGO_HOME/bin:$PATH"
 
 # pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 export PATH=$PATH:$HOME/.local/bin
@@ -116,3 +116,6 @@ function yy() {
 
 # Share the prompt configuration with Nushell.
 eval "$(starship init zsh)"
+
+source ${HOME}/.privaterc
+source ${HOME}/.workrc

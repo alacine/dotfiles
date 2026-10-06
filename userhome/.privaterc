@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-export LEDGER_FILE=""
+export LEDGER_FILE="$HOME/Code/ledger/main.ledger"
 export GEMINI_API_KEY=""
 export GOOGLE_GENERATIVE_AI_API_KEY=""

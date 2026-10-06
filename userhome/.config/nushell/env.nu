@@ -7,6 +7,7 @@ def --env append-path [path: string] {
 }
 
 $env.config.show_banner = false
+$env.config.history.path = $nu.data-dir
 
 let proxy_bypass = "127.0.0.1,::1,localhost,local,.local,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.cn"
 $env.no_proxy = $proxy_bypass
