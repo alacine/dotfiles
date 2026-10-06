@@ -53,6 +53,9 @@ echo ">>>> install-base.sh: Configuring syslinux.."
 /usr/bin/arch-chroot ${TARGET_DIR} syslinux-install_update -i -a -m
 /usr/bin/sed -i "s|sda3|${ROOT_PARTITION##/dev/}|" "${TARGET_DIR}/boot/syslinux/syslinux.cfg"
 /usr/bin/sed -i 's/TIMEOUT 50/TIMEOUT 10/' "${TARGET_DIR}/boot/syslinux/syslinux.cfg"
+if [[ $PACKER_BUILDER_TYPE == "qemu" ]]; then
+    /usr/bin/sed -i '/^[[:space:]]*APPEND / s/$/ console=tty0 console=ttyS0,115200/' "${TARGET_DIR}/boot/syslinux/syslinux.cfg"
+fi
 
 echo ">>>> install-base.sh: Generating the filesystem table.."
 /usr/bin/genfstab -p "${TARGET_DIR}" >>"${TARGET_DIR}/etc/fstab"

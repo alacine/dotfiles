@@ -19,8 +19,9 @@ packer build -only=qemu.arch arch-template.pkr.hcl
 
 输出：`output/arch-qemu/arch.qcow2`。
 
-Arch QEMU 镜像安装 cloud-init，部署时由 Terraform 通过 NoCloud 注入 SSH 公钥。
-现有旧镜像不含 cloud-init，必须重新构建才能使用这项功能。
+QEMU 镜像包含 cloud-init，仅接受 NoCloud seed；首次启动时通过 Terraform 注入
+`devbox` 的 SSH 公钥，并为每台虚拟机生成独立的 SSH 主机密钥。
+修改 Packer 模板后必须重新构建镜像，旧 QCOW2 不具备这些配置。
 
 构建 VirtualBox 镜像：
 
@@ -66,14 +67,15 @@ packer build -parallel-builds=1 -only=qemu.debian,virtualbox-iso.debian debian-t
 ## 登录与后续部署
 
 镜像账户为 `devbox`。构建阶段临时使用 `devbox/devbox` 连接；最终关机前锁定
-devbox 和 root 的密码，devbox 保留免密 sudo 权限。Debian 和 Arch 非 QEMU 镜像
-在构建时写入公钥；Arch QEMU 镜像由 cloud-init 在首次启动时写入公钥。
+devbox 和 root 的密码，devbox 保留免密 sudo 权限。
+Debian 以及 Arch 的非 QEMU 镜像在构建时将公钥写入 `authorized_keys`，尚未配置 cloud-init。
+Arch QEMU 镜像的公钥由 Terraform 在首次启动时通过 cloud-init 注入。
 旧的目录共享也不会自动恢复，需要在后续虚拟机配置中显式添加 virtiofs。
 
 ## 本地 Arch Terraform
 
 需要本机 libvirt/KVM、可用的 `default` 存储池和 NAT 网络，以及能访问
-`qemu:///system` 的当前用户。在 `devbox/` 目录运行：
+`qemu:///system` 的当前用户。先构建上面的 Arch QEMU 镜像，再在 `devbox/` 目录运行：
 
 ```bash
 terraform init
@@ -86,12 +88,15 @@ virt-viewer -c qemu:///system arch-devbox
 ```
 
 串口按 `Ctrl+]` 退出；VNC 仅监听本机。默认镜像为 `output/arch-qemu/arch.qcow2`，
-默认公钥为 `~/.ssh/id_ed25519.pub`。Terraform 将镜像复制到存储池，不修改 Packer 产物。
+默认公钥为 `~/.ssh/id_ed25519.pub`。Terraform 将镜像复制到存储池，生成独立的
+NoCloud ISO，不修改 Packer 产物。
 `terraform apply` 会在宿主机 SSH 配置开头确保存在 `Include ~/.ssh/config.d/*.conf`，
 并维护 `~/.ssh/config.d/arch-devbox.conf`，可以直接使用 `ssh arch-devbox` 登录。
 私钥路径由 `ssh_public_key_path` 去掉 `.pub` 得到；如果 DHCP 地址变化，再次运行
 `terraform apply` 会更新 SSH 条目。设置本地登录密码可运行 `sudo passwd devbox`；
 否则串口和图形登录界面虽可显示，但锁定的账户密码无法用于登录。
+其他存储池、网络、镜像或密钥路径可通过 `-var` 覆盖；销毁虚拟机和 Terraform
+创建的磁盘使用 `terraform destroy`。
 
 在已部署的 Arch 虚拟机中，可拉取此仓库并运行：
 

@@ -154,7 +154,7 @@ source "qemu" "arch" {
   ssh_username     = "devbox"
   ssh_password     = "devbox"
   ssh_timeout      = var.ssh_timeout
-  shutdown_command = "sudo bash -c 'passwd -l devbox && passwd -l root && systemctl start poweroff.timer'"
+  shutdown_command = "sudo bash -c 'cloud-init clean --logs --machine-id && rm -f /etc/ssh/ssh_host_* && passwd -l devbox && passwd -l root && systemctl start poweroff.timer'"
   headless         = var.headless
 
   accelerator = "kvm"
@@ -198,16 +198,24 @@ build {
   }
 
   provisioner "shell" {
+    only            = ["qemu.arch"]
+    execute_command = "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    script          = "scripts/install-cloud-init.sh"
+  }
+
+  provisioner "shell" {
     execute_command = "{{ .Vars }} WRITE_ZEROS=${var.write_zeros} sudo -E -S bash '{{ .Path }}'"
     script          = "scripts/cleanup.sh"
   }
 
   provisioner "file" {
+    only        = ["parallels-iso.arch", "virtualbox-iso.arch", "vmware-iso.arch"]
     source      = pathexpand(var.ssh_public_key_path)
     destination = "/tmp/devbox.pub"
   }
 
   provisioner "shell" {
+    only            = ["parallels-iso.arch", "virtualbox-iso.arch", "vmware-iso.arch"]
     execute_command = "{{ .Vars }} sudo -E -S bash '{{ .Path }}'"
     inline = [
       "install -d -m 0700 -o devbox -g devbox /home/devbox/.ssh",
