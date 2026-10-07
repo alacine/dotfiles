@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if (($# == 0)); then
+	exit 64
+fi
+
+terminal=(ghostty)
+rules='{ float = true, size = "monitor_w*0.75 monitor_h*0.7", center = true }'
+
+if [[ ${1:-} == "--gui" ]]; then
+	shift
+	cmd_args=("$@")
+else
+	title=${1##*/}
+	cmd_args=("${terminal[@]}" "--title=$title" -e "$@")
+fi
+
+if ((${#cmd_args[@]} == 0)); then
+	exit 64
+fi
+
+printf -v cmd "%q " "${cmd_args[@]}"
+cmd=${cmd% }
+
+if [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]] && command -v hyprctl >/dev/null 2>&1; then
+	cmd=${cmd//\\/\\\\}
+	cmd=${cmd//\"/\\\"}
+	hyprctl eval "hl.exec_cmd(\"$cmd\", $rules)"
+elif [[ -n ${NIRI_SOCKET:-} ]]; then
+	exec "${cmd_args[@]}"
+else
+	exec "${cmd_args[@]}"
+fi

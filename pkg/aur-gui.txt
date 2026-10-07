@@ -9,6 +9,7 @@ visual-studio-code-bin
 clipse
 libinput-gestures
 grimblast-git
+zscroll-git
 
 # Proxy / VPN
 clash-party-bin

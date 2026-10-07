@@ -25,3 +25,4 @@ tmux-xpanes
 # System Tools
 brillo
 gotop-bin
+nmrs-tui

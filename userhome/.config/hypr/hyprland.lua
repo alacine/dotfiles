@@ -254,7 +254,11 @@ bind(main_mod .. " + period", hl.dsp.layout("move +col"))
 bind(main_mod .. " + SHIFT + comma", hl.dsp.layout("swapcol l"))
 bind(main_mod .. " + SHIFT + period", hl.dsp.layout("swapcol r"))
 
-bind(main_mod .. " + E", exec(file_manager, { float = true }))
+bind(main_mod .. " + E", exec(file_manager, {
+	float = true,
+	size = "monitor_w*0.75 monitor_h*0.7",
+	center = true,
+}))
 bind("CTRL + ALT + T", exec("alacritty", { float = true }))
 bind("ALT + Q", toggle_dropdown)
 bind("ALT + code:36", exec(terminal))
@@ -300,6 +304,7 @@ bind(
 	"SUPER + SHIFT + W",
 	exec([[grimblast copysave active && notify-send "Screenshot" "Window saved to clipboard" -i camera-photo]])
 )
+bind("CTRL + ALT + A", exec("~/.config/scripts/rofi-screenshot"))
 
 bind("CTRL + left", hl.dsp.focus({ direction = "l" }))
 bind("CTRL + right", hl.dsp.focus({ direction = "r" }))

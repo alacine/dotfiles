@@ -1,6 +1,12 @@
-#!/bin/sh
-if pgrep -f "alacritty --class dropdown" >/dev/null; then
-    pkill -f "alacritty --class dropdown"
+#!/usr/bin/env bash
+set -euo pipefail
+
+terminal=(alacritty --class dropdown)
+session=dropdown
+pattern="alacritty --class dropdown"
+
+if pgrep -f "$pattern" >/dev/null; then
+    pkill -f "$pattern"
 else
-    alacritty --class dropdown -e tmux new-session -A -s dropdown
+    "${terminal[@]}" -e tmux new-session -A -s "$session"
 fi

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+wallpaper="$HOME/Pictures/wallpaper/OutOfTime_AlenaAenami.jpg"
+
+if [[ ! -r $wallpaper ]]; then
+  exit 1
+fi
+
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/niri"
+blurred_wallpaper="$cache_dir/overview-wallpaper.jpg"
+mkdir -p "$cache_dir"
+
+if [[ ! -e $blurred_wallpaper || $wallpaper -nt $blurred_wallpaper ]]; then
+  ffmpeg -hide_banner -loglevel error -y -i "$wallpaper" \
+    -vf "gblur=sigma=24" -update 1 -frames:v 1 "$blurred_wallpaper"
+fi
+
+exec swaybg -i "$blurred_wallpaper" -m fill

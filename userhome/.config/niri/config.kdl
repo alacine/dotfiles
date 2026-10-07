@@ -89,7 +89,7 @@ output "eDP-1" {
     mode "2560x1440@120"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1.25
+    scale 1.33
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -146,7 +146,7 @@ layout {
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 1.0; }
+    default-column-width { proportion 0.5; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -281,9 +281,19 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "swaync"
 spawn-at-startup "hyprpaper"
+spawn-sh-at-startup "~/.config/scripts/start-niri-overview-wallpaper"
 spawn-at-startup "clipse" "-listen"
 // spawn-at-startup "fcitx5" "-d" "--replace"
 spawn-at-startup "kdeconnect-indicator"
+
+overview {
+    backdrop-color "#1a1b26"
+}
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
 
 environment {
     QT_IM_MODULE "fcitx"
@@ -377,6 +387,21 @@ window-rule {
     match app-id="clipse$"
     open-floating true
     default-column-width { proportion 0.75; }
+    default-window-height { proportion 0.6; }
+}
+
+// Waybar popups.
+window-rule {
+    match title=r#"^(bluetui|btop|htop|nmrs-tui)$"#
+    open-floating true
+    default-column-width { proportion 0.75; }
+    default-window-height { proportion 0.7; }
+}
+
+window-rule {
+    match app-id=r#"^(pavucontrol|org\.pulseaudio\.pavucontrol)$"#
+    open-floating true
+    default-column-width { proportion 0.5; }
     default-window-height { proportion 0.6; }
 }
 
@@ -655,6 +680,7 @@ binds {
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
+    Ctrl+Alt+A hotkey-overlay-title="Screenshot: rofi" { spawn-sh "~/.config/scripts/rofi-screenshot"; }
     Super+Shift+S { spawn-sh "grimblast copysave area && notify-send 'Screenshot' 'Area saved to clipboard' -i camera-photo"; }
     Super+Shift+P { spawn-sh "grimblast copysave screen && notify-send 'Screenshot' 'Screen saved to clipboard' -i camera-photo"; }
     Super+Shift+W { spawn-sh "grimblast copysave active && notify-send 'Screenshot' 'Window saved to clipboard' -i camera-photo"; }

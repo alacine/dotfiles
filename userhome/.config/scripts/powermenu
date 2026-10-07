@@ -62,6 +62,8 @@ run_cmd() {
                 qdbus org.kde.ksmserver /KSMServer logout 0 0 0
             elif [[ "$DESKTOP_SESSION" == 'Hyprland' ]]; then
                 hyprctl dispatch exit 1
+            elif [[ "$XDG_CURRENT_DESKTOP" == 'niri' || "$DESKTOP_SESSION" == 'niri' ]]; then
+                niri msg action quit
             fi
         fi
     else

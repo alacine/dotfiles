@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+choice=$(printf '%s\n' \
+  'Select region' \
+  'Active window' \
+  'Current workspace (active display)' \
+  'Fullscreen (all displays)' |
+  rofi -dmenu -i -p 'Screenshot')
+
+case "$choice" in
+  'Select region') target=area ;;
+  'Active window') target=active ;;
+  'Current workspace (active display)') target=output ;;
+  'Fullscreen (all displays)') target=screen ;;
+  *) exit 0 ;;
+esac
+
+if [[ -n ${NIRI_SOCKET:-} ]]; then
+  case "$target" in
+    area) exec niri msg action screenshot ;;
+    active) exec niri msg action screenshot-window ;;
+    output) exec niri msg action screenshot-screen ;;
+    screen)
+      screenshot_dir="$HOME/Pictures/Screenshots"
+      screenshot_file="$screenshot_dir/Screenshot from $(date +'%Y-%m-%d %H-%M-%S').png"
+      mkdir -p "$screenshot_dir"
+      grim - | tee "$screenshot_file" | wl-copy --type image/png
+      notify-send 'Screenshot' "$choice saved and copied to clipboard" -i camera-photo
+      ;;
+  esac
+  exit 0
+fi
+
+grimblast copysave "$target" &&
+  notify-send 'Screenshot' "$choice saved and copied to clipboard" -i camera-photo
