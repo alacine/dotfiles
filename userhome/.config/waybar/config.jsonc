@@ -53,14 +53,14 @@
     "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
   },
   "network": {
-    "format-wifi": "{icon} {signalStrength}% ↑ {bandwidthUpBytes} | ↓ {bandwidthDownBytes}",
+    "format-wifi": "{icon} {signalStrength}%",
     "interval": 5,
     "format-ethernet": " ",
     "on-click": "bash ~/.config/scripts/rofi-wifi-menu",
     "format-disconnected": "Disconnected  ",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "tooltip-format": "{ifname} via {gwaddr} ",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ↑ {bandwidthUpBytes} | ↓ {bandwidthDownBytes}",
     "tooltip-format-ethernet": "{ifname} ",
   },
   "pulseaudio": {
@@ -107,7 +107,7 @@
     "on-click": "playerctl play-pause",
     "on-double-click-right": "playerctl next",
     "on-scroll-down": "playerctl previous",
-    "max-length": 50,
+    "max-length": 30,
   },
   "custom/power-menu": {
     "format": " <span color='#6a92d7'>⏻ </span>",

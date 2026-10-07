@@ -241,6 +241,19 @@ symbol = " "
 [kubernetes]
 format = '[$symbol$context( \($namespace\))]($style) '
 disabled = false
+detect_files = [
+	"Chart.yaml",
+	"helmfile.yaml",
+	"k8s.yaml",
+	"k8s.yml",
+	"kubernetes.yaml",
+	"kubernetes.yml",
+	"kustomization.yaml",
+	"kustomization.yml",
+	"skaffold.yaml",
+	"skaffold.yml",
+]
+detect_folders = ["charts", "k8s", "kubernetes", "manifests"]
 style = 'k8s'
 
 symbol = "󱃾 "

@@ -2,7 +2,7 @@
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: Monaco;
   /* font-family: Mononoki Nerd Font Mono; */
-  font-size: 20px;
+  font-size: 18px;
 }
 
 window#waybar {
@@ -75,7 +75,7 @@ window#waybar.hidden {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.default {
-  padding: 0 10px;
+  padding: 0 8px;
   color: #e5e5e5;
   /* color: #bf616a; */
   border-radius: 9.5px;
