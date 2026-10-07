@@ -32,8 +32,6 @@ bindkey ' ' magic-space
 # Personal aliases
 alias ls='ls --color=auto'
 alias ll='ls -hl --color=auto'
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
 alias vi='vim'
 alias nvi='nvim'
 alias emacs='emacs -nw'
@@ -41,11 +39,16 @@ alias ra='ranger'
 alias lg='lazygit'
 alias sc='systemctl'
 alias kb='kubectl'
-alias glra='git pull --rebase --autostash'
 alias dc='docker compose'
 alias tf='terraform'
 alias sz='lrzsz-sz'
 alias rz='lrzsz-rz'
+alias gst='git status'
+alias gf='git fetch'
+alias gl='git pull'
+alias gp='git push'
+alias glra='git pull --rebase --autostash'
+alias gcmsg='git commit -m'
 
 export no_proxy=127.0.0.1,::1,localhost,local,.local,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.cn
 export NO_PROXY=127.0.0.1,::1,localhost,local,.local,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.cn
