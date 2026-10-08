@@ -7,8 +7,8 @@ arch=('any')
 license=('custom')
 depends=(
     ## Base system
-    'base' 'linux' 'linux-headers' 'linux-firmware'
-    'amd-ucode' 'grub' 'zram-generator'
+    # Bare metal: install intel-ucode or amd-ucode according to the CPU vendor.
+    'base' 'grub' 'zram-generator'
     'earlyoom' 'cloud-init' 'lsb-release' 'archlinuxcn-keyring'
 
     ## Shell & Multiplexer
@@ -26,7 +26,7 @@ depends=(
     'shadowsocks-rust' 'frpc' 'privoxy' 'proxychains-ng' 'sshuttle' 'wgcf'
     # Network Tools
     'nethogs' 'mtr' 'nmap' 'fping' 'hping' 'tcpdump' 'whois' 'ipcalc'
-    'axel' 'croc' 'dnsutils' 'iputils'
+    'axel' 'croc' 'bind' 'iputils'
     'aria2' 'wget' 'rsync' 'sshfs' 'sshpass' 'w3m'
 
     ## Development
@@ -46,18 +46,18 @@ depends=(
     # Typesetting
     'typst'
     # Code Search & Stats
-    'ripgrep' 'fd' 'tokei' 'scc' 'cloc'
+    'ripgrep' 'fd' 'tokei' 'cloc'
     # Misc Dev
     'go-swagger' 'expac' 'jaq' 'yq' 'paru' 'yay' 'stow'
-    'lazydocker' 'mycli' 'pdftk' 'plantuml' 'jpegoptim'
-    'go-ethereum' 'go-musicfox-git' 'herdtools7-git' 'httpbin'
-    'openai-codex' 'python-camelot'
+    'lazydocker' 'pdftk' 'plantuml' 'jpegoptim'
+    'go-musicfox-git' 'httpbin'
+    'openai-codex'
 
     ## Security & Reverse Engineering
     'rizin'
 
     ## Media (CLI)
-    'yt-dlp' 'asciinema' 'asciinema-agg' 'ffmpeg' 'toilet'
+    'yt-dlp' 'asciinema' 'ffmpeg' 'toilet'
     'pamixer' 'cava' 'termusic'
 
     ## CLI Tools
@@ -71,7 +71,7 @@ depends=(
     # Misc CLI
     'fastfetch' 'tldr' 'csvlens' 'man-pages' 'man-db'
     'rfc' 'serie' 'wimlib' 'libcpuid' '7zip'
-    'hledger-bin' 'ledger' 'screenfetch'
+    'ledger' 'screenfetch'
     # Fun
     'lolcat' 'cowsay' 'figlet' 'sl' 'cmatrix'
     'asciiquarium' 'fortune-mod' 'genact' 'ascii'

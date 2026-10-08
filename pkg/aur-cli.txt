@@ -21,8 +21,12 @@ cbonsai
 pipes.sh
 shell-color-scripts-git
 tmux-xpanes
+scc-bin
 
 # System Tools
 brillo
 gotop-bin
 nmrs-tui
+
+# Finance
+hledger-bin
