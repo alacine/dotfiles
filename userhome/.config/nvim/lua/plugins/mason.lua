@@ -23,6 +23,7 @@ return {
         "superhtml",
         "shfmt",
         "stylua",
+        "puppet-editor-services",
         -- installed via PKGBUILD-cli
         -- "lua-language-server",
         -- "bash-language-server",

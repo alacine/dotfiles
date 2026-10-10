@@ -167,4 +167,5 @@ vim.lsp.enable({
   "ruby_lsp",
   "superhtml",
   "clangd",
+  "puppet",
 })
