@@ -1,3 +1,5 @@
+use ($nu.default-config-dir | path join mise.nu)
+
 alias pbcopy = xclip -selection clipboard
 alias pbpaste = xclip -selection clipboard -o
 alias vi = vim

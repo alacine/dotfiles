@@ -43,3 +43,6 @@ $env.FZF_CTRL_T_OPTS = "
 $env.FZF_ALT_C_OPTS = "
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
+
+let mise_path = $nu.default-config-dir | path join mise.nu
+^mise activate nu | save $mise_path --force
