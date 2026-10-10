@@ -297,7 +297,6 @@ layer-rule {
 
 environment {
     QT_IM_MODULE "fcitx"
-    GTK_IM_MODULE "fcitx"
     XMODIFIERS "@im=fcitx"
     XDG_MENU_PREFIX "arch-"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
