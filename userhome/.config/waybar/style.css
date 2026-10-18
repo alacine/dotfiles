@@ -38,6 +38,7 @@ window#waybar {
 #network,
 #cpu,
 #memory,
+#brightness,
 #volume {
   border-radius: 8px;
   padding: 3px 8px;
@@ -51,13 +52,15 @@ window#waybar {
   color: black;
 }
 
-#pulseaudio-slider {
+#pulseaudio-slider,
+#backlight-slider {
   padding: 0px;
   margin: 0px;
   margin-left: 8px;
 }
 
-#pulseaudio-slider slider {
+#pulseaudio-slider slider,
+#backlight-slider slider {
   all: unset;
   min-height: 0;
   min-width: 0;
@@ -67,14 +70,16 @@ window#waybar {
   box-shadow: none;
 }
 
-#pulseaudio-slider trough {
+#pulseaudio-slider trough,
+#backlight-slider trough {
   min-height: 8px;
   min-width: 75px;
   border-radius: 5px;
   background: @dark-7;
 }
 
-#pulseaudio-slider highlight {
+#pulseaudio-slider highlight,
+#backlight-slider highlight {
   min-width: 10px;
   border-radius: 5px;
   background: @highlight;

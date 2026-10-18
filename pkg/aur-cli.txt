@@ -11,6 +11,7 @@ whatweb
 watchdog
 herdr-bin
 asciinema-agg
+inferno
 
 # AI / Editors (CLI)
 claude-code

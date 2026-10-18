@@ -1,3 +1,11 @@
+local function prettier_args(_, ctx)
+  local args = { "--print-width", "120" }
+  if vim.bo[ctx.buf].filetype == "jsonc" then
+    vim.list_extend(args, { "--trailing-comma", "none" })
+  end
+  return args
+end
+
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
@@ -61,10 +69,10 @@ return {
         prepend_args = { "-i", "2" },
       },
       prettierd = {
-        prepend_args = { "--print-width", "120" },
+        prepend_args = prettier_args,
       },
       prettier = {
-        prepend_args = { "--print-width", "120" },
+        prepend_args = prettier_args,
       },
     },
   },

@@ -2,17 +2,28 @@
   "layer": "top",
   "modules-left": ["hyprland/workspaces", "niri/workspaces", "group/media"],
   "modules-center": ["clock"],
-  "modules-right": ["hyprland/submap", "tray", "custom/screenshot", "group/volume", "battery", "bluetooth", "network", "cpu", "memory"],
+  "modules-right": [
+    "hyprland/submap",
+    "tray",
+    "custom/screenshot",
+    "group/brightness",
+    "group/volume",
+    "battery",
+    "bluetooth",
+    "network",
+    "cpu",
+    "memory"
+  ],
   "hyprland/window": {
-    "max-length": 50,
+    "max-length": 50
   },
   "battery": {
     "interval": 60,
     "format": "{capacity}% {icon}",
     "format-icons": {
       "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-      "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-    },
+      "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+    }
   },
   "bluetooth": {
     "format": "",
@@ -21,29 +32,29 @@
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "exec ~/.config/scripts/systemtray-popup bluetui",
+    "on-click": "exec ~/.config/scripts/systemtray-popup bluetui"
   },
   "tray": {
     "spacing": 8,
-    "show-passive-items": true,
+    "show-passive-items": true
   },
   "custom/screenshot": {
     "format": "",
     "tooltip-format": "Screenshot: left-click for menu, right-click for fullscreen",
     "on-click": "exec ~/.config/scripts/rofi-screenshot",
-    "on-click-right": "grimblast copysave screen && notify-send 'Screenshot' 'Fullscreen saved and copied to clipboard' -i camera-photo",
+    "on-click-right": "grimblast copysave screen && notify-send 'Screenshot' 'Fullscreen saved and copied to clipboard' -i camera-photo"
   },
   "cpu": {
     "interval": 10,
     "format": " {}%",
     "max-length": 10,
-    "on-click": "exec ~/.config/scripts/systemtray-popup btop",
+    "on-click": "exec ~/.config/scripts/systemtray-popup btop"
   },
   "memory": {
     "interval": 30,
     "format": " {percentage}%",
     "tooltip-format": "{used:0.1f}G/{total:0.1f}G used",
-    "on-click": "exec ~/.config/scripts/systemtray-popup htop",
+    "on-click": "exec ~/.config/scripts/systemtray-popup htop"
   },
   "network": {
     "interval": 1,
@@ -56,40 +67,61 @@
     "tooltip-format-ethernet": "{ifname} ",
     "tooltip-format-disconnected": "󰖪",
     "max-length": 50,
-    "on-click": "exec ~/.config/scripts/systemtray-popup nmrs-tui",
+    "on-click": "exec ~/.config/scripts/systemtray-popup nmrs-tui"
   },
   "clock": {
     "format": "󰥔 {:%a, %d. %b %I:%M %p}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "format": {
-        "today": "<span color='#75f1fa'><b>{}</b></span>",
-      },
+        "today": "<span color='#75f1fa'><b>{}</b></span>"
+      }
     },
-    "on-click": "exec xdg-open https://calendar.google.com",
+    "on-click": "exec xdg-open https://calendar.google.com"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
     "format-muted": "",
     "format-icons": {
-      "default": ["", ""],
+      "default": ["", ""]
     },
     "scroll-step": 1,
     "ignored-sinks": ["Easy Effects Sink"],
-    "on-click": "exec ~/.config/scripts/systemtray-popup --gui pavucontrol",
+    "on-click": "exec ~/.config/scripts/systemtray-popup --gui pavucontrol"
   },
   "pulseaudio/slider": {
     "min": 0,
     "max": 100,
-    "orientation": "horizontal",
+    "orientation": "horizontal"
   },
   "group/volume": {
     "orientation": "horizontal",
-    "modules": ["pulseaudio", "pulseaudio/slider"],
+    "drawer": {
+      "transition-duration": 200
+    },
+    "modules": ["pulseaudio", "pulseaudio/slider"]
+  },
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "scroll-step": 5,
+    "min-brightness": 10
+  },
+  "backlight/slider": {
+    "min": 10,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  "group/brightness": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 200
+    },
+    "modules": ["backlight", "backlight/slider"]
   },
   "group/media": {
     "orientation": "horizontal",
-    "modules": ["custom/media-animation", "custom/media-now-playing", "custom/media-time"],
+    "modules": ["custom/media-animation", "custom/media-now-playing", "custom/media-time"]
   },
   "custom/media-now-playing": {
     "exec": "~/.config/waybar/custom_modules/media/media-now-playing.sh",
@@ -97,16 +129,16 @@
     "tooltip": false,
     "on-click": "playerctl play-pause",
     "on-click-middle": "playerctl previous",
-    "on-click-right": "playerctl next",
+    "on-click-right": "playerctl next"
   },
   "custom/media-animation": {
     "exec": "~/.config/waybar/custom_modules/media/media-animation.sh",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/media-time": {
     "exec": "~/.config/waybar/custom_modules/media/media-time.sh",
     "escape": true,
     "interval": 1,
-    "tooltip": false,
-  },
+    "tooltip": false
+  }
 }
