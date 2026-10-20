@@ -121,6 +121,48 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
+function jkey() {
+	if (( $# != 1 )); then
+		print -u2 'Usage: jkey <file.json>'
+		return 2
+	fi
+	if [[ ! -f "$1" || ! -r "$1" ]]; then
+		print -u2 "Cannot read JSON file: $1"
+		return 1
+	fi
+
+	local selected value
+	local -x JKEY_FILE="$1"
+	# fzf may close the pipe after a selection, causing jq to exit with SIGPIPE.
+	setopt local_options no_pipe_fail
+	selected=$(
+		jq -r --stream '
+			input_line_number as $line
+			| select(length == 2)
+			| "\(.[0] | map(
+				if type == "number" then
+					"[\(.)]"
+				elif test("^[a-zA-Z_][a-zA-Z0-9_]*$") then
+					"." + .
+				else
+					"[\(tojson)]"
+				end
+			) | join(""))\t\(.[1] | tojson)\t\($line)"
+		' -- "$1" | fzf --delimiter=$'\t' --with-nth=1,2 \
+			--preview '
+				line={3}
+				start=$((line > 8 ? line - 8 : 1))
+				end=$((line + 8))
+				sed -n "${start},${end}p;${end}q" "$JKEY_FILE" |
+					bat --paging=never --color=always --style=plain --language=json |
+					nl -ba -v "$start"
+			' \
+			--preview-window='right:60%:wrap'
+	) || return
+	value=${selected#*$'\t'}
+	printf 'key: %s\nvalue: %s\n' "${selected%%$'\t'*}" "${value%%$'\t'*}"
+}
+
 # if [[ -n $TMUX ]]; then
 #     __kdwithtmuxpopup() {
 #         tmux display-popup "kd $@"
