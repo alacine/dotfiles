@@ -10,8 +10,8 @@ return {
     { "<F9>", "<CMD>FloatermNext<CR>", mode = { "n", "t" }, desc = "Floaterm Next" },
     { "<F10>", "<CMD>FloatermToggle<CR>", mode = { "n", "t" }, desc = "Floaterm Toggle" },
   },
-  config = function()
-    vim.g.floaterm_autoclose = 1
+  init = function()
+    vim.g.floaterm_autoclose = "smart"
     vim.g.floaterm_width = 0.8
     vim.g.floaterm_height = 0.8
   end,
