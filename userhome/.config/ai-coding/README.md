@@ -48,11 +48,8 @@ Claude Code reads them through:
 Codex keeps its system skills in `~/.codex/skills/.system`, so `make setup-ai`
 links only personal skill subdirectories into `~/.codex/skills/`.
 
-opencode can read:
-
-```text
-~/.config/opencode/skill -> ~/.config/ai-coding/skills
-```
+OpenCode also discovers skills from `~/.claude/skills`, so it needs no
+separate skills link.
 
 ## Deploy
 
