@@ -22,3 +22,5 @@ CLAUDE.md
 userhome/.config/ai-coding/generated/
 
 output/
+
+*.log

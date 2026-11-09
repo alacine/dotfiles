@@ -259,6 +259,7 @@ bind(main_mod .. " + E", exec(file_manager, {
 	center = true,
 }))
 bind("CTRL + ALT + T", exec("alacritty", { float = true }))
+bind("SUPER + ALT + V", exec("voxtype record toggle"))
 bind("ALT + Q", toggle_dropdown)
 bind("ALT + code:36", exec(terminal))
 

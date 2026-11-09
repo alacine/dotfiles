@@ -170,11 +170,8 @@ function jkey() {
 #     alias kd=__kdwithtmuxpopup
 # fi
 
-[[ ! -f "$HOME/.privaterc" ]] || source "$HOME/.privaterc"
-[[ ! -f "$HOME/.workrc" ]] || source "$HOME/.workrc"
-
 # Share the prompt configuration with Nushell.
 eval "$(starship init zsh)"
 
-source ${HOME}/.privaterc
-source ${HOME}/.workrc
+[[ ! -f "$HOME/.privaterc" ]] || source "$HOME/.privaterc"
+[[ ! -f "$HOME/.workrc" ]] || source "$HOME/.workrc"

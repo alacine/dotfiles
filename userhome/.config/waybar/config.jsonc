@@ -5,6 +5,7 @@
   "modules-right": [
     "hyprland/submap",
     "tray",
+    "custom/voxtype",
     "custom/screenshot",
     "group/brightness",
     "group/volume",
@@ -37,6 +38,19 @@
   "tray": {
     "spacing": 8,
     "show-passive-items": true
+  },
+  "custom/voxtype": {
+    "exec": "voxtype status --follow --format json",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "",
+      "transcribing": "",
+      "stopped": ""
+    },
+    "tooltip": true,
+    "on-click": "voxtype record toggle"
   },
   "custom/screenshot": {
     "format": "",

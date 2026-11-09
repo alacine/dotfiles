@@ -34,6 +34,7 @@ window#waybar {
 #battery,
 #bluetooth,
 #tray,
+#custom-voxtype,
 #custom-screenshot,
 #network,
 #cpu,
@@ -44,6 +45,14 @@ window#waybar {
   padding: 3px 8px;
   background: @dark-8;
   margin: 4px 10px 4px 0px;
+}
+
+#custom-voxtype.recording {
+  color: #ff5555;
+}
+
+#custom-voxtype.transcribing {
+  color: #f1fa8c;
 }
 
 #submap,

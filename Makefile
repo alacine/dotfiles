@@ -62,6 +62,15 @@ setup-ai: ## Generate and deploy shared AI coding rules and skills
 	$(MAKE) deploy
 	./scripts/setup-ai link-skills
 
+.PHONY: setup-voxtype
+setup-voxtype: ## Download the Voxtype model, select GPU acceleration, and start its user service
+	voxtype setup --download --model large-v3-turbo
+	sudo voxtype setup gpu --enable
+	systemctl --user daemon-reload
+	systemctl --user enable --now voxtype.service
+	systemctl --user restart voxtype.service
+	voxtype info accel
+
 .PHONY: withdraw
 withdraw: ## Remove links
 	stow -v -t $(HOME) -D $(STOW_PACKAGES)

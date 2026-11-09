@@ -17,7 +17,7 @@ depends=(
     ## Display / Wayland
     # Wayland utilities
     'grim' 'slurp' 'swaybg' 'wl-clipboard' 'uwsm'
-    'brightnessctl' 'libnotify' 'xdg-utils'
+    'brightnessctl' 'libnotify' 'xdg-utils' 'wtype'
     # Compositor / WM launcher
     'waybar-git' 'rofi' 'wofi' 'fuzzel' 'swaync'
     # Hyprland
@@ -54,8 +54,11 @@ depends=(
     'fcitx5-mozc' 'fcitx5-rime' 'rime-double-pinyin' 'rime-wubi'
 
     ## Audio
-    'pavucontrol' 'pipewire' 'pipewire-audio' 'pipewire-pulse'
+    'pavucontrol' 'pipewire' 'pipewire-alsa' 'pipewire-audio' 'pipewire-pulse'
     'wireplumber' 'playerctl'
+
+    ## Voice input
+    'gtk4-layer-shell' 'ollama-cuda'
 
     ## Bluetooth
     'bluetui' 'bluez-utils' 'bc'

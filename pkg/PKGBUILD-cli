@@ -73,7 +73,7 @@ depends=(
     'rfc' 'serie' 'wimlib' 'libcpuid' '7zip'
     'ledger' 'screenfetch'
     # Fun
-    'lolcat' 'cowsay' 'figlet' 'sl' 'cmatrix'
+    'lolcat' 'cowsay' 'figlet' 'sl' 'cmatrix' 'presenterm'
     'asciiquarium' 'fortune-mod' 'genact' 'ascii'
 )
 

@@ -444,6 +444,7 @@ binds {
     Ctrl+Alt+L hotkey-overlay-title="Power Menu: rofi" { spawn-sh "~/.config/scripts/powermenu"; }
     Ctrl+Alt+Space hotkey-overlay-title="Run bin: rofi" { spawn-sh "rofi -show run"; }
     Ctrl+Alt+V hotkey-overlay-title="Clipboard: clipse" { spawn "ghostty" "--class=app.clipse" "-e" "clipse"; }
+    Super+Alt+V hotkey-overlay-title="Voice Input: Voxtype" { spawn "voxtype" "record" "toggle"; }
     Ctrl+Up    { focus-window-or-workspace-up; }
     Ctrl+Down  { focus-window-or-workspace-down; }
     Ctrl+Left  { focus-column-or-monitor-left; }

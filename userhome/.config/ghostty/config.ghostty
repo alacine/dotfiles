@@ -41,7 +41,7 @@ term = "xterm-256color"
 
 # Window
 background-opacity = 0.9
-background-blur = true
+background-blur = false
 
 # Tab bar (Linux): use terminal colorscheme for titlebar to match tokyonight background
 window-theme = ghostty
