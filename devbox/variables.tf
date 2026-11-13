@@ -22,6 +22,12 @@ variable "image_path" {
   default     = "output/arch-qemu/arch.qcow2"
 }
 
+variable "debian_image_path" {
+  type        = string
+  description = "Path to the Packer-built Debian QCOW2, relative to this Terraform directory."
+  default     = "output/debian-qemu/debian.qcow2"
+}
+
 variable "ssh_public_key_path" {
   type        = string
   description = "Public key for the devbox account."
@@ -30,8 +36,14 @@ variable "ssh_public_key_path" {
 
 variable "vm_name" {
   type        = string
-  description = "VM name and cloud-init instance ID."
+  description = "Arch VM name and cloud-init instance ID."
   default     = "arch-devbox"
+}
+
+variable "debian_vm_name" {
+  type        = string
+  description = "Debian VM name."
+  default     = "debian-devbox"
 }
 
 variable "memory_mib" {

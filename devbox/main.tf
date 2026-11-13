@@ -124,14 +124,85 @@ resource "libvirt_domain" "arch" {
   }
 }
 
+resource "libvirt_volume" "debian_system" {
+  name = "${var.debian_vm_name}.qcow2"
+  pool = var.pool
+
+  target = {
+    format = { type = "qcow2" }
+  }
+
+  create = {
+    content = { url = abspath(var.debian_image_path) }
+  }
+}
+
+resource "libvirt_domain" "debian" {
+  name        = var.debian_vm_name
+  type        = "kvm"
+  running     = true
+  memory      = var.memory_mib
+  memory_unit = "MiB"
+  vcpu        = var.vcpu
+
+  os = {
+    type         = "hvm"
+    type_arch    = "x86_64"
+    boot_devices = [{ dev = "hd" }]
+  }
+
+  devices = {
+    disks = [{
+      driver = { name = "qemu", type = "qcow2" }
+      source = {
+        volume = {
+          pool   = var.pool
+          volume = libvirt_volume.debian_system.name
+        }
+      }
+      target = { dev = "vda", bus = "virtio" }
+    }]
+    interfaces = [{
+      type  = "network"
+      model = { type = "virtio" }
+      wait_for_ip = {
+        source  = "lease"
+        timeout = 300
+      }
+      source = {
+        network = { network = var.network }
+      }
+    }]
+    consoles = [{
+      target = { type = "serial", port = 0 }
+    }]
+    graphics = [{
+      vnc = { auto_port = true, listen = "127.0.0.1" }
+    }]
+    videos = [{
+      model = { type = "virtio" }
+    }]
+  }
+}
+
 data "libvirt_domain_interface_addresses" "arch" {
   domain = libvirt_domain.arch.name
+  source = "lease"
+}
+
+data "libvirt_domain_interface_addresses" "debian" {
+  domain = libvirt_domain.debian.name
   source = "lease"
 }
 
 locals {
   vm_ipv4 = one(flatten([
     for interface in data.libvirt_domain_interface_addresses.arch.interfaces : [
+      for address in interface.addrs : address.addr if address.type == "ipv4"
+    ]
+  ]))
+  debian_vm_ipv4 = one(flatten([
+    for interface in data.libvirt_domain_interface_addresses.debian.interfaces : [
       for address in interface.addrs : address.addr if address.type == "ipv4"
     ]
   ]))
@@ -158,6 +229,25 @@ resource "local_file" "ssh_host" {
   depends_on = [terraform_data.ssh_include]
 }
 
+resource "local_file" "debian_ssh_host" {
+  filename             = pathexpand("~/.ssh/config.d/${var.debian_vm_name}.conf")
+  file_permission      = "0600"
+  directory_permission = "0700"
+  content              = <<-EOT
+    Host ${var.debian_vm_name}
+        HostName ${local.debian_vm_ipv4}
+        User devbox
+        IdentityFile ${trimsuffix(pathexpand(var.ssh_public_key_path), ".pub")}
+        IdentitiesOnly yes
+  EOT
+
+  depends_on = [terraform_data.ssh_include]
+}
+
 output "vm_name" {
   value = libvirt_domain.arch.name
+}
+
+output "debian_vm_name" {
+  value = libvirt_domain.debian.name
 }
